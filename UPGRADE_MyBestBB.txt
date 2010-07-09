@@ -1,0 +1,41 @@
+ If you are upgrading to 1.25 or later from a previous MyBestBB version ( < 1.25 beta1 ), you need to upgrade your database before owerwriting with MyBestBB 1.25 php files.
+
+ Please proceed as follows :
+
+ 1 copy the new mods install to the root of your website
+*********************************************************
+
+ You need :
+* install_mod_Another_Private_Messaging_System.php
+* install_mod_message_prive_de-bienvenue.php
+* install_mod_Image_Awards.php
+* install_mod_Attachment.php
+* the complete directory attach/ ( containing 2 files, .htaccess and index.html )
+  This directory needs write permissions for the webserver.
+
+ 2 launch the mod install for those  4 files, using your browser
+*****************************************************************
+
+* http://yoursite.tld/install_mod_Another_Private_Messaging_System.php
+* http://yoursite.tld/install_mod_message_prive_de-bienvenue.php
+* http://yoursite.tld/install_mod_Image_Awards.php
+* http://yoursite.tld/install_mod_Attachment.php
+
+ 3 now your database is ready for 1.25 upgrade
+***********************************************
+
+ You can overwrite all the files in your website with the 1.25 files
+
+* tar xvzf MyBestBB-1.25.tar.gz
+* cp -af MyBestBB-1.25/* html/
+* cp -af MyBestBB-1.25/.htaccess html/
+
+( replace /html with /htdocs or other name corresponding to the web root name of your website )
+
+ 4 verify permissions
+**********************
+
+ Your webserver needs to have write access to the /cache and /attach/ directories )
+
+
+

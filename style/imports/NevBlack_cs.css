@@ -1,0 +1,524 @@
+/*NEVBLACK THEME BY NEVETHIR 1.0*/
+BODY {
+background-color : #000000; 
+color : #C0C0C0; 
+} 
+/* header logo */
+.pun H1 
+{
+/* your logo & position */
+display: block;
+height: 10px;
+border-top : 5px solid #000000;
+border-bottom : 20px solid #000000;
+}
+
+/*header title*/
+.pun H1 span
+{
+/* your font style */
+color: #C0C0C0;
+font-size: 18px;
+font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif; 
+text-transform: uppercase;
+text-decoration: underline;
+
+/* your text position */
+position: absolute; 
+top: 20px;
+left: 3%;
+}
+.pun {
+color : #C0C0C0; 
+} 
+.pun BLOCKQUOTE , DIV.codebox , DIV.box , adminconsole FIELDSET TH , .rowodd , .roweven {
+background-color : #000000; 
+} 
+#adminconsole TD , #adminconsole TH {
+border-color: #222222; 
+background-color : #000000; 
+} 
+#postpreview , #viewprofile DD , DIV.forminfo , DIV.blockmenu DIV.box {
+background-color : #111111; 
+color : #C0C0C0; 
+} 
+#adminconsole FIELDSET TD {
+border-color: #222222; 
+background-color : #000000; 
+} 
+TD.tc2 , TD.tc3 , TD.tc4 , TD.tc5 {
+background-color : #111111; 
+} 
+TD.tcmod , adstats DD {
+background-color : #111111; 
+} 
+.pun H2 {
+background-image : url(../../img/nevblack/cellpic1.gif); 
+border-right : 1px solid #222222; 
+border-left : 1px solid #222222; 
+border-top : 1px solid #222222; 
+border-bottom : 0px solid #222222; 
+color : #C0C0C0; 
+font-weight : bold; 
+} 
+.pun #brdmenu {
+background-image : url(../../img/nevblack/cellpic1.gif); 
+/*border-right : 1px solid #222222; 
+border-left : 1px solid #222222;
+border-top : 1px solid #222222; 
+border-bottom : 1px solid #222222; 
+color : #FFFF54; 
+font-weight : bold; 
+ */
+} 
+.pun TH {
+background-color : #000000; 
+color : #C0C0C0; 
+} 
+.pun TH.tcl , TH.tc2 , TH.tc3 , TH.tc4 , TH.tc5 , TH.tcr , TH.tcmod {
+background-image : url(../../img/nevblack/cellpic2.gif); 
+color : #C0C0C0; 
+font-weight : bold; 
+} 
+.pun div.infldset TH.tcl , div.infldset TH.tc2 , div.infldset TH.tc3 , div.infldset TH.tcr {
+background-image : url(../../img/nevblack/pix.gif); 
+color : #C0C0C0; 
+} 
+.pun div.infldset th.hidehead {
+color : #C0C0C0; 
+background-image : url(../../img/nevblack/pix.gif);  
+} 
+.pun span.byuser {
+background-position : 0% 50%; 
+background-repeat : no-repeat; 
+background-image : url(../../img/nevblack/icon_post.gif); 
+padding : 0 20px; 
+} 
+.pun LEGEND {
+color : #C0C0C0; 
+} 
+.pun DIV.blockmenu LI.isactive A , #posterror LI STRONG {
+color : #f26522; 
+} 
+DIV.blockpost DIV.box , DIV.postright , DIV.postfootright {
+background-color : #000000; 
+} 
+DIV.postright , DIV.postfootright {
+border-left-color: #000000;
+} 
+DIV.postleft , DIV.postfootleft , DIV.blockpost LABEL {
+background-color : #000000; 
+} 
+DIV.blockpost H2 {
+background-color : #000000; 
+} 
+DIV.blockpost H2 SPAN.conr {
+color : #C0C0C0; 
+} 
+.pun HR {
+color : #C0C0C0; 
+} 
+DIV.box {
+border-left-color: #222222;
+border-right-color: #222222;
+border-top-color: #222222;
+border-bottom-color: #222222;
+} 
+DIV.blockpost DIV.box {
+border-color : #222222; 
+} 
+.pun TD {
+border-color : #222222; 
+} 
+.pun TH {
+border-color : #222222; 
+} 
+.pun BLOCKQUOTE {
+background-color : #111111; 
+color : #C0C0C0; 
+} 
+.pun BLOCKQUOTE , DIV.codebox , DIV.forminfo , DIV.blockpost LABEL {
+border-color : #222222; 
+} 
+FIELDSET {
+border-color : #222222; 
+} 
+.pun A:link {
+color : #FFFF54; /* Yellow */
+text-decoration: none;
+} 
+ .pun A:visited {
+color : #FF54FF; /* Purple */
+}
+.pun A:hover {
+color : #FFA954; /* Orange */
+} 
+.pun H2 A:link , .pun H2 A:visited {
+color : #999999; 
+} 
+LI.postreport A:link , LI.postreport A:visited , TR.iclosed TD.tcl A:link , TR.iclosed TD.tcl A:visited {
+color : #aaaaaa; 
+} 
+LI.postreport A:hover , TR.iclosed TD.tcl A:hover {
+color : #aaaaaa; 
+} 
+LI.maintenancelink A:link , LI.maintenancelink A:visited {
+color : #b42000; 
+} 
+LI.maintenancelink A:hover {
+color : #b42000; 
+} 
+TR.iclosed Div.icon {
+background-image : url(../../img/nevblack/icon_closed.gif); 
+} 
+Div.icon {
+background-image : url(../../img/nevblack/icon_normal.gif); 
+} 
+TR.iredirect DIV.icon {
+background-image : url(../../img/nevblack/icon_redirect.gif); 
+} 
+TR.inew Div.icon {
+background-image : url(../../img/nevblack/icon_new.gif); 
+} 
+TR.imoved Div.icon {
+background-image : url(../../img/nevblack/icon_moved.gif); 
+} 
+TR.isticky DIV.icon {
+background-image : url(../../img/nevblack/icon_sticky.gif); 
+} 
+.pun , .pun INPUT , .pun SELECT , .pun TEXTAREA , .pun OPTGROUP {
+font-family : Verdana, Arial, Helvetica, sans-serif; 
+} 
+.pun {
+font-size : 11px; 
+line-height : normal; 
+} 
+* HTML .pun {
+font-size : 68.75%; 
+} 
+.pun TABLE , .pun INPUT , .pun SELECT , .pun OPTGROUP , .pun TEXTAREA , DIV.postmsg P.postedit {
+font-size : 1em; 
+} 
+.pun H2 , .pun H4 {
+font-size : 1em; 
+} 
+.pun H3 {
+font-size : 1.1em; 
+} 
+DIV.postmsg P {
+line-height : 1.4; 
+} 
+DIV.postleft DT {
+font-size : 1.1em; 
+} 
+.pun PRE {
+font-size : 1.2em; 
+} 
+DIV.postleft DT , DIV.postmsg H4 , TD.tcl H3 , DIV.forminfo H3 , P.postlink , DIV.linkst LI , DIV.linksb LI , DIV.postlinksb LI , .blockmenu LI , #brdtitle H1 , .pun SPAN.warntext , .pun P.warntext {
+font-weight : bold; 
+} 
+.blockpost DT A:link , .blockpost DT A:visited , .blockpost H2 A:link , .blockpost H2 A:visited , .postlink A:link , .postlink A:visited , .postfootright A:link , .postfootright A:visited , .blockmenu A:link , .blockmenu A:visited {
+text-decoration : none;
+} 
+
+#brdmenu A:link {
+text-decoration : none;
+color: #FFFF54;
+padding-left: 2px;
+margin-left: 2px;
+padding-right: 2px;
+margin-left: 2px;
+padding-top: 0px;
+margin-top: 1px;
+margin-bottom: 1px;
+padding-bottom: 0px;
+/*border: 1px groove; */
+font-size: 13px;
+/*display: inline;*/
+}
+.pun H2 A:hover , #brdmenu A:hover {
+color : #FFA954; 
+} 
+#brdmenu A:hover , .blockpost H2 A:hover {
+text-decoration : underline;
+color: #FFA954;
+}
+#brdmenu A:visited {
+color: #FF54FF;
+} 
+DIV.box , .pun TD , .pun TH , .pun BLOCKQUOTE , DIV.codebox , DIV.forminfo , DIV.blockpost LABEL {
+border-style : solid; 
+border-width : 1px;
+font-size : 12px;
+} 
+#brdheader DIV.box {
+border-top-width : 4px; 
+} 
+.pun TD , .pun TH {
+border-bottom : medium none inherit; 
+border-right : medium none inherit; 
+} 
+.pun .tcl {
+border-left : medium none inherit; 
+} 
+FIELDSET {
+border-style : solid; 
+border-width : 1px; 
+} 
+HTML , BODY {
+margin : 0; 
+padding : 0; 
+} 
+#punwrap {
+margin : 12px 20px; 
+} 
+DIV.blocktable , DIV.block , DIV.blockform , DIV.block2col , #postreview {
+margin-bottom : 12px; 
+} 
+#punindex DIV.blocktable , DIV.blockpost {
+margin-bottom : 6px; 
+} 
+#punadmin_index DIV.blocktable , DIV.blockpost {
+margin-bottom : 6px; 
+} 
+DIV.block2col DIV.blockform , DIV.block2col DIV.block {
+margin-bottom : 0; 
+} 
+DIV.linkst , DIV.linksb {
+margin-top : -12px; 
+} 
+DIV.postlinksb {
+margin-top : -6px; 
+} 
+#brdstats {
+margin-top : 12px; 
+} 
+DIV.block DIV.inbox , DIV.blockmenu DIV.inbox {
+padding : 3px 6px; 
+} 
+.pun P , .pun UL , .pun DL , DIV.blockmenu LI , .pun LABEL , #announce DIV.inbox DIV {
+padding : 3px 0; 
+} 
+.pun H2 {
+padding : 4px 6px; 
+} 
+.pun H1 {
+padding : 3px 0 0 0; 
+} 
+DIV.linkst {
+padding : 8px 6px 3px; 
+} 
+DIV.linksb , DIV.postlinksb {
+padding : 3px 6px 8px; 
+} 
+#brdwelcome , #brdfooter DL A , DIV.blockmenu LI , DIV.rbox INPUT {
+line-height : 1.4em; 
+} 
+#viewprofile DT , #viewprofile DD {
+padding : 0 3px; 
+line-height : 2em; 
+} 
+#brdmenu LI , DIV.rbox INPUT , DIV.blockform P INPUT {
+margin-right : 2px; 
+} 
+.pun TH , .pun TD {
+padding : 4px 6px; 
+} 
+.pun TD P {
+padding : 5px 0 0; 
+} 
+DIV.postleft DL , DIV.postright {
+padding : 6px; 
+} 
+DD.usercontacts , DD.postavatar {
+margin-top : 5px; 
+} 
+DD.postavatar {
+margin-bottom : 5px; 
+} 
+DIV.postsignature , DIV.postmsg P.postedit {
+padding-top : 15px; 
+} 
+DIV.postmsg H4 {
+margin-bottom : 10px; 
+} 
+.pun BLOCKQUOTE , DIV.codebox {
+margin : 5px 15px 15px; 
+padding : 8px; 
+} 
+DIV.postfootleft P , DIV.postfootright UL , DIV.postfootright DIV {
+padding : 10px 6px 5px; 
+} 
+DIV.blockpost INPUT , DIV.blockpost LABEL {
+padding : 3px; 
+display : inline; 
+} 
+P.multidelete {
+padding-top : 15px; 
+padding-bottom : 5px; 
+} 
+DIV.postmsg P {
+padding : 0; 
+} 
+DIV.blockform FORM , DIV.fakeform {
+padding : 20px 20px 15px; 
+} 
+DIV.inform {
+padding-bottom : 12px; 
+} 
+.pun FIELDSET {
+padding : 0 12px; 
+} 
+DIV.infldset {
+padding : 9px 0 12px 0; 
+} 
+.pun LEGEND {
+padding : 0 6px; 
+} 
+DIV.forminfo {
+margin-bottom : 12px; 
+padding : 9px 10px; 
+} 
+UL.bblinks LI {
+padding-right : 20px; 
+} 
+UL.bblinks {
+padding-bottom : 10px; 
+padding-left : 4px; 
+} 
+DIV.blockform P INPUT {
+margin-left : 12px; 
+} 
+div.icon {
+float : left; 
+display : block; 
+width : 28px; 
+height : 25px; 
+} 
+DIV.searchposts DIV.icon {
+margin-left : 0; 
+} 
+TD DIV.tclcon {
+margin-left : 2.3em; 
+} 
+.pun DIV.validator {
+position : absolute; 
+top: 20px;
+right : 20px;
+}
+/****************************************************************/
+/* MOD MODERN BB-CODE STYLE INDICATORS */
+/****************************************************************/
+/****************************************************************/
+/* MOD MODERN BBCODE: OVERRIDES FOR STANDART PUNBB STYLE INDICATORS */
+/****************************************************************/
+#post textarea, #post input.longinput, #edit textarea, #edit input.longinput {
+    border: 1px #111111 solid;
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: TOOLBAR AND TOOLBUTTON STYLE INDICATORS */
+/****************************************************************/
+
+DIV.toolbar {
+/*background-color : #111111;*/
+background: #000000;
+/*background: #111111;*/
+    border-left: 1px #111111 solid;
+    border-top: 1px #111111 solid;
+    border-right: 1px #111111 solid;
+}
+DIV.toolbar .draghandle {
+    border-left: 2px #111111 dotted;
+}
+DIV.toolbar .separator {
+    border-left: 1px #111111 solid;
+}
+DIV.toolbar a.tool_btn, DIV.toolbar a.dropdown, DIV.toolbar a.dropdown_opened {
+    border: 1px #111111 solid;
+    color: #DEDFDF;
+}
+DIV.toolbar a.tool_btn:visited, DIV.toolbar a.dropdown:visited, DIV.toolbar a.dropdown_opened:visited {
+    color: #DEDFDF;
+}
+DIV.toolbar a.tool_btn:hover, DIV.toolbar a.dropdown:hover {
+    border: 1px #6cb26a solid;
+    color: #FFF;
+    background: #111111;
+}
+DIV.toolbar a.dropdown {
+    background: url(../../img/modern_bbcode/cobalt_arrow.png) no-repeat top right;
+}
+DIV.toolbar a.dropdown_opened, DIV.toolbar a.dropdown_opened:hover, DIV.toolbar a.dropdown_opened:visited {
+    color: #FFF;
+    border: 1px #111111 solid;
+    background: #111111 url(../../img/modern_bbcode/cobalt_arrow_opened.png) no-repeat top right;
+}
+DIV.toolbar a.dropdown:hover {
+    background: #111111 url(../../img/modern_bbcode/cobalt_arrow_hover.png) no-repeat top right;
+}
+/****************************************************************/
+/* MOD MODERN BBCODE: POPUP PALETTE INDICATORS */
+/****************************************************************/
+/* 0. Common popup panel indicators */
+#colorpalette #colorbtn, #smilespanel #smilesbtn, #sizepanel #sizebtn, #imgpanel #imgbtn, #listpanel #listbtn {
+    border-left: 1px #111111 solid;
+    border-right: 1px #111111 solid;
+    color: #111111;
+    background: #111111;
+}
+#colorpalette #colorcontent, #smilespanel #smilescontent, #sizepanel #sizecontent, #imgpanel #imgcontent, #listpanel #listcontent {
+    border: 1px #111111 solid;
+    background: #111111;
+}
+/* 1. Smileys popup panel indicators */
+#smilespanel #adv a, #smilespanel #adv a:visited {
+    color: #FFF;
+}
+#smilespanel #adv a:hover {
+    color: #111111;
+}
+/* 2. Colors popup panel indicators */
+#colorpalette #colorcontent a {
+    border: 1px #111111 solid;
+}
+#colorpalette #colorcontent a:hover {
+    border: 1px #6cb26a solid;
+}
+/* 3. Font-sizes, Images and Lists popup panel indicators */
+#sizepanel #sizecontent a, #imgpanel #imgcontent a, #listpanel #listcontent a {
+    border: 1px solid #111111;
+    color: #FFF;
+    background: #111111;
+}
+#sizepanel #sizecontent a:hover, #imgpanel #imgcontent a:hover, #listpanel #listcontent a:hover  {
+    border: 1px #111111 solid;
+    color: #FFF;
+    background: #111111;
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: ADDITIONAL BBCODE INDICATORS */
+/****************************************************************/
+code {
+    color: #B42000;
+}
+div.postmsg li {
+    color: #666;
+}
+DIV.spoilerbox p {
+    color: #101010;
+}
+DIV.spoilerbox p:hover {
+    color: #DE3839;
+}
+IMG.postimg {
+    padding: 1px;
+    margin: 2px 5px;
+    border: 1px solid #111111;
+    background: #FFF;
+}
+DIV.postmsg a:hover IMG.postimg {
+    border: 1px solid #B42000;
+}
+

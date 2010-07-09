@@ -1,0 +1,58 @@
+changelog
+
+1.2.1
+
+- fix bug in install_mod.php not correctly check test_4
+- fix undefined offset 1 for header.php in pms_send.php
+- fix not correctly check user enable PMs system
+
+
+1.2
+
+- fix XSS vulnerability in pms_send.php
+- sanitize $idlist values
+- language definition hardcoded in profile.php
+- remove confirm_referrer()
+- remove intempestive ?> in AP_Private_messaging.php
+- fix displaying MP link according to the group privileges
+- user can now disable PM
+- introduce popup notification
+
+
+1.1.2
+
+- fix "Notice: Undefined index: topic_redirect in pms_send.php on line 51"
+- fix send PM from pms_list.php to user_id -> change ?id= to ?uid=
+
+
+1.1.1
+
+- change "<acronym title="Message Privé">MP</acronym>" to "<acronym title="Messages Privés">MP</acronym>"
+- change "boite" to "boîte"
+- change "en les séparants" to "en les séparant"
+- add some &#160; before double punctuation marks
+- add instructions to edit profile.php to enable/disable email notification
+- bypass refuse MP if sender is admin/mod
+
+
+1.1
+
+- fix "Notice: Undefined variable: lang_pms in header.php on line 196"
+- fix "Notice: Undefined index: Refuse from in pms_contacts.php on line 159"
+- fix "Notice: Undefined variable: cur_post in pms_list.php on line 166"
+- fix somes languages indexes
+- fix bug update from PMS 1.2.x
+- remove puntoolbar
+- preview message
+- multiple send to contacts
+- multiple authorize contacts
+- multiple refuse contacts
+- multiple delete contacts
+- change profil.php to profile.php
+- change "Boxes full to 0%" to "Empty boxes"
+- change "Authorize to send you private message" to "Refuse privates messages coming from this contact"
+
+
+1.0
+
+first public release

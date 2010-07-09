@@ -1,0 +1,45 @@
+mkdir ../../html/img/attach/
+cp audio.png ../../html/img/attach/
+cp compress.png ../../html/img/attach/
+cp image.png ../../html/img/attach/
+cp index.html ../../html/img/attach/
+cp text.png ../../html/img/attach/
+cp unknown.png ../../html/img/attach/
+cp video.png ../../html/img/attach/
+
+mkdir ../../html/include/attach/
+cp attach_incl.php ../../html/include/attach/
+cp attach_func.php ../../html/include/attach/
+
+cp en/attach.php ../../html/lang/English/
+cp fr/attach.php ../../html/lang/French/
+
+cp AP_Attachment_Mod.php ../../html/plugins/
+
+cp attachment.php ../../html/
+cp install_mod.php ../../html/
+cp install_mod_updater.php ../../html/
+
+#cp index.htm attachment-directory  
+#cp .htaccess attachment-directory
+chown -R apache ../../html/
+
+vi delete.php
+vi edit.php
+vi moderate.php
+vi viewtopic.php
+
+mv install_mod.php install_mod_Attachment.php
+
+$punbb_versions = array('1.2.8','1.2.9','1.2.10','1.2.11', '1.2.12', '1.2.13', '1.2.14', '1.2.15', '1.2.16', '1.2.17');
+
+  cp -a img/attach/ ~/COPIE_LOCALE/trunk/MyBestBB/img/
+  cp -a include/attach/ ~/COPIE_LOCALE/trunk/MyBestBB/include/
+  cp -a lang/English/attach.php ~/COPIE_LOCALE/trunk/MyBestBB/lang/English/
+  cp -a lang/French/attach.php ~/COPIE_LOCALE/trunk/MyBestBB/lang/French/
+  cp -a plugins/AP_Attachment_Mod.php ~/COPIE_LOCALE/trunk/MyBestBB/plugins/
+  #cp attachment.php install_mod_Attachment.php install_mod_updater.php
+  mv install_mod_updater.php install_mod_updater_Attachment.php
+  cp attachment.php install_mod_Attachment.php install_mod_updater_Attachment.php ~/COPIE_LOCALE/trunk/MyBestBB/
+
+

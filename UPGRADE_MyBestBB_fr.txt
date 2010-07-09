@@ -1,0 +1,41 @@
+ Si vous mettez a jour MyBestBB a partir d'une version anterieure a 1.25 beta1, il vous faut mettre a jour votre base de donnees AVANT d'ecraser les fichiers de MyBestBB.
+
+ Veuillez procedez ainsi :
+
+ 1 copiez les fichiers d'installation des nouveaux mods a la racine de votre site web :
+****************************************************************************************
+ Vous avez besoin de :
+
+* install_mod_Another_Private_Messaging_System.php
+* install_mod_message_prive_de-bienvenue.php
+* install_mod_Image_Awards.php
+* install_mod_Attachment.php
+* le repertoire complet /attach ( qui contient 2 fichiers, un .htaccess et un index.html )
+
+ 2 lancez l'installation des nouveaux mods, en utilisant votre navigateur :
+****************************************************************************
+
+* http://votresite.tld/install_mod_Another_Private_Messaging_System.php
+* http://votresite.tld/install_mod_message_prive_de-bienvenue.php
+* http://votresite.tld/install_mod_Image_Awards.php
+* http://votresite.tld/install_mod_Attachment.php
+
+( remplacez votresite.tld par le nom de domaine de votre site web )
+
+ 3 maintenant votre base de donnees est preste pour MyBestBB 1.25
+******************************************************************
+
+ Vous pouvez ecraser tous les fichiers de MyBestBB avec la version 1.25 a la
+ racine de votre site web
+
+* tar xvzf MyBestBB-1.25.tar.gz
+* cp -af MyBestBB-1.25/* html/
+* cp -af MyBestBB-1.25/.htaccess html/
+
+ ( remplacez html/ par htdocs/ ou tout autre nom correspondant a la racine de votre espace web )
+ 
+ 4 verifiez les permissions
+****************************
+
+ Le serveur web ( apache ) doit pouvoir ecrire dans les repertoires /cache et /attach/ 
+

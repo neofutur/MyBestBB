@@ -1,0 +1,100 @@
+ Improvements :
+****************
+ (*) means priority, todo first.
+---------------------------------
+
+(*) better integrate the movepost in the viewpoll, better integrate reputation in the movepoll, better integrate the ovepost with subforums
+(*) integrate multiquote support in viewpoll
+    ( see http://trac.ww7.be/trac.ww7.be/changeset/250/trunk/MyBestBB/viewtopic.php )
+(*) better rewrite everywhere, rewrite as an admin option, rewrite for
+    http://s8.travian.ww7.be/userlist.php?username=&show_group=1&sort_by=username&sort_dir=ASC&search=Submit
+(*) improving Active public topics :parameter to show polls and/or posts && improving poll interface
+(*) i18n the plugins which are not i18n, using lang/ messages for plugins
+(*) review all the MyBestBB themes and CSS , at least for the spoiler bbcode
+    (see http://mybestbb.ww7.be/viewtopic.php?pid=121 )
+ gathering mod install in only one page ( better than install_mods_MyBestBB.php which is just a helper page )
+ admin settings for active public topics ( number of items at least )
+ js rolling for active public topics
+ add multi yes/no poll
+ renaming userlist, viewtopic . . . ti avoid so much bots . . . 
+ private profile fields ( seen only by moderators or special group to choose )
+ i18n subforum on /admin_forums.php
+ add permissions use on the active topics ( shows all the things you can see when connected )
+ add something for using /me emote
+ automatic +1 reputation for 1st post, +1 for forst topic, -1 for post moved by admin . . . 
+(done)better smilies form,  with tabs 
+ mod_install gathered in one page, 2 clicks.
+ add admin option to give moderators the change user group power ( not admin group ;)
+ sort by language on Email global plus plugin
+ mises a jour nouvelles versions de chatbox, email global plus, polls, sous-forums
+ Languages :
+*************
+
+add spanish ( and other languages ) UTF8 and better support 
+translate reputation system
+translate private messages system
+
+ New Features :
+****************
+add multi-quote support ( http://www.punres.org/files.php?pid=136 )
+add smilies in editpost polls and fast answer
+add autosubscribe my topics option
+add autosubscribe topics with my own posts
+implement cache for dynamic png signature
+implement configuration for mode_logo and mod_banner in header.php
+add default forum permissions on categories
+add parameter for the lenght of the reputation messages
+add chatbox2irc bridge
+add rss everywhere ( rss for forum, subforum, topics )
+add config option to add a forum icon in /admin_forums.php
+add config option to add a category icon in /admin_categories.php
+online/offline icons on post see http://wiki.punres.org/Online/Offline_icon
+fast theme selector ( dropdown list )
+
+ Better questions for antibot features :
+*****************************************
+How many ears does the average human have? 2
+
+ Mystery bugs :
+****************
+
+UTF8 problems in sent mails ( mistery )
+mails not received by many hatmail/yahoo users
+cookie problem for avatars :
+04:33 < Zorlin> As far as the problem with the forums, I was trying to get a new avatar, but it kept going back to the old
+                one
+04:33 < Zorlin> I had to clean out my cookies to make my new avatar pic
+		
+ mods to include ? :
+*********************
+
+http://www.punres.org/desc.php?pid=185
+http://www.punres.org/files.php?pid=277
+http://www.punres.org/desc.php?pid=206
+http://www.punres.org/desc.php?pid=219
+http://www.punres.org/desc.php?pid=272
+http://www.punres.org/desc.php?pid=307
+http://www.punres.org/desc.php?pid=236
+http://www.punres.org/desc.php?pid=47
+http://www.punres.org/desc.php?pid=92
+http://www.punres.org/desc.php?pid=83
+http://www.punres.org/desc.php?pid=219
+http://www.punres.org/files.php?pid=467
+http://www.punres.org/files.php?pid=227
+
+possible security problems, according to sandcat ( see http://74.125.47.132/search?q=cache:foF81N-467EJ:www.syhunt.com.br/%3Fsection%3Dresources.updates+mybestbb&hl=fr&ct=clnk&cd=44&client=firefox-a ) :
+
+PunBB userlist.php Unspecified Character Filtering Weakness 	
+PunBB login.php Unspecified Character Filtering Weakness 	
+MyBestBB misc.php redirect_url Variable XSS	
+MyBestBB login.php Unspecified Character Filtering Weakness	
+PunBB admin_options.php Avatar Directory Cleaning Unspecified Weakness	
+MyBestBB admin_options.php Avatar Directory Cleaning Unspecified Weakness	
+MyBestBB /include/functions.php Unspecified Issue	
+MyBestBB search.php result_list array Parameter SQL Injection	
+MyBestBB include/common.php Local File Inclusion	
+MyBestBB include/common.php Global Parameter Registration Security Bypass	
+MyBestBB admin_categories.php Category Name XSS	
+MyBestBB footer.php include/user/ Local File Inclusion	
+MyBestBB misc.php Referer HTTP Header XSS	
+MyBestBB moderate.php get_host Variable XSS

@@ -1,4 +1,4 @@
-MyBestBB 1.27, se base sur punbb 1.2.21 ( voir http://punbb.org/ )
+MyBestBB 2.0.2, se base sur punbb 1.2.22 ( voir http://punbb.org/ )
 
  MyBestBB inclue de nombreuses modifications utiles, qui ajoutent des fonctionnalites a votre punbb 1.2.*
 
@@ -13,6 +13,7 @@ sont inclues les fonctionnalites suivantes :
 -> Polls	: easypoll 		( voir http://www.punres.org/desc.php?pid=60 )
 -> Activity Barometer 			( voir http://www.punres.org/desc.php?pid=142 )
 -> Ajax_extern				( voir http://forums.punbb.org/viewtopic.php?pid=64907#p64907 )
+-> Support SMTPS ( gmail et autres SMTP securises )
 -> Active Topics: activetopics anywhere	( voir http://www.punres.org/files.php?pid=252 )
 -> Topic Rating	: topics can be rated	( missing mod url, contact us )
 -> StickyTopics	: 			( missing mod url, contact us )

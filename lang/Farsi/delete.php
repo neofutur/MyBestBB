@@ -1,0 +1,13 @@
+<?php
+
+// Language definitions used in delete.php
+$lang_delete = array(
+
+'Delete post'			=>	'Õ–› Å”  Â«',
+'Warning'				=>	'‰ﬂ Â. «Ì‰ «Ê·Ì‰ Å”  «Ì‰  «ÅÌﬂ «”  Å” «“ Õ–› ﬂ·  «ÅÌﬂ Õ–› „Ì ‘Êœ.',
+'Delete'				=>	'Õ–›',	// The submit button
+'Post del redirect'		=>	'Å”  Õ–› ‘œ;',
+'Topic del redirect'	=>	' «ÅÌﬂ Õ–› ‘œ;'
+
+);
+«‰Ã„‰  Œ’’Ì „«ÂÊ«—ÂWWW.PERSIANSAT.NET

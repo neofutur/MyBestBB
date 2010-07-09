@@ -1,0 +1,156 @@
+/**************************************************
+
+	Style	Cellfuse
+	Version	1.1
+	Author	Ross Drapalski [cellfuse.com]
+	Created	2005-10-04
+
+**************************************************/
+
+/****************************************************************/
+/* 1. BACKGROUND AND TEXT COLOURS */
+/****************************************************************/
+
+/* 1.1 Default background colour and text colour */
+
+BODY {
+	BACKGROUND-COLOR: #fcfcfe;
+}
+
+.pun h1 {color: #333; letter-spacing: 0.2em; background-color: #fff;}
+
+.pun {COLOR: #000; background-color: #fff;}
+
+DIV.box { color:#333; background-color: #fff}
+
+DIV.box, .pun BLOCKQUOTE, DIV.codebox, #adminconsole FIELDSET TH, .rowodd, .roweven {BACKGROUND-COLOR: #fff}
+#adminconsole TD, #adminconsole TH {border-color: #fff}
+
+/* 1. 2 Darker background colours */
+
+TD.tc2, TD.tc3, TD.tcmod, #postpreview, #viewprofile DD, DIV.forminfo,
+#adminconsole FIELDSET TD, DIV.blockmenu DIV.box, #adstats DD {BACKGROUND-COLOR: #fff}
+
+/* 1.3 Main headers and navigation bar background and text colour */
+
+.pun H2{
+ BACKGROUND-COLOR: #fff; COLOR: #000000; border: none; FONT-WEIGHT: bold;
+}
+
+#brdmenu {BACKGROUND-COLOR: #f8f8f8; COLOR: #333333; border: 1px dashed #ccc;}
+
+/* 1.4 Table header rows */
+
+.pun TH {BACKGROUND-COLOR: #fff;}
+
+/* 1.5 Fieldset legend text colour */
+
+.pun LEGEND {COLOR: #000000; font-weight: bold}
+
+/* 1.6 Highlighted text for various items */
+
+.pun DIV.blockmenu LI.isactive A, #posterror LI STRONG {COLOR: #0066cc}
+
+/****************************************************************/
+/* 2. POST BACKGROUNDS AND TEXT */
+/****************************************************************/
+
+/* 2.1 This is the setup for posts. */
+
+DIV.blockpost DIV.box, DIV.postright, DIV.postfootright {BACKGROUND-COLOR: #fff}
+DIV.postright, DIV.postfootright {BORDER-LEFT-COLOR: #fff}
+DIV.postleft, DIV.postfootleft, DIV.blockpost LABEL {BACKGROUND-COLOR: #fff}
+
+/* 2.2 Background for post headers and text colour for post numbers in viewtopic */
+
+DIV.blockpost H2 {BACKGROUND-COLOR: #fff}
+DIV.blockpost H2 SPAN.conr {COLOR: #fff}
+
+/* 2.3 This is the line above the signature in posts. Colour and background should be the same */
+
+.pun HR {BACKGROUND-COLOR: #666666; COLOR: #666666}
+
+/****************************************************************/
+/* 3. BORDER COLOURS */
+/****************************************************************/
+
+/* 3.1 All external borders */
+
+DIV.box {BORDER-COLOR: #c1c1c1}
+
+/* 3.2 Makes the top border of posts match the colour used for post headers */
+
+DIV.blockpost DIV.box {BORDER-COLOR: #ccc; border-style: 1px dashed; border-right: 0px; border-left: 0px}
+
+/* 3.3 Table internal borders. By default TH is same as background so border is invisible */
+
+.pun TD {border-color: #fff}
+.pun TH {border-color: #f8f8f8}
+
+/* 3.4 Creates the inset border for quote boxes, code boxes and form info boxes */
+
+.pun BLOCKQUOTE, DIV.codebox, DIV.forminfo, DIV.blockpost LABEL {BORDER: 1px dotted #999999; background-color: #f8f8f8}
+
+/* 3.5 Gecko's default fieldset borders are really nasty so this gives them a colour
+without interferring with IE's rather nice default */
+
+.pun DIV>FIELDSET {border-color: #ACA899}
+
+/****************************************************************/
+/* 4. LINK COLOURS */
+/****************************************************************/
+
+/* 4.1 This is the default for all links */
+
+.pun A:link, .pun A:visited {COLOR: #003366; text-decoration: none}
+.pun A:hover {COLOR: #0066cc}
+
+/* 4.2 This is the colour for links in header rows and the navigation bar */
+
+.pun H2 A:link, .pun H2 A:visited, #brdmenu A:link, #brdmenu A:visited {COLOR: #333333;}
+.pun H2 A:hover, #brdmenu A:hover {COLOR: #0066cc}
+
+/* 4.3 This is for closed topics and "hot" links */
+
+LI.postreport A:link, LI.postreport A:visited, TR.iclosed TD.tcl A:link, TR.iclosed TD.tcl A:visited {COLOR: #888}
+LI.postreport A:hover, TR.iclosed TD.tcl A:hover {COLOR: #AAA}
+LI.maintenancelink A:link, LI.maintenancelink A:visited {COLOR: #B42000}
+LI.maintenancelink A:hover {COLOR: #B42000}
+
+/****************************************************************/
+/* 5. POST STATUS INDICATORS */
+/****************************************************************/
+
+/* These are the post status indicators which appear at the left of some tables. 
+.inew = new posts, .iredirect = redirect forums, .iclosed = closed topics and
+.isticky = sticky topics. The default is "icon". By default only .inew is different.*/
+
+TR.inew Div.icon { background-image: url(../../img/cellfuse/icon_new.gif);}
+
+TR.isticky DIV.icon { background-image: url(../../img/cellfuse/icon_stiky.gif);}
+
+TR.isticky DIV.inew { background-image: url(../../img/cellfuse/icon_stiky.gif);} 
+
+Div.icon {background-image: url(../../img/cellfuse/icon_normal.gif);}
+
+TR.iredirect DIV.icon { background-image: url(../../img/cellfuse/icon_redirect.gif);}
+
+TR.iclosed Div.icon {background-image: url(../../img/cellfuse/icon_closed.gif);}
+
+
+/****************************************************************/
+/* 6. ADDED IN STUFF */
+/****************************************************************/
+
+/* backgrounds images */
+h2 span {background:url(../../img/cellfuse/h2_icon.gif)}
+h2 span .conr {background:none;}
+
+
+/* POST BY USER WITH ICON */
+.pun span.byuser {
+background-position : left; 
+background-repeat : no-repeat; 
+background-image : url(../../img/cellfuse/icon_post.gif); 
+padding: 0px 20px 0px;
+} 

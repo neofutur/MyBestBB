@@ -1,0 +1,18 @@
+xena Image_Awards # cp install_mod.php ../../html/install_mod_Image_Awards.php
+xena Image_Awards # cp AP_Image_Awards.php ../../html/plugins/
+AP_ChatBox.php                 AP_Generateur_de_News/
+AP_Reputation.php              AP_Topic_Rating.php
+AP_Commutateur_De_Version.php  AP_Generateur_de_News.php      AP_Smileys.php
+index.html
+AP_Email_Global_Plus.php       AP_Profile_Fields.php
+AP_Style_installer.php
+xena Image_Awards # cp AP_Image_Awards.php ../../html/plugins/
+xena Image_Awards # mkdir ../../html/img/awards/
+xena Image_Awards # cp *.png ../../html/img/awards/
+
+// One or more versions of PunBB that this mod works on. The version names
+// must match exactly!
+$punbb_versions =
+array('1.2.5','1.2.6','1.2.7','1.2.8','1.2.9','1.2.10','1.2.11','1.2.12','1.2.13','1.2.14','1.2.15','1.2.16','1.2.17','1.2.18','1.2.19');
+
+

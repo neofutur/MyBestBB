@@ -1,0 +1,143 @@
+/****************************************************************/
+/* 1. BACKGROUND AND TEXT COLOURS */
+/****************************************************************/
+
+/* 1.1 Default background colour and text colour */
+
+BODY {  background           : #344055;
+  background-image     : url(../../img/EpicBlue/background.jpg);
+  background-attachment: fixed;
+  background-repeat    : no-repeat;
+  background-position  : top;
+  scrollbar-arrow-color: #E6EBFB;
+  scrollbar-base-color: #344566;
+  scrollbar-track-color: #344566;
+  scrollbar-face-color: #344566;
+  scrollbar-highlight-color: #344566;
+  scrollbar-3dlight-color: #465673;
+  scrollbar-darkshadow-color: #344566;
+  scrollbar-shadow-color: #465673;}
+
+.pun {COLOR: #D4D4D4}
+
+DIV.box,  #adminconsole FIELDSET TH, .rowodd, .roweven {BACKGROUND-COLOR: #27324a}
+#adminconsole TD, #adminconsole TH {BORDER-COLOR: #27324a}
+
+/* 1. 2 Darker background colours */
+
+TD.tc2, TD.tc3, TD.tcmod, #brdfooter DIV.box {BACKGROUND-COLOR: #314366}
+#adminconsole FIELDSET TD, #viewprofile DD, DIV.forminfo, DIV.blockmenu DIV.box, #adstats DD {BACKGROUND-COLOR: #344566}
+
+.pun BLOCKQUOTE, DIV.codebox {BACKGROUND-COLOR: #2b3751}
+
+/* 1.3 Main headers and navigation bar background and text colour */
+
+.pun H2 {background-image : url(../../img/EpicBlue/bg.gif);
+BACKGROUND-COLOR: #415680;
+COLOR: #D4D4D4;
+border-right : 1px solid #415680; 
+border-left : 1px solid #415680; 
+border-top : 1px solid #415680; 
+border-bottom : 0px solid #415680; }
+
+.pun #brdmenu {background-image : url(../../img/EpicBlue/bg.gif);
+BACKGROUND-COLOR: #415680;
+COLOR: #D4D4D4;
+border-right : 0 solid #415680; 
+border-left : 0 solid #415680; 
+border-top : 1px solid #415680; 
+border-bottom : 1px solid #415680; }
+
+/* 1.4 Table header rows */
+
+.pun TH, .bgc4 {BACKGROUND-COLOR: #344566}
+
+/* 1.5 Fieldset legend text colour */
+
+.pun LEGEND {COLOR: #60A0DC}
+
+/* 1.6 Highlighted text for various items */
+
+.pun DIV.blockmenu LI.isactive A, #posterror LI STRONG {COLOR: #D4D4D4}
+
+/* 1.7 Dark background for form elements */
+
+.pun TEXTAREA, .pun INPUT, .pun SELECT {BACKGROUND-COLOR: #212c41; COLOR: #D4D4D4}
+
+/****************************************************************/
+/* 2. POST BACKGROUNDS AND TEXT */
+/****************************************************************/
+
+/* 2.1 This is the setup for posts. */
+
+DIV.blockpost DIV.box, DIV.postright, DIV.postfootright, #postpreview {BACKGROUND-COLOR: #27324a}
+DIV.postright, DIV.postfootright {BORDER-LEFT-COLOR: #314366}
+DIV.postleft, DIV.postfootleft, DIV.blockpost LABEL {BACKGROUND-COLOR: #314366}
+
+/* 2.2 Background for post headers and text colour for post numbers in viewtopic */
+
+DIV.blockpost H2 {BACKGROUND-COLOR: #415680}
+DIV.blockpost H2 SPAN.conr {COLOR: #A19E96}
+
+/* 2.3 This is the line above the signature in posts. Colour and background should be the same */
+
+.pun HR {BACKGROUND-COLOR: #3d5076; COLOR: #3d5076}
+
+/****************************************************************/
+/* 3. BORDER COLOURS */
+/****************************************************************/
+
+/* 3.1 All external borders (H1 is the board title) */
+
+DIV.box {BORDER-COLOR: #415680}
+
+/* 3.2 Makes the top border of posts match the colour used for post headers */
+
+DIV.blockpost DIV.box {BORDER-COLOR: #415680 #415680 #415680}
+
+/* 3.3 Table internal borders. By default TH is same as background so border is invisible */
+
+.pun TD {BORDER-COLOR: #415680}
+.pun TH {BORDER-COLOR: #344566}
+
+/* 3.4 Creates the inset border for quote boxes, code boxes and form info boxes */
+
+.pun BLOCKQUOTE, DIV.codebox, DIV.forminfo, DIV.blockpost LABEL {BORDER-COLOR: #3d5076}
+
+/* 3.5 Gecko's default fieldset borders are really nasty so this gives them a colour
+without interferring with IE's rather nice default */
+
+.pun DIV>FIELDSET {BORDER-COLOR: #ACA899}
+
+/****************************************************************/
+/* 4. LINK COLOURS */
+/****************************************************************/
+
+/* 4.1 This is the default for all links */
+
+.pun A:link, .pun A:visited {COLOR: #60A0DC}
+.pun A:hover {COLOR: #80D6FF}
+
+/* 4.2 This is the colour for links in header rows and the navigation bar */
+
+.pun H2 A:link, .pun H2 A:visited {COLOR: #D4D4D4}
+.pun H2 A:hover {COLOR: #D4D4D4}
+
+/* 4.3 This is for closed topics and "hot" links */
+
+LI.postreport A:link, LI.postreport A:visited, TR.iclosed TD.tcl A:link, TR.iclosed TD.tcl A:visited {COLOR: #888}
+LI.postreport A:hover, TR.iclosed TD.tcl A:hover {COLOR: #AAA}
+LI.maintenancelink A:link, LI.maintenancelink A:visited {COLOR: #FF4000}
+LI.maintenancelink A:hover {COLOR: #FF5010}
+
+/****************************************************************/
+/* 5. POST STATUS INDICATORS */
+/****************************************************************/
+
+/* These are the post status indicators which appear at the left of some tables. 
+.inew = new posts, .iredirect = redirect forums, .iclosed = closed topics and
+.isticky = sticky topics. The default is "icon". By default only .inew is different.*/
+
+DIV.icon {BORDER-COLOR: #27324a #27324a #27324a #344566}
+TR.iredirect DIV.icon {BORDER-COLOR: #27324a #344566 #27324a #27324a}
+DIV.inew {BORDER-COLOR: #27324a #27324a #27324a #60a0dc}

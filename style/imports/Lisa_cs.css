@@ -1,0 +1,129 @@
+/****************************************************************/
+/* "Lisa" PunBB style */
+/* by ghotistix */
+/****************************************************************/
+
+/****************************************************************/
+/* 1. BACKGROUND AND TEXT COLOURS */
+/****************************************************************/
+
+/* 1.1 Default background colour and text colour */
+
+BODY {BACKGROUND-COLOR: #EFD}
+
+.pun {COLOR: #000}
+
+DIV.box, .pun BLOCKQUOTE, DIV.codebox, #adminconsole FIELDSET TH, .rowodd, .roweven {BACKGROUND-COLOR: #CDB}
+#adminconsole TD, #adminconsole TH {BORDER-COLOR: #CDB}
+
+/* 1. 2 Darker background colours */
+
+TD.tc2, TD.tc3, TD.tcmod, #postpreview, #viewprofile DD, DIV.forminfo,
+#adminconsole FIELDSET TD, DIV.blockmenu DIV.box, #adstats DD {BACKGROUND-COLOR: #CDB}
+
+/* 1.3 Main headers and navigation bar background and text colour */
+
+.pun H2, #brdmenu {BACKGROUND-COLOR: #2B3C12; BACKGROUND-IMAGE: url(../../img/Lisa/green.gif); BACKGROUND-REPEAT: repeat-x; COLOR: #DFA; FONT-WEIGHT: bold}
+
+/* 1.4 Table header rows */
+
+.pun TH {BACKGROUND-COLOR: #718648; BACKGROUND-IMAGE: url(../../img/Lisa/dullgreen.gif); BACKGROUND-REPEAT: repeat-x}
+                        
+/* 1.5 Fieldset legend text colour */
+
+.pun LEGEND {COLOR: #461}
+
+/* 1.6 Highlighted text for various items */
+
+.pun DIV.blockmenu LI.isactive A, #posterror LI STRONG {COLOR: #333}
+
+/****************************************************************/
+/* 2. POST BACKGROUNDS AND TEXT */
+/****************************************************************/
+
+/* 2.1 This is the setup for posts. */
+
+DIV.blockpost DIV.box, DIV.postright, DIV.postfootright {BACKGROUND-COLOR: #AB9}
+DIV.postright, DIV.postfootright {BORDER-LEFT-COLOR: #CDB}
+DIV.postleft, DIV.postfootleft, DIV.blockpost LABEL {BACKGROUND-COLOR: #CDB}
+
+div.rowodd div.box, div.rowodd div.postright, div.rowodd div.postfootright {background-color: #BCA} /* right column */
+div.rowodd div.postright, div.rowodd div.postfootright {border-left-color: #CDB} /* left column */
+div.rowodd div.postleft, div.rowodd div.postfootleft, div.blockpost label {background-color: #CDB} /* left column */
+.pun div.rowodd blockquote, div.rowodd div.codebox {border: 1px solid #718648} /* Quote and code boxes */
+
+div.roweven div.box, div.roweven div.postright, div.roweven div.postfootright {background-color: #AC8} /* right column */
+div.roweven div.postright, div.roweven div.postfootright {border-left-color: #BD9} /* left column */
+div.roweven div.postleft, div.roweven div.postfootleft, div.blockpost label {background-color: #BD9} /* left column */
+.pun div.roweven blockquote, div.roweven div.codebox {border: 1px solid #718648} /* Quote and code boxes */
+
+.pun blockquote, DIV.codebox { BACKGROUND-COLOR: #EFD; }
+
+/* 2.2 Background for post headers and text colour for post numbers in viewtopic */
+
+DIV.blockpost H2 {BACKGROUND-COLOR: #683}
+DIV.blockpost H2 SPAN.conr {COLOR: #9A8}
+
+/* 2.3 This is the line above the signature in posts. Colour and background should be the same */
+
+.pun HR {BACKGROUND-COLOR: #333; COLOR: #333}
+
+/****************************************************************/
+/* 3. BORDER COLOURS */
+/****************************************************************/
+
+/* 3.1 All external borders */
+
+DIV.box {BORDER-COLOR: #683}
+
+/* 3.2 Makes the top border of posts match the colour used for post headers */
+
+DIV.blockpost DIV.box {BORDER-COLOR: #683 #683 #683}
+
+/* 3.3 Table internal borders. By default TH is same as background so border is invisible */
+
+.pun TD {BORDER-COLOR: #9A8}
+.pun TH {BORDER-COLOR: #AB9}
+
+/* 3.4 Creates the inset border for quote boxes, code boxes and form info boxes */
+
+.pun BLOCKQUOTE, DIV.codebox, DIV.forminfo, DIV.blockpost LABEL {BORDER-COLOR: #ACA899 #FFF #FFF #ACA899}
+
+/* 3.5 Gecko's default fieldset borders are really nasty so this gives them a colour
+without interferring with IE's rather nice default */
+
+.pun DIV>FIELDSET {BORDER-COLOR: #ACA899}
+
+/****************************************************************/
+/* 4. LINK COLOURS */
+/****************************************************************/
+
+/* 4.1 This is the default for all links */
+
+.pun A:link, .pun A:visited {COLOR: #461}
+.pun A:hover {COLOR: #140}
+
+/* 4.2 This is the colour for links in header rows and the navigation bar */
+
+.pun H2 A:link, .pun H2 A:visited, #brdmenu A:link, #brdmenu A:visited {COLOR: #DFA;}
+.pun H2 A:hover, #brdmenu A:hover {COLOR: #FFF}
+
+/* 4.3 This is for closed topics and "hot" links */
+
+//LI.postreport A:link, LI.postreport A:visited, TR.iclosed TD.tcl A:link, TR.iclosed TD.tcl A:visited {COLOR: #888}
+//LI.postreport A:hover, TR.iclosed TD.tcl A:hover {COLOR: #AAA}
+LI.maintenancelink A:link, LI.maintenancelink A:visited {COLOR: #444}
+LI.maintenancelink A:hover {COLOR: #222}
+
+/****************************************************************/
+/* 5. POST STATUS INDICATORS */
+/****************************************************************/
+
+/* These are the post status indicators which appear at the left of some tables. 
+.inew = new posts, .iredirect = redirect forums, .iclosed = closed topics and
+.isticky = sticky topics. The default is "icon". By default only .inew is different.*/
+
+DIV.icon {BORDER-COLOR: #DEB #BCA #AB9 #BCA}
+TR.iredirect DIV.icon {BORDER-COLOR: #CDB}
+DIV.inew {BORDER-COLOR: #67922A #597E24 #45621C #597E24}
+

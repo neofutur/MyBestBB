@@ -1,0 +1,17 @@
+/****************************************************************/
+/* 13. ADDED PMS STUFF ( Private Messaging )                    */
+/****************************************************************/
+
+div#mp_bar_ext {
+        border: 1px solid #336699;
+        width: 100px;
+        height: 10px;
+        text-align: left;
+}
+div#mp_bar_int {
+        background-color: #336699;
+        height: 10px;
+}
+
+acronym{border-bottom: none;}
+

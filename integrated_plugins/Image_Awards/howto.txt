@@ -1,0 +1,29 @@
+Image Awards Mod
+The Image Awards Mod is a mod for PunBB that allows you to put an award on a user in your forum. It’s placed under the avatar of the user, and if the browsing user has toggled Avatars off there will be a text message displayed instead.
+These are really good for single people out from the rest, either negative (give them yellow or red warnings, or a banned award), or positive (give them an award, “Nice guy”, “Olympic winner” or such). Either way it’s up to you what award you give the users. Just upload an image, and go into the plugin interface and add the award to the user. It’s really that simple!
+There’s a few simple standard awards that follows with the mod, but adding more is just about creating and uploading them.
+
+The reason behind using user id instead of the user name is simply because two users don’t have the same id number (everything they do is linked to their id, not their name), and it’s possible to type with specialchars that the admins might have a hard time to type, therefore the id is simple and effective to assign the award to the correct person.
+Creating new awards is really simple:
+
+    * Create the award in an image editor.
+    * Save the file with name like “Olympic_winner_200×25.png“, where Olympic_winner will be the name of the award (underscore automatically replaced with space in PunBB), 200×25 means 200 pixels wide and 25 pixels high, and .png is the fileformat, but gif or jpeg images will work aswell.
+    * Upload the file with the ftp program you use for all other PunBB files, to the images/awards/ folder
+    * Open up the administration interface in a browser
+    * Click the Image Awards plugin
+    * Fill in the user id number (the unique number for each user, you can see it in the url to the profile for that user, Example: if the url is http://www.example.com/forum/profile.php?id=17 means the user has user id 17)
+    * Select the Award you want to give the user from the dropdownlist (it will autogenerate from the files you have in the images/awards folder)
+    * Click Assign Award
+    * Done!
+
+And to remove an award from an user, it’s very similar
+
+    * Open up the administraion interface in a browser
+    * Click the Image Awards plugin
+    * Fill in the user id
+    * Select **Remove Award** from the dropdownlist
+    * Click Assign Award
+    * Done!
+    * Download
+
+From : http://www.frankh.se/?page_id=6

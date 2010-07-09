@@ -1,0 +1,8 @@
+ cp upload/pms_* ../../html/
+ cp upload/install_mod.php ../../html/install_mod_Another_Private_Messaging_System.php
+ cp upload/lang/English/ mail_templates/ pms.php
+ cp -af upload/lang/English/* ../../html/lang/English/
+ cp -af upload/lang/French/* ../../html/lang/French/
+ cp -af upload/plugins/AP_* ../../html/plugins/
+
+

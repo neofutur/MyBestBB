@@ -1,0 +1,198 @@
+##
+##
+##          Titre mod :  Message privé de bienvenue
+##
+##        Version mod :  1.1
+##         Pour PunBB :  1.2.x
+##               Date :  19/03/2007
+##
+##             Auteur :  Thiery (thiery.thiery@free.f)
+##
+##        Description :  Cette mod permet d'envoyer un message privé aux
+##                       nouveaux membres lors de leur inscription.
+##                       Cette mod est une adaptation de la mod :
+##                       Message de bienvenue de Vincent Garnier a.k.a. 
+##                       vin100 (vin100@forx.fr)
+##                       http://www.punbb.fr/mods/mod.php?id=31
+##
+##          IMPORTANT :  Pour fonctionner, vous devez au préalable avoir
+##                       installé la mod suivante :
+##                       Another Private Messaging System 1.2.1 que vous
+##                       trouverez ici :
+##                       http://www.punbb.fr/mods/mod.php?id=35
+##
+##         Historique :  Version 1.1 :
+##                       Correction d'un bug qui empêchait l'envoi du mail
+##                       au nouvel inscrit, lorsque la vérification
+##                       est active
+##                       Version 1.0 :
+##                       Première version de la mod
+##
+##  Fichiers affectés :  register.php
+##
+##      Affecte la BD :  oui
+##
+##         DISCLAIMER :  Veuillez noter que ces mods ne sont pas
+##                       officiellement supportés par PunBB. L'installation
+##                       de ces modifications est à vos risques et périls.
+##                       N'oubliez pas de sauvegarder la base de données et
+##                       les fichiers affectés avant de procéder à
+##                       l'installation de cette modification.
+##
+
+##               Note :  Ce document est divisé en deux parties.
+##                       La première partie concernera les modifications lors
+##                       de la première installation de cette mpd (V1.1).
+##                       La seconde partie concerne la mise à jour de la
+##                       version 1.0 en 1.1
+
+
+################################################################################
+####                          Première installation                         ####
+################################################################################
+
+#
+#---------[ 1. ENVOYER SUR LE SERVEUR ]-----------------------------------------
+#
+
+install_mod.php dans /
+AMP_MP_de_Bienvenue.php dans /plugins/
+
+#
+#---------[ 2. LANCER ]---------------------------------------------------------
+#
+
+
+install_mod.php
+
+#
+#---------[ 3. SUPPRIMER ]------------------------------------------------------
+#
+
+install_mod.php
+
+
+#
+#---------[ 4. OUVRIR ]---------------------------------------------------------
+#
+
+register.php
+
+
+#
+#---------[ 5. TROUVER ]--------------------------------------------------------
+#
+
+	// If we previously found out that the e-mail was banned
+
+
+#
+#---------[ 6. AJOUTER AVANT ]--------------------------------------------------
+#
+
+// Debut Message prive de Bienvenue
+	if ($pun_config['o_welcome_mp'] == '1')
+	{
+		$admin_username = 'Message automatique';
+		$admin_user_id = 2;
+		$subject = 'Bienvenue '.$username;
+		$message = str_replace('%user%', $username, $pun_config['o_welcome_message_mp']);
+	
+		$now = time();
+
+		// Obtention dernier ID cree dans la base users
+		$result = $db->query('SELECT id FROM '.$db->prefix.'users ORDER BY id DESC LIMIT 0,1') or error('Impossible de retrouver les informations du dernier inscrit', __FILE__, __LINE__, $db->error());
+	
+		// Envoi du message dans la messagerie privee du nouvel inscrit
+		$Dernier_id = $db->result($result);
+		$db->query('INSERT INTO '.$db->prefix.'messages (owner, subject, message, sender, sender_id, sender_ip, smileys, showed, status, posted) VALUES(\''.$db->escape($Dernier_id).'\', \''.$db->escape($subject).'\', \''.$db->escape($message).'\', \''.$db->escape($admin_username).'\', \''.$admin_user_id.'\', \''.get_remote_address().'\', \'1\', \'0\', \'0\', \''.$now.'\' )') or error('Impossible d\'envoyer le message.', __FILE__, __LINE__, $db->error());
+	}
+// Fin Message prive de Bienvenue
+
+
+#
+#---------[ 7. ENREGISTRER ET ENVOYER SUR LE SERVEUR ]-------------------------
+#
+
+register.php
+
+
+################################################################################
+####                Mise à jour à partir de la version 1.0                  ####
+################################################################################
+
+#
+#---------[ 1. OUVRIR ]---------------------------------------------------------
+#
+
+register.php
+
+
+#
+#---------[ 2. TROUVER ]--------------------------------------------------------
+#
+
+	// If we previously found out that the e-mail was banned
+
+
+#
+#---------[ 3. AJOUTER AVANT ]--------------------------------------------------
+#
+
+// Début Message privé de Bienvenue
+	if ($pun_config['o_welcome_mp'] == '1')
+	{
+		$admin_username = 'Message automatique';
+		$admin_user_id = 2;
+		$subject = 'Bienvenue '.$username;
+		$message = str_replace('%user%', $username, $pun_config['o_welcome_message_mp']);
+	
+		$now = time();
+
+		// Obtention dernier ID créé dans la base users
+		$result = $db->query('SELECT id FROM '.$db->prefix.'users ORDER BY id DESC LIMIT 0,1') or error('Impossible de retrouver les informations du dernier inscrit', __FILE__, __LINE__, $db->error());
+	
+		// Envoi du message dans la messagerie privée du nouvel inscrit
+		$Dernier_id = $db->result($result);
+		$db->query('INSERT INTO '.$db->prefix.'messages (owner, subject, message, sender, sender_id, sender_ip, smileys, showed, status, posted) VALUES(\''.$db->escape($Dernier_id).'\', \''.$db->escape($subject).'\', \''.$db->escape($message).'\', \''.$db->escape($admin_username).'\', \''.$admin_user_id.'\', \''.get_remote_address().'\', \'1\', \'0\', \'0\', \''.$now.'\' )') or error('Impossible d\'envoyer le message.', __FILE__, __LINE__, $db->error());
+	}
+// Fin Message privé de Bienvenue
+
+
+#
+#---------[ 4. TROUVER ]--------------------------------------------------------
+#
+
+	pun_setcookie($new_uid, $password_hash, ($save_pass != '0') ? $now + 31536000 : 0);
+
+
+#
+#---------[ 5. SUPPRIMER APRES ]------------------------------------------------
+#
+
+		// Début Message privé de Bienvenue
+	if ($pun_config['o_welcome_mp'] == '1')
+	{
+		$admin_username = 'Message automatique';
+		$admin_user_id = 2;
+		$subject = 'Bienvenue '.$username;
+		$message = str_replace('%user%', $username, $pun_config['o_welcome_message_mp']);
+	
+		$now = time();
+
+		// Obtention dernier ID créé dans la base users
+		$result = $db->query('SELECT id FROM '.$db->prefix.'users ORDER BY id DESC LIMIT 0,1') or error('Impossible de retrouver les informations du dernier inscrit', __FILE__, __LINE__, $db->error());
+	
+		// Envoi du message dans la messagerie privée du nouvel inscrit
+		$Dernier_id = $db->result($result);
+		$db->query('INSERT INTO '.$db->prefix.'messages (owner, subject, message, sender, sender_id, sender_ip, smileys, showed, status, posted) VALUES(\''.$db->escape($Dernier_id).'\', \''.$db->escape($subject).'\', \''.$db->escape($message).'\', \''.$db->escape($admin_username).'\', \''.$admin_user_id.'\', \''.get_remote_address().'\', \'1\', \'0\', \'0\', \''.$now.'\' )') or error('Impossible d\'envoyer le message.', __FILE__, __LINE__, $db->error());
+	}
+	
+	// Fin Message privé de Bienvenue
+
+
+#
+#---------[ 6. ENREGISTRER ET ENVOYER SUR LE SERVEUR ]-------------------------
+#
+
+register.php

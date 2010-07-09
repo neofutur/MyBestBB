@@ -1,0 +1,13 @@
+<?php
+
+// Language definitions used in userlist.php
+$lang_ul = array(
+
+'User find legend'		=>	'Ì«› ‰ Ìﬂ ﬂ«—»—',
+'User search info'		=>	'Ê«—œ ﬂ‰Ìœ ‰«„ ﬂ«—»—Ì —« »—«Ì Ì«› ‰ „‘Œ’«  ﬂ«—»—Ì .',
+'User group'			=>	'ê—ÊÂ ﬂ«—»—Ì',
+'No of posts'			=>	' ⁄œ«œ«—”«·.',
+'All users'				=>	'Â„Â'
+
+);
+«‰Ã„‰  Œ’’Ì „«ÂÊ«—ÂWWW.PERSIANSAT.NET

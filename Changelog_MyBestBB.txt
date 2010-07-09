@@ -1,0 +1,143 @@
+2.0.2
+ add SMTPS ( gmail and other secure SMTP ) support
+ fixing sme themes
+
+2.0.1
+  Fixing spanish translations
+  Improving TODO, README, FAQ . . .
+
+2.0
+ Adding security updates from punbb 1.2.22
+ please see http://punbb.informer.com/forums/topic/22093/punbb-1222/
+ Fixing charset problem for Spanish translation
+ Preparing for more utf8 translations soon
+
+1.29
+ Now supports "Unverified" status in userlist and profile page
+
+1.28
+ add parameter to have a valid returnpath in sent email headers
+ fix "If a user running the Firefox webbrowser enters an incorrect value and needs to go back, the submit button will stay disabled until the page is reloaded."
+ add human test on register.php (one more antibot feature ;) please  see http://www.network-technologies.org/Projects/Virtual_Brain_Online/article/spam_bot_registration_mod_punbb/ for more information
+
+1.27
+ =1.26beta4 +small fixes
+
+1.26beta4
+ add punbb 1.2.21 security update ( see http://punbb.informer.com/trac/changeset/954 )
+ upgrade mod install to 1.2.21
+ add projecthoneypot quicklinks in main.tpl to protect forums from spambots.
+ add modern BBcode easytoolbar ( see http://www.punres.org/viewtopic.php?id=1283 )
+ improve many themes
+ signature only once per user/topic
+ added online/offline icons
+ add multi-quote support ( see http://www.punres.org/files.php?pid=136 )
+ add forum cleanup plugin
+ add user merge plugin
+ add punbb shell plugin
+ add backup plugin
+ add user management plugin
+
+1.25 Sat Nov 29 05:54:21 CET 2008
+ Code cleanup
+ Fix a missing requirement in INSTALL* files
+ Integrate Image Award mod from http://www.frankh.se/?page_id=6
+ Integrate Attachment mod from http://www.frankh.se/?page_id=8
+ Integrate Another Private Messaging mod from  http://www.punbb.fr/forums/viewtopic.php?id=3218
+ Integrate greeting message ( french only admin ) from http://www.punbb.fr/mods/mod.php?id=72
+ Integrate security updates from punbb 1.2.20, see http://punbb.informer.com/download/hdiff/hdiff-1.2.19_to_1.2.20.html
+ Integrates security updates from punbb 1.2.19 and 1.2.18, see http://punbb.informer.com/forums/topic/19539/punbb-1219/
+ Helper page for post install ( install_mods_MyBestBB.php )
+ Adding a Release Script
+ Beginning Spanish translation
+ adding items in todo, install, readme, htaccess and documentation
+ bugfix in movepost addon
+ better XHTML valid templates
+ better english translation for addons
+
+1.24
+ Includes punbb 1.2.17 security updates from 
+ http://punbb.org/forums/viewtopic.php?id=18460
+ See http://punbb.org/download/hdiff/hdiff-1.2.16_to_1.2.17.html
+
+1.23
+ Default reputation MP lenght is now 400
+ Fixing admin_ranks parese error
+ Added missing install_mod_RateTopic.php in INSTALL_mybestBB.txt 
+ Fixed a small bug with url rewriting, see http://mybestbb.ww7.be/t68-rewriting-moitiA%A9-fonctionnel.html
+ Applying punbb 1.2.16 security updates, see http://punbb.org/download/changelogs/1.2.15_to_1.2.16.txt and http://punbb.org/download/hdiff/hdiff-1.2.15_to_1.2.16.html
+ Fixing paginate bug, see http://trac.ww7.be/trac.ww7.be/changeset/59
+
+1.22
+ Small fixes
+
+1.21
+ Fixing active topics bug ( pun_include problem see http://forums.punbb.org/viewtopic.php?id=15705 )
+ Adding themes
+ Better error message for people who have installed mybestbb without installing mods
+ Hdiff here : http://trac.ww7.be/trac.ww7.be/changeset/27
+
+1.20 
+ Security update from punbb 1.2.14 to 1.2.15
+ ( see http://punbb.org/download/patch/punbb-1.2.14_to_1.2.15.patch 
+  and  http://punbb.org/download/hdiff/hdiff-1.2.14_to_1.2.15.html
+ )
+ hdiff here : http://trac.ww7.be/trac.ww7.be/changeset/26
+
+1.19
+ Added RateTopic mod
+ Added many themes
+ Added sitemap generator
+ Added Style_installer
+ Added Easy Extra Profile Fields
+ Fixed many conflicting mods integration with rating
+ topics list in viewforum.php now lists topics ORDER BY sticky AND rating
+ adds the list tag ( see extras/extras/List%20BBCode%20Readme.txt for syntax )
+ adds the noparse tag ( see http://comox.textdrive.com/~punbb/forums/viewtopic.php?id=13589
+  and http://www.punres.org/files.php?pid=315 )
+
+ new plugins Added : please launch install_mod_EPF.php and install_mod_RateTopic.php on update to 1.19
+
+
+1.18
+ punbb 1.2.14 security updates ( + faster search tweak )
+ see http://www.punbb.org/download/hdiff/hdiff-1.2.13_to_1.2.14.html
+
+1.17
+ Fixed supported punbb versions in install*.php for mods install
+ Fixed rss feed ( #pxxx ) 
+ Fixed reputation code XHTML validation problems
+ fixe CrystalBlue theme #brdfooter width
+
+1.16
+ security updates http://www.punbb.org/download/hdiff/hdiff-1.2.12_to_1.2.13.html
+ minor improvements ( XHTML validity, themes . . . )
+ adding a htaccess example for boards in subdirectory ( htaccess_for_subdirectory.txt )
+ removing the confirm_referrer('viewtopic.php'); function form moderate.php
+
+1.15:
+ security updates http://www.punbb.org/download/hdiff/hdiff-1.2.11_to_1.2.12.html
+ minor improvements ( XHTML validity, themes . . . )
+   
+1.14:
+ -> forum now lists subforums in viewforum.php
+ -> more themes
+ -> more XHTML 1.0 compliance ( validity should even be perfect ;)
+ -> Added <link rel="alternate" type="application/rss+xml" title="Subscribe RSS FEED" href="/rss.php" /> to main.tpl
+ -> Every public page _should_ now be valid 
+ -> better XHTML compliance for admin and plugins pages
+ -> better rewrite index.php and viewforum.php
+ -> now shows last post data in viewforum.php for current topics
+ -> Added a rewrite rule for /last -> /search.php?action=show_new
+
+1.13:
+
+ -> Added reputation
+ -> Added chatbox
+ -> Added dc:creator in rss feed
+ -> now defaults to utf-8 encoding
+ -> modified and improved themes
+ -> modified mail.tpl
+ -> Fixed a group security problem ( http://forums.punbb.org/viewtopic.php?pid=68934#p68934 )
+ -> Added /wormstats ( http://punbb.org/stuff/wormstats/source/ )
+

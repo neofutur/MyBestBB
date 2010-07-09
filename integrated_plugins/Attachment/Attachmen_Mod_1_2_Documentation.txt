@@ -1,0 +1,238 @@
+----------------------------------------------
+Introduction
+----------------------------------------------
+(My thoughts)
+
+Well I think I start to express my thoughts about this mod, why I made it etc.
+When I first found PunBB I thought it was near perfect, all I wanted was attachments, and subforums. I have learned to live without subforums (it has advantages I didn't think of at first), so I wrote an attachment mod to be able to cope with my demands on how I want it to function. I tried to focus primary on security with the first mod, not that much on the storage simplicity or speed. For ease in making security work, I just put the files in the database (no direct linking possible). I never intended the mod to store gigabytes of data, but now I have gone closer and closer to that, and I need another storage method. Also voices has been raised for file/FTP storage (FTP = File Transfer Protocol). I have not added FTP storage, but filestorage. This means that PHP must have access to and write permissions to the disk. FTP storage, I personally don't have a need for, so therefore I haven't put time on that. (I'm selfish enough to keep my wishes as the primary, hehehe) I'm not a programmer first and foremost, but a mechanical engineer student using PunBB for different things, so getting into protocols, filetransfers to other places etc. just seems like a timewaster for me. I rather spend that time finding bugs and/or releasing the mod earlier.
+Either way, I have tried to make this mod in such a way that it should be possible to use together with other mods (like creating a gallery that use attachments as a base). Hopefully it'll inspire someone else to write larger mods aswell. (And please oversee all spelling/grammatical errors in this documentation, hehehe, well if you find any you can always mail me the correct text)
+
+/Frank Hagström (frank.hagstrom@gmail.com)
+
+
+
+----------------------------------------------
+Table of contents
+----------------------------------------------
+
+______________________________________________
+
+1 Usage
+
+ 1.1 Important to know
+
+ 1.2 Keeping backups
+
+ 1.3 Setting permissions
+
+ 1.4 Adding extra icons
+
+ 1.5 Making new subfolders
+
+ 1.6 Max allowed upload
+
+______________________________________________
+
+2 Database
+
+ 2.1 Attachment Mod Tables
+
+  2.1.1 attach_2_files
+
+  2.1.2 attach_2_rules
+
+ 2.2 Variables in config table
+
+______________________________________________
+
+3 Filesystem
+
+______________________________________________
+
+4 Functions and variables
+
+ 4.1 Functions in attach_func.php
+
+ 4.2 Constants in attach_incl.php
+
+______________________________________________
+
+----------------------------------------------
+1 Usage
+----------------------------------------------
+
+Here's some general usage advice, you should at least read the first chapter before using the mod.
+______________________________________________
+1.1 Important to know
+
+Files are no longer saved within the database, but on the disk instead. PHP will use the database to get the correct name and location of the file, and send the information over to the client, if he/she is allowed to see it. The files are stored with random names, on both subfolder and filenames, just to make brute forcing to find files as hard as possible. But to be on the safe side, I suggest you place the basepath for the attachments in a place browsers aren't allowed to view the content. If you don't there's always a risk someone might bruteforce themselves to the files, so they can get to protected information.
+
+There's two parts that use random names, filenames, and subfolder names, the latter is possible to name manually, but it's adviced that you don't, as humans are quite predictable. Like if people are supposed to think of a number between 1 to 10 they often select 7, heh so do use the button that generate new subfolders if you have the need to create more subfolders.
+______________________________________________
+1.2 Keeping backups
+
+When you create backups on the files you never have to download any files more than once!
+
+Reason for this is that when an attachment gets deleted, the database entry is removed, and the file is shrunk to 0 bytes, but still left in the folder, so that no other attachment can get the same name. This means that you only have to download the new files when making backups, saving alot of bandwidth and time.
+
+Database tables and files should be made backups of at about the same time (one before the other), and preferabely in Maintenece mode, so the files and database match up.
+______________________________________________
+1.3 Setting permissions
+
+Permissions are stored per forum and per group basis, so to give 8 groups attachment access to 12 forums, you need to set 96 rules. Default is not to allow anything, so you only need to add forumrules to forums that the group will be allowed to up/down-load attachments. To the Moderator groups you can also decide if you want to give them delete possibilities (or, it's intended for moderators, but you can give other the possibility to do it aswell, but one would need to get to the edit page to be able to delete it, so I doubt it will work either way)
+
+The permissions is set through the administration interface, it's not connected to the normal forums/categorys admin interface, but it has it's own interface in the plugin menu.
+
+I've tried to make the rule settings as easy as possible, so you can get an overview on who is allowed to do what on each forum and simple controls to add and remove rights.
+______________________________________________
+1.4 Adding extra icons
+
+It's fairly easy to add icons, now when you no longer need to edit the php file. There's a .psd file with the layered default icons, feel free to use that to create your own icons.
+
+1. Create the icons on your computer. Png (Portable Network Graphics) is a good format for the icons, it doesn't destroy the images like jpeg does, and it allows the use of transparency.
+
+2. Upload the icons to the folder where you want them to be (default is forumfolder/img/attach/), just as you did when uploading the forum software. Usually done with FTP.
+
+3. Open up the browser and go into "Administration", in the plugins menu, select "Attachment Mod 2.0". You now see another menu page, click the "Alter Settings" button.
+
+4. At "Icons used" there's two fileds, one hold extensions, the other the icon name. Either change what's already there, or add more extensions and icon names. Make sure that the number of extensions is the same as the number of icon names. Everything is separated with double quotation marks ("). As this sign isn't allowed in filenames.
+
+5. When ready press "Update settings"
+
+Voila, it should now be using these new icons. A tip is to attach some files with these extensions, so you're sure it's working, spelling errors occur quite often, at least for me, hehehe.
+______________________________________________
+1.5 Making new subfolders
+
+When you start to have quite a few files in the subfolder, the uploads might start to take longer, as chanses for collision during name generation might happen, and with many files getting collisions 100 times is probably noticable. If you start to get this upload lag effect it's adviced that you create a new subfolder. Uploads will then try to find unique names in this folder instead, note that the subfolder entry in the settings only affect the coming uploads. The attachments already uploaded will stay in their folders. Therefore, after creating a new subfolder, it's adviced that you make a backup, when you have done that, you no longer need to make a backup of that folder any more, as you already have the files. The database though should still be made backups of in it's full content.
+
+There's an option to let the Attachment Mod create the folders automatically, or manually enter a subfoldername to use. The best thing is to let the Attachment Mod generate the subfolder, as humans are too predictable. But if you're moving the forum from one host to another you might want to have the same foldername, therefore the option to enter the subfolder name manually is avaible. There's really no reason why one shouldn't make new folders once in a while, but the upload speed will tell you when it's time to create a new subfolder.
+
+The adminpages might later get a tool to check how long it takes to generate X new unique files. So one can get an idea if it's worth making.
+
+As one only can have one basefolder, there's probably a limit on like 64000 subfolders, so I guess it'll be possible to at least have a couple of hundred million files before there's a need for making more basefolders, therefore I haven't made any attempts in making it even more 'dynamic' (the modding needed isn't that hard though, so it's something that's possible to fix if someone would have this vast amount of attachments)
+
+If we assume the filesystem allows max 64000 files or folders, then the filesystem will allow up to 4,096,000,000 files and I feel that there should be some new huuuuuuuuge BB starting to use PunBB before this will be a limit
+______________________________________________
+1.6 Max allowed upload size
+
+There's three things that will affect how large files you may allow, everything are PHP settings (the php.ini file).
+
+The most important PHP setting is called "upload_max_filesize" and is default "2M". This value can either be per directory or per system. While you're in the php.ini file, make sure "file_uploads" is "1".
+
+To further complicate things, there's two more things in the php.ini file that needs consideration (and that may not be per folder, so it's global). The settings "post_max_size" must be greater than "upload_max_filesize", and "memory_limit" should be larger than "post_max_size". So it's not just to up one value to handle large files.
+
+So you have figured out what restrictions PHP has, it's time to figure out what you can enter in the Attachment Mod Settings page. You can set the "Max filesize" value to the equivalent amount of bytes that the "upload_max_filesize" has. But make sure there's room for the text message and such, so that there's still some space left between "upload_max_filesize" and "post_max_size". (An example to translate the letter value php use to bytes: 2K = 2 * 1024 = 2048 bytes, 2M = 2 * 1024 * 1024 = 2097152 bytes)
+
+----------------------------------------------
+2 Database
+----------------------------------------------
+
+The Attachment Mod use both it's own tables, aswell as use the forum config table for options (these were in the first version of the mod in php files, now you don't have to edit files anymore).
+______________________________________________
+2.1 Attachment Mod tables
+
+There's two new tables added to the database, these are attach_2_files and attach_2_rules. The first table stored all file informaiton, like filename, who uploaded it, what post it belongs to and how many downloads it has had. The other table is the table keeping track of the rules. It links group and forum id's together, so you can have the same number of rules as groups for a forum.
+______________________________________________
+2.1.1 attach_2_files
+
+Everything is written in order: Field(type) - What info it holds
+
+id(int(10)unsigned) - The unique id each attachment has
+owner(int(10)unsigned) - The user id that uploaded the attachment
+post_id(int(10)unsigned) - The post id that the upload belongs to, rules are taken from this
+filename(varchar(255)) - The filename of the attachment, when viewing and downloading
+extension(varchar(64)) - The extension the attachment has, used for icons
+mime(varchar(64)) - The MIME information of the attachment, supplied as a header during download, browsers then handle different files better
+location(text) - The path and filename of the attachment on the filesystem. PHP fetch this to be able to find what file to pass through to the downloader
+size(int(10)unsigned) - The number of bytes the file has.
+downloads(int(10)unsigned) - The number of times the file has been downloaded (increases just before starting to send data)
+______________________________________________
+2.1.2 attach_2_rules
+
+Everything is written in order: Field(type) - What info it holds
+
+id(int(10)unsigned) - The unique id each rulecombination has
+forum_id(int(10)unsigned) - The affected forum for this ruleset
+group_id(int(10)unsigned) - The affected group for this ruleset
+rules(int(10)unsigned) - The rules in integer form (security check checks if bits are set or not)
+size(int(10)unsigned) - The max amount of bytes the attachment may have
+per_post(tinyint(4)) - If allowed to attach more than one attachment to each post
+file_ext(text) - If non empty these are the only extension that's allowed to upload, separated with double quotations marks ("). If empty only the always denied files will be refused.
+______________________________________________
+2.2 Variables in config table
+
+There's a number of variables stored in the config table. In the previous version of the Attachment Mod these were in a php file and one needed to edit that file. This is no longer needed and will probably be at least just as fast. The following variables are stored, and in the form: Variablename - Description
+
+attach_always_deny - Double quotation mark (") separated array with extensions always denied. Administrator override these, but everyone else cannot upload attachments with these extensions
+attach_basefolder - Folder where the unique subfolders are located
+attach_create_orphans - 1/0 depending on orphans will be created during thread delete or not
+attach_cur_version - The current version of the Mod (might be good later, used on a few places)
+attach_icon_extension - Double quotation mark (") separated array. Holds the extension for the array that figures out what icon to show
+attach_icon_folder - The location the attachment icons are fetched from
+attach_icon_name - Double quotation mark (") separated array. Holds the filename of the icon for the array that figures out what icon to show
+attach_max_size - The 'hard' limit of maximum upload, noone is allowed to upload larger attachments than this, not even Administrator.
+attach_subfolder - The currently used subfolder for new attachments.
+attach_use_icon - 1/0 depending if the Administrator has chosen to allow icons to be displayed by the Attachment Mod or not. If it's displayed, users having images disabled in posts will not see the icon either, but everyone else will.
+
+----------------------------------------------
+3 Filesystem
+----------------------------------------------
+
+Here's an explanation of the files used in the Attachment Mod
+
+Files in /
+* attachment.php - This file handles the downloads of files, a couple of things is sent as GET variables, they are:
+     item - The id (database unique id of attachment), required
+     download - if this is set, download of images, not image view optional
+     (Furthermore it will also support resume, so that people will be able to download large files from modem's)
+
+Files in /attachments/
+* attach_incl.php - This file is included always when handling attachments! Stores some variables.
+* attach_func.php - This file is included by attach_incl.php, it has the functions used in the mod.
+
+Files in basefolder and subfolders
+In all the basefolders and subfolders an index.html is stored, that shows and empty page. Also an .htaccess file is saved there (for Apache servers). This is so noone will be able to browse a folder.
+In the subfolders the attachments will be saved, and they have a name with 32 characters and then an extension of ".attach", so a filename could be "ebf9028669710ed078fcd13f00fe5253.attach". As you see this is very hard to guess, but with brute forcing it's defenetly possible to find one, but it's safer than to save it with relation to post/forum/user, that's why it looks like this. Read 1.2 about backups, and you will see a good thing aswell.
+
+----------------------------------------------
+4 Functions and variables
+----------------------------------------------
+______________________________________________
+4.1 Functions in attach_func.php
+
+The attachment mod has a bunch of it's own functions, so their functionality will be explained here.
+
+* attach_rules(int rules, int check) - This function checks if the supplied rules will allow you to do what you supply in the check field, see constants for what you should supply in the check field. Returns true or false
+
+* attach_allow_upload(int rules, int max_size, string file_ext, int upload_size, string upload_name) - This function does a rulecheck to see if the user is allowed to upload the file.
+
+* attach_icon(string extension) - This function renders the text used if user has images toggled on. The image it displays depends on the extension, but if no match it'll display generic icon. Returns empty string or string with icon stuff
+
+* attach_fix_icon_array() - This function takes the settings for the icons and create an array for attach_icon to find the right icon.
+
+* attach_generate_pathname(string storagepath) - This function generate the unique pathname for the attachments to stay in. If storagepath isn't equal to an empty string, the pathname is also checked against current pathnames. If there is such a path, a new pathname is generated, until an unique name is found. Storagepath needs to end with a slash (/ or \ depending on OS). Returns string with pathname
+
+* attach_generate_filename(string storagepath, int messagelenght, int filesize) - This function generates unique filenames for the attachments, storagepath is required, and messagelenght and filesize is adviced to have, so files posted at the same time easier will have different id's Storagepath needs to end with a slash (/ or \ depending on OS). Returns string with complete filename (including pathname)
+
+* attach_create_attachment(string filename, string mime, int filesize, string tmp_name, int post id, int messagelenght) - This function takes alot of variables (mostly upload variables), and move the file to the correct place and then create a record in the database
+
+* attach_create_subfolder(string subfolder) - This function creates a new subfolder, copies an .htaccess and index.html in there, and updates the forum config if successful. If the subfolder already excist the function will only update the configuration to use this folder to create attachments. So if you have manually created a directory, make sure you have put an .htaccess and index.html file in there or taken security measures not to let people browse/access the folder directly.
+
+* attach_create_mime(string extension) - This function generates a mime, it's used if nothing is supplied when file is uploaded. Returns string with mime
+
+* attach_get_extension(string filename) - This function generates the extension, used for icons and mimes(if missing). Returns empty string or string with part of filename after last point (.)
+
+* attach_check_extension(string extension, string allowed_extensions) - This function does an extension check, if it's in the 'always deny' list, it's refused, and if the strign for allowed extensions is logner than 0 then it will check against that aswell
+
+* attach_delete_attachment(int item) - This function deletes an attachment (resetting the filesize to 0 bytes, and removes the database record), uses it's own security check for increased security.
+
+* attach_delete_thread(int thread_id) - This function deletes all attachments in a thread.
+______________________________________________
+4.2 Constants in attach_incl.php
+
+The Constants defined by the Attachment Mod is used for the security checks, they are: (in the form NAME (value) - Description)
+
+ATTACH_DOWNLOAD (1, binary: 0001) - Bit set if group is allowed to download
+ATTACH_UPLOAD (2, binary: 0010) - Bit set it group is allowed to upload
+ATTACH_DELETE (4, binary: 0100) - Bit set if group is allowed to delete
+ATTACH_OWNER_DELETE (8, binary: 1000) - Bit set if owner is allowed to delete

@@ -1,0 +1,63 @@
+Version 2
+Le concept est simple. Nommez votre fichier "rigolade.gif", uploadez le dans le repertoire /punbb/img/smilies 
+et ensuite accedez à la page AP_SMilies.php via la section d'aministration de punbb. Il n'y a rien a valider, 
+il suffit d'afficher la page.
+
+Des lors, si vous entrez :rigolade: dans un post, le code sera remplacé par le smiley.
+
+les caracteres autorisé sont toutes les lettres et chiffres, underscore (_), minus (-), crochets ( [ et ] ), parentheses et slahes ( \ et / )
+Tous les autres caracteres sont ignorés.
+
+L'interface d'admin permet de renommer les smilies. Elle permet aussi de les effacer, ou de les cacher (ils sont toujours dans l'admin, mais non utilisables)
+
+    Installation :
+    0 - Uploader le fichier Ap_Smileys.php dans le repertoire /punbb/plugins
+    1 - Créer un fichier vide smiley.inc.php dans /punbb/ avec un chmod 777 (= autoriser les droits d'écriture)
+    2 - dans /punbb/include/parser.php , commenter les lignes 31 et 32. ajouter juste apres ces lignes la ligne suivante
+
+
+
+		include_once("smiley.inc.php");
+
+    les lignes à commenter (commenter signifiant mettre // au debut de la ligne) sont les lignes commencant par
+
+
+
+		$smiley_text = array ...
+
+    et
+
+
+
+		$smiley_img = array ...
+
+    Enfin, rechercher l'expression suivante :
+
+
+		width="15" height="15"
+
+    et l'effacer.
+
+    3 et 4 : Si vous avez le mod easy_bbcode ( http://www.punres.org/desc.php?pid=50 )
+
+    3 - Dans mod_easy_bbcode.php, chercher
+
+
+                <?php
+
+                // Display the smiley set
+                require_once PUN_ROOT.'include/parser.php';
+
+    et ajouter juste avant la ligne :
+
+
+                <div id="smileys" class="punbbSmilies">
+
+    Puis fermer le </div> a la derniere ligne
+
+
+    4 - Ajouter dans le feuille de style de base
+
+
+		.punbbSmilies { padding-top: 4px;width:99%;height:80px;overflow:auto; }
+

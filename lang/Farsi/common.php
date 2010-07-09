@@ -1,0 +1,154 @@
+<?php
+
+/*
+// Determine what locale to use
+switch (PHP_OS)
+{
+	case 'WINNT':utf-8
+	case 'WIN32':utf-8
+		$locale = '«‰ê·Ì”Ì';
+		break;
+
+	case 'FreeBSD':
+	case 'NetBSD':
+	case 'OpenBSD':
+		$locale = 'Fa Farsi-utf-8';
+		break;
+
+	default:
+		$locale = '›«—”Ì fa';
+		break;
+}
+
+// Attempt to set the locale
+setlocale(LC_CTYPE, $locale);
+*/
+
+// Language definitions for frequently used strings
+$lang_common = array(
+
+// Text orientation and encoding
+'lang_direction'		=>	'rtl',	// ltr (Left-To-Right) or rtl (Right-To-Left)
+'lang_encoding'			=>	'utf-8',
+'lang_multibyte'		=>	false,
+
+// Notices
+'Bad request'			=>	'œ— ŒÊ«”  «‘ »«Â.·Ì‰ﬂ «‘ »«Â »ÊœÂ «” .',
+'No view'				=>	'‘„« «Ã«“Â œÌœ‰ «Ì‰ «‰Ã„‰ —« ‰œ«—Ìœ.',
+'No permission'			=>	'‘„« «Ã«“Â œ” —”Ì »Â «Ì‰ «‰Õ„‰ —« ‰œ«—Ìœ.',
+'Bad referrer'			=>	'Bad HTTP_REFERER. You were referred to this page from an unauthorized source. If the problem persists please make sure that \'Base URL\' is correctly set in Admin/Options and that you are visiting the forum by navigating to that URL. More information regarding the referrer check can be found in the PunBB documentation.',
+
+// Topic/forum indicators
+'New icon'				=>	'Å”  Â«Ì ÃœÌœ',
+'Normal icon'			=>	'<!-- -->',
+'Closed icon'			=>	' «ÅÌﬂ »” Â ‘œÂ «” ',
+'Redirect icon'			=>	'—«Â‰„«Ì «‰Ã„‰',
+
+// Miscellaneous
+'Announcement'			=>	'«ÿ·«⁄ÌÂ',
+'Options'				=>	'«Œ Ì«—« ',
+'Actions'				=>	'›—„«‰ Â«',
+'Submit'				=>	'À»  ',	// "‰«„" of submit buttons
+'Ban message'			=>	'‘„« «“»” Â ‘œÂ «Ìœ.',
+'Ban message 2'			=>	'»” Â ‘œ‰ ‰«„ ‘„«  «',
+'Ban message 3'			=>	'„œÌ— Ì« „œÌ— ﬂ· ‘„« »Â ⁄·  —Ì“ »” Â «” :',
+'Ban message 4'			=>	' »« „œÌ— ﬂ·  „«” »êÌ—Ìœ',
+'Never'					=>	'Â—ê“',
+'Today'					=>	'«„—Ê“',
+'Yesterday'				=>	'›—œ«',
+'Info'					=>	'«ÿ·«⁄« ',		// a common table header
+'Go back'				=>	'»«“ê‘ ',
+'Maintenance'			=>	'‰êÂ œ«—Ì',
+'Redirecting'			=>	'»«“ —”Ì',
+'Click redirect'		=>	'«Ì‰ Ã« —« ﬂ·Ìœ ﬂ‰Ìœ «ê— „Ì ŒÊ«ÂÌœ ﬂ„ — ’»— ﬂ‰Ìœ(or if your browser does not automatically forward you)',
+'on'					=>	'›⁄«·',		// as in "BBCode is on"
+'off'					=>	'€Ì— ›⁄«·',
+'Invalid e-mail'		=>	'«Ì„Ì· Ê«—œ ‘œÂ «‘ »«” .',
+'required field'		=>	'«“ ﬂ«— «› «œ‰REQUIRED',	// for javascript form validation
+'Last post'				=>	'¬Œ—Ì‰ «—”«·',
+'by'					=>	'»Â',	// as in last post by someuser
+'New posts'				=>	'ÃœÌœ  —Ì‰ «—”«·',	// the link that leads to the first new post (use &nbsp; for spaces)
+'New posts info'		=>	'»—Ê »Â «Ê·Ì‰ «—”«· Â«Ì «‰Ã„‰.',	// the popup text for new posts links
+'Username'				=>	'‰«„ ﬂ«—»—Ì',
+'Password'				=>	'ﬂ·„Â ⁄»Ê—',
+'E-mail'				=>	'«Ì„Ì·',
+'Send e-mail'			=>	'«—”«· «Ì„Ì·',
+'Moderated by'			=>	'„œÌ—Ì  »«',
+'Registered'			=>	'À»  ‰«„ ‘œÂ',
+'Subject'				=>	'„Ê÷Ê⁄',
+'Message'				=>	'ÅÌ«„',
+'Topic'					=>	' «ÅÌﬂ',
+'Forum'					=>	'«‰Ã„‰',
+'Posts'					=>	'«—”«· Â«',
+'Replies'				=>	'ÃÊ«» Â«',
+'Author'				=>	'‰ÊÌ”‰œÂ',
+'Pages'					=>	'’€ÕÂ Â«',
+'BBCode'				=>	'BBCode',	// You probably shouldn't change this
+'img tag'				=>	'[img] tag',
+'Smilies'				=>	'‘ﬂ·ﬂ Â«',
+'and'					=>	'Ê',
+'Image link'			=>	'⁄ﬂ”',	// This is displayed (i.e. <image>) instead of images when "Show images" is disabled in the profile
+'wrote'					=>	'‰Ê‘ Â',	// For [quote]'s
+'Code'					=>	'ﬂœ',		// For [code]'s
+'Mailer'				=>	'‰«„Â —”«‰',	// As in "MyForums Mailer" in the signature of outgoing e-mails
+'Important information'	=>	'«ÿ·«⁄«  „Â„',
+'Write message legend'	=>	'ÅÌ«„ ŒÊ —« »‰ÊÌ”Ìœ Ê À»  ﬂ‰Ìœ',
+
+// Title
+'Title'					=>	'⁄‰Ê«‰',
+'Member'				=>	'⁄÷Ê',	// Default title
+'Moderator'				=>	'„œÌ—',
+'Administrator'			=>	'„œÌ— ﬂ·',
+'Banned'				=>	'«Œ—«ÃÌ/»” Â ‘œÂ',
+'Guest'					=>	'„Â„«‰',
+
+// Stuff for include/parser.php
+'BBCode error'			=>	'»Ì»Ì ﬂœ Â« «‘ »«” .',
+'BBCode error 1'		=>	'‰ﬁ· ﬁÊ· ﬂ—œÂ [/quote].',
+'BBCode error 2'		=>	'Missing end tag for [code].',
+'BBCode error 3'		=>	'Missing start tag for [/code].',
+'BBCode error 4'		=>	'Missing one or more end tags for [quote].',
+'BBCode error 5'		=>	'Missing one or more start tags for [/quote].',
+
+// Stuff for the navigator (top of every page)
+'Index'					=>	'’›ÕÂ «’·Ì',
+'User list'				=>	'·Ì”  ﬂ«—»—«‰',
+'Rules'					=>  'œ” Ê—« ',
+'Search'				=>  'Ã” ÃÊ',
+'Register'				=>  'À»  ‰«„',
+'Login'					=>  'Ê—Êœ',
+'Not logged in'			=>  '‘„« Ê«—œ ‰‘œÂ «Ìœ.',
+'Profile'				=>	'„‘Œ’«  ‘„«',
+'Logout'				=>	'Œ—ÊÃ',
+'Logged in as'			=>	'Ê«—œ ‘œÂ »« ',
+'Admin'					=>	'„œÌ—Ì ',
+'Last visit'			=>	'¬Œ—Ì‰ »«“œÌœ',
+'Show new posts'		=>	'‰„«Ì‘ Å”  Â« Å” «“ ¬Œ—Ì‰ Ê—Êœ ‘„«',
+'Mark all as read'		=>	'⁄·«„  ê–«—Ì ŒÊ«‰œÂ ‘œÂ Â«',
+'Link separator'		=>	'',	// The text that separates links in the navigator
+
+// Stuff for the page footer
+'Board footer'			=>	'Å«ÌÌ‰ ’›ÕÂ',
+'Search links'			=>	'Ã” ÃÊÌ ¬œ—”',
+'Show recent posts'		=>	'‰„«Ì‘ Å”  Â«Ì «ŒÌ—',
+'Show unanswered posts'	=>	'‰„«Ì‘ Å”  Â«Ì »œÊ‰ Å«”Œ',
+'Show your posts'		=>	'‰„«Ì‘ Å”  Â«Ì ‘„«',
+'Show subscriptions'	=>	'«—”«· Â«ÌÌ ﬂÂ ‘—ﬂ  œ«‘ Ìœ',
+'Jump to'				=>	'»—Ê »Â',
+'Go'					=>	' »—Ê ',		// submit button in forum jump
+'Move topic'			=>  '«‰ ﬁ«·  «ÅÌﬂ',
+'Open topic'			=>  '»«“ ﬂ—œ‰  «ÅÌﬂ',
+'Close topic'			=>  '»” ‰  «ÅÌﬂ',
+'Unstick topic'			=>  'Œ—ÊÃ «“ „Â„',
+'Stick topic'			=>  '„Â„',
+'Moderate forum'		=>	'„Ì«‰êÌ‰ «‰Ã„‰',
+'Delete posts'			=>	'Å«ﬂ ﬂ—œ‰  «ÅÌﬂ',
+'Debug table'			=>	'œ—”  ﬂ—œ‰ «ÿ·«⁄« ',
+
+// For extern.php RSS feed
+'RSS Desc Active'		=>	'‘„« Â‰Ê“ ›⁄«·Ì Ì ‰œ«‘ Ìœ RSS „ÊÃÊœ ‰Ì” ',	// board_title will be appended to this string
+'RSS Desc New'			=>	'ÃœÌœ  —Ì‰  «ÅÌﬂ œ—',					// board_title will be appended to this string
+'Posted'				=>	'«—”«·Ì'	// The date/time a topic was started
+
+);
+«‰Ã„‰  Œ’’Ì „«ÂÊ«—ÂWWW.PERSIANSAT.NET

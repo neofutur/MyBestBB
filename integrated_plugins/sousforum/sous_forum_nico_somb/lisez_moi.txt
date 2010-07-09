@@ -1,0 +1,971 @@
+##
+##
+##          Titre mod :  SubForum
+##
+##        Version mod :  1.0
+##         Pour PunBB :  1.2.x
+##               Date :  06/03/2006
+##
+##             Auteur :  Nicolas Loeuillet a.k.a. nico_somb (nloeuillet@yahoo.fr)
+##
+##        Description :  Cette mod permet de créer des sous-forums.
+##
+##  Fichiers affectés :  admin_forums.php
+##                       index.php
+##                       viewforum.php
+##                       viewtopic.php
+##                       include/cache.php
+##                       include/functions.php
+##
+##      Affecte la BD :  oui
+##
+##
+##         DISCLAIMER :  Veuillez noter que ces mods ne sont pas
+##                       officiellement supportés par PunBB. L'installation
+##                       de ces modifications est à vos risques et périls.
+##                       N'oubliez pas de sauvegarder la base de données et
+##                       les fichiers affectés avant de procéder à
+##                       l'installation de cette modification.
+##
+
+
+
+#
+#---------[ 1. TELECHARGER LES FICHIERS ]--------------------------------------
+#
+
+install_mod.php à la racine de votre forum
+
+
+#
+#---------[ 2. EXECUTER ]------------------------------------------------------
+#
+
+install_mod.php
+
+
+#
+#---------[ 3. SUPPRIMER ]-----------------------------------------------------
+#
+
+install_mod.php
+
+
+#
+#---------[ 4. OUVRIR ]--------------------------------------------------------
+#
+
+admin_forums.php
+
+
+#
+#---------[ 5. TROUVER ]-------------------------------------------------------
+#
+
+		$redirect_url = isset($_POST['redirect_url']) ? trim($_POST['redirect_url']) : null;
+
+
+#
+#---------[ 6. APRES, AJOUTER ]------------------------------------------------
+#
+
+		$parent_forum_id = intval($_POST['parent_forum']);
+
+#
+#---------[ 7. TROUVER ]-------------------------------------------------------
+#
+
+		$db->query('UPDATE '.$db->prefix.'forums SET forum_name=\''.$db->escape($forum_name).'\', forum_desc='.$forum_desc.', redirect_url='.$redirect_url.', sort_by='.$sort_by.', cat_id='.$cat_id.' WHERE id='.$forum_id) or error('Impossible de modifier le forum', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 8. DANS LA LIGNE, TROUVER ]----------------------------------------
+#
+
+cat_id='.$cat_id.'
+
+
+#
+#---------[ 9. APRES, AJOUTER ]------------------------------------------------
+#
+
+, parent_forum_id='.$parent_forum_id.'
+
+
+#
+#---------[ 10. TROUVER ]------------------------------------------------------
+#
+
+	$result = $db->query('SELECT id, forum_name, forum_desc, redirect_url, num_topics, sort_by, cat_id FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Impossible de retrouver les informations du forum', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 11. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+cat_id
+
+
+#
+#---------[ 12. APRES, AJOUTER ]-----------------------------------------------
+#
+
+, parent_forum_id
+
+
+#
+#---------[ 13. TROUVER ]------------------------------------------------------
+#
+
+	$cur_forum = $db->fetch_assoc($result);
+
+
+#
+#---------[ 14. APRES, AJOUTER ]-----------------------------------------------
+#
+
+	$parent_forums = array();
+	$result = $db->query('SELECT DISTINCT parent_forum_id FROM '.$db->prefix.'forums WHERE parent_forum_id != 0');
+	while($r = $db->fetch_row($result))
+		$parent_forums[] = $r[0];
+
+
+#
+#---------[ 15. TROUVER ]------------------------------------------------------
+#
+
+								<tr>
+									<th scope="row"><acronym title="Uniform Resource Locator" lang="en">URL</acronym> de redirection</th>
+									<td><?php echo ($cur_forum['num_topics']) ? 'Disponible uniquement pour les forums vides' : '<input type="text" name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?></td>
+								</tr>
+
+
+#
+#---------[ 16. APRES, AJOUTER ]-----------------------------------------------
+#
+
+								<tr>
+									<th scope="row">Forum parent</th>
+									<td>
+										<select name="parent_forum">
+											<option value="0">Pas de forum parent</option>
+<?php
+	
+	if(!in_array($cur_forum['id'],$parent_forums))
+	{
+		$result = $db->query('SELECT id, forum_name, parent_forum_id FROM '.$db->prefix.'forums WHERE cat_id = '.$cur_forum['cat_id'].' ORDER BY disp_position') or error('Impossible de retrouver les informations du forum',__FILE__,__LINE__,$db->error());
+		while($forum_list = $db->fetch_assoc($result))
+		{
+			$selected = ($forum_list['id'] == $cur_forum['parent_forum_id']) ? ' selected="selected"' : '';
+			
+			if(!$forum_list['parent_forum_id'] && $forum_list['id'] != $cur_forum['id'])
+				echo "\t\t\t\t\t\t\t\t\t\t\t".'<option value="'.$forum_list['id'].'"'.$selected.'>'.pun_htmlspecialchars($forum_list['forum_name']).'</option>'."\n";
+		}
+	}
+
+?>
+										
+										</select>
+									</td>
+								</tr>
+
+
+#
+#---------[ 17. TROUVER ]------------------------------------------------------
+#
+
+$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.disp_position FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id ORDER BY c.disp_position, c.id, f.disp_position') or error('Impossible de retrouver la liste des catégories et des forums', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 18. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+f.forum_name, f.disp_position
+
+
+#
+#---------[ 19. APRES, AJOUTER ]-----------------------------------------------
+#
+
+, f.parent_forum_id
+
+
+#
+#---------[ 20. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+ON c.id=f.cat_id
+
+#
+#---------[ 21. APRES, AJOUTER ]-----------------------------------------------
+#
+
+ WHERE f.parent_forum_id = 0
+
+
+#
+#---------[ 22. TROUVER ]------------------------------------------------------
+#
+
+								<tr>
+									<th><a href="admin_forums.php?edit_forum=<?php echo $cur_forum['fid'] ?>">Modifier</a> - <a href="admin_forums.php?del_forum=<?php echo $cur_forum['fid'] ?>">Supprimer</a></th>
+									<td>Position&#160;&#160;<input type="text" name="position[<?php echo $cur_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_forum['disp_position'] ?>" tabindex="<?php echo $tabindex_count ?>" />
+									&#160;&#160;<strong><?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></strong></td>
+								</tr>
+
+
+#
+#---------[ 23. APRES, AJOUTER ]-----------------------------------------------
+#
+
+							<?php
+							$result2 = $db->query('SELECT f.id AS fid, f.forum_name, f.disp_position, f.parent_forum_id FROM '.$db->prefix.'forums AS f WHERE f.parent_forum_id = '.$cur_forum['fid'].'  ORDER BY f.disp_position') or error('Impossible de retrouver la liste des catégories et des forums', __FILE__, __LINE__, $db->error());
+							if($db->num_rows($result2))
+							{
+							?>
+								<tr>
+								<td colspan="2">
+								<div class="inform">
+									<fieldset>
+										<div class="infldset">
+											<legend>Sous&#160;Forum&#160;: <?php echo pun_htmlspecialchars($cur_ss_forum['cat_name']) ?></legend>
+							<?php
+								while ($cur_ss_forum = $db->fetch_assoc($result2))
+								{
+								?>
+											<table cellspacing="0">
+												<tr>
+													<th><a href="admin_forums.php?edit_forum=<?php echo $cur_ss_forum['fid'] ?>">Modifier</a> - <a href="admin_forums.php?del_forum=<?php echo $cur_ss_forum['fid'] ?>">Supprimer</a></th>
+													<td>Position&#160;&#160;<input type="text" name="position[<?php echo $cur_ss_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_ss_forum['disp_position'] ?>" />
+													&#160;&#160;<strong><?php echo pun_htmlspecialchars($cur_ss_forum['forum_name']) ?></strong></td>
+												</tr>
+											</table>
+								<?php
+								}
+								?>
+										</div>
+									</fieldset>
+								</div>
+								</td>
+								</tr>
+							<?php
+							}
+							?>
+
+
+#
+#---------[ 24. OUVRIR ]-------------------------------------------------------
+#
+
+index.php
+
+
+#
+#---------[ 25. TROUVER ]------------------------------------------------------
+#
+
+require PUN_ROOT.'header.php';
+
+
+#
+#---------[ 26. APRES, AJOUTER ]-----------------------------------------------
+#
+
+$sql = 'SELECT sf.id, sf.forum_name, f.id FROM '.$db->prefix.'forums AS sf LEFT JOIN '.$db->prefix.'forums AS f ON sf.parent_forum_id = f.id WHERE sf.parent_forum_id <> 0 ORDER BY sf.disp_position';
+$res_ssforum = $db->query($sql, true) or error('Impossible de retrouver la liste des sous forums', __FILE__, __LINE__, $db->error());
+$i = 0;
+while ($cur_sous_forum = $db->fetch_row($res_ssforum))
+{
+	$tab_sous_forums[$i] = $cur_sous_forum;
+	$i++;
+}
+
+
+#
+#---------[ 27. TROUVER ]------------------------------------------------------
+#
+
+$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.forum_desc, f.redirect_url, f.moderators, f.num_topics, f.num_posts, f.last_post, f.last_post_id, f.last_poster FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Impossible de retrouver la liste des catégories et des forums', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 28. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+, f.last_poster
+
+
+#
+#---------[ 29. APRES, AJOUTER ]-----------------------------------------------
+#
+
+, f.parent_forum_id
+
+
+#
+#---------[ 30. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+WHERE
+
+
+#
+#---------[ 31. APRES, AJOUTER ]-----------------------------------------------
+#
+
+ (
+
+
+#
+#---------[ 32. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+OR fp.read_forum=1
+
+
+#
+#---------[ 33. APRES, AJOUTER ]-----------------------------------------------
+#
+
+) AND (f.parent_forum_id IS NULL OR f.parent_forum_id=0)
+
+
+#
+#---------[ 34. TROUVER ]------------------------------------------------------
+#
+
+	if ($cur_forum['moderators'] != '')
+	{
+		$mods_array = unserialize($cur_forum['moderators']);
+		$moderators = array();
+
+		while (list($mod_username, $mod_id) = @each($mods_array))
+			$moderators[] = '<a href="profile.php?id='.$mod_id.'">'.pun_htmlspecialchars($mod_username).'</a>';
+
+		$moderators = "\t\t\t\t\t\t\t\t".'<p><em>('.$lang_common['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
+	}
+
+
+#
+#---------[ 35. APRES, AJOUTER ]-----------------------------------------------
+#
+
+	$liste_sous_forums = array();
+	if(!empty($tab_sous_forums))
+	{
+		foreach ($tab_sous_forums as $sous_forums)
+		{
+			if($cur_forum['fid'] == $sous_forums[2])
+			{
+				$liste_sous_forums[] = '<a href="viewforum.php?id='.$sous_forums[0].'">'.pun_htmlspecialchars($sous_forums[1]).'</a>';
+			}
+		}
+		if(!empty($liste_sous_forums))
+			$liste_sous_forums = "\t\t\t\t\t\t\t\t".'<p><em>Sous-forums :</em> '.implode(', ', $liste_sous_forums).'</p>'."\n";
+	}
+
+
+#
+#---------[ 36. TROUVER ]------------------------------------------------------
+#
+
+								<?php echo $forum_field."\n".$moderators ?>
+
+
+#
+#---------[ 37. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+$moderators
+
+
+#
+#---------[ 38. APRES, AJOUTER ]-----------------------------------------------
+#
+
+."\n".((!empty($liste_sous_forums)) ? $liste_sous_forums : '')
+
+
+#
+#---------[ 39. TROUVER ]------------------------------------------------------
+#
+
+$result = $db->query('SELECT SUM(num_topics), SUM(num_posts) FROM '.$db->prefix.'forums') or error('Impossible de retrouver le nombre de discussions et de messages', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 40. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+FROM '.$db->prefix.'forums
+
+
+#
+#---------[ 41. APRES, AJOUTER ]-----------------------------------------------
+#
+
+ WHERE parent_forum_id = 0
+
+
+#
+#---------[ 42. OUVRIR ]-------------------------------------------------------
+#
+
+viewforum.php
+
+
+#
+#---------[ 43. TROUVER ]------------------------------------------------------
+#
+
+require PUN_ROOT.'lang/'.$pun_user['language'].'/forum.php';
+
+
+#
+#---------[ 44. APRES, AJOUTER ]-----------------------------------------------
+#
+
+require PUN_ROOT.'lang/'.$pun_user['language'].'/index.php';
+
+
+#
+#---------[ 45. TROUVER ]------------------------------------------------------
+#
+
+$result = $db->query('SELECT f.forum_name, f.redirect_url, f.moderators, f.num_topics, f.sort_by, fp.post_topics FROM '.$db->prefix.'forums AS f LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND f.id='.$id) or error('Impossible de retrouver les informations du forum', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 46. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+f.forum_name,
+
+
+#
+#---------[ 47. APRES, AJOUTER ]-----------------------------------------------
+#
+
+ pf.forum_name AS parent_forum, f.parent_forum_id,
+
+
+#
+#---------[ 48. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+AND fp.group_id='.$pun_user['g_id'].')
+
+
+#
+#---------[ 49. APRES, AJOUTER ]-----------------------------------------------
+#
+
+ LEFT JOIN '.$db->prefix.'forums AS pf ON f.parent_forum_id=pf.id
+
+
+#
+#---------[ 50. TROUVER ]------------------------------------------------------
+#
+
+require PUN_ROOT.'header.php';
+
+
+#
+#---------[ 51. APRES, AJOUTER ]-----------------------------------------------
+#
+
+$subforum_result = $db->query('SELECT forum_desc, forum_name, id, last_post, last_poster, moderators, num_posts, num_topics, redirect_url FROM '.$db->prefix.'forums WHERE parent_forum_id='.$id.' ORDER BY disp_position') or error('Impossible de sélectionner les informations du sous forum',__FILE__,__LINE__,$db->error());
+if($db->num_rows($subforum_result))
+{
+?>
+<div class="linkst">
+	<div class="inbox">
+		<ul><li><a href="index.php"><?php echo $lang_common['Index'] ?></a>&#160;</li><li>&raquo;&#160;<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></li></ul>
+		<div class="clearer"></div>
+	</div>
+</div>
+
+<div id="vf" class="blocktable">
+	<h2><span>Sous Forums</span></h2>
+	<div class="box">
+		<div class="inbox">
+			<table cellspacing="0">
+			<thead>
+				<tr>
+					<th class="tcl" scope="col"><?php echo $lang_common['Forum'] ?></th>
+					<th class="tc2" scope="col"><?php echo $lang_index['Topics'] ?></th>
+					<th class="tc3" scope="col"><?php echo $lang_common['Posts'] ?></th>
+					<th class="tcr" scope="col"><?php echo $lang_common['Last post'] ?></th>
+				</tr>
+			</thead>
+			<tbody>
+<?php
+
+while($cur_subforum = $db->fetch_assoc($subforum_result))
+{
+	$item_status = '';
+	$icon_text = $lang_common['Normal icon'];
+	$icon_type = 'icon';
+
+	// Are there new posts?
+	if (!$pun_user['is_guest'] && $cur_subforum['last_post'] > $pun_user['last_visit'])
+	{
+		$item_status = 'inew';
+		$icon_text = $lang_common['New icon'];
+		$icon_type = 'icon inew';
+	}
+
+	// Is this a redirect forum?
+	if ($cur_forum['redirect_url'] != '')
+	{
+		$forum_field = '<h3><a href="'.pun_htmlspecialchars($cur_subforum['redirect_url']).'" title="'.$lang_index['Link to'].' '.pun_htmlspecialchars($cur_subforum['redirect_url']).'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a></h3>';
+		$num_topics = $num_posts = '&nbsp;';
+		$item_status = 'iredirect';
+		$icon_text = $lang_common['Redirect icon'];
+		$icon_type = 'icon';
+	}
+	else
+	{
+		$forum_field = '<h3><a href="viewforum.php?id='.$cur_subforum['id'].'">'.pun_htmlspecialchars($cur_subforum['forum_name']).'</a></h3>';
+		$num_topics = $cur_subforum['num_topics'];
+		$num_posts = $cur_subforum['num_posts'];
+	}
+
+	if ($cur_subforum['forum_desc'] != '')
+		$forum_field .= "\n\t\t\t\t\t\t\t\t".$cur_subforum['forum_desc'];
+
+
+	// If there is a last_post/last_poster.
+	if ($cur_subforum['last_post'] != '')
+		$last_post = '<a href="viewtopic.php?pid='.$cur_subforum['last_post_id'].'#p'.$cur_subforum['last_post_id'].'">'.format_time($cur_subforum['last_post']).'</a> <span class="byuser">'.$lang_common['by'].' '.pun_htmlspecialchars($cur_subforum['last_poster']).'</span>';
+	else
+		$last_post = '&nbsp;';
+
+	$moderators = array();
+	if ($cur_subforum['moderators'] != '')
+	{
+		$mods_array = unserialize($cur_subforum['moderators']);
+
+		while (list($mod_username, $mod_id) = @each($mods_array))
+			$moderators[] = '<a href="profile.php?id='.$mod_id.'">'.pun_htmlspecialchars($mod_username).'</a>';
+
+		$moderators = "\t\t\t\t\t\t\t\t".'<p><em>('.$lang_common['Moderated by'].'</em> '.implode(', ', $moderators).')</p>'."\n";
+	}
+?>
+				<tr<?php if ($item_status != '') echo ' class="'.$item_status.'"'; ?>>
+					<td class="tcl">
+						<div class="intd">
+							<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo $icon_text ?></div></div>
+							<div class="tclcon">
+								<?php echo $forum_field."\n".((!empty($moderators)) ? $moderators : '') ?>
+							</div>
+						</div>
+					</td>
+					<td class="tc2"><?php echo $num_topics ?></td>
+					<td class="tc3"><?php echo $num_posts ?></td>
+					<td class="tcr"><?php echo $last_post ?></td>
+				</tr>
+<?php
+	}
+?>
+			</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<?php
+}
+?>
+
+
+#
+#---------[ 52. TROUVER ]------------------------------------------------------
+#
+
+<?php echo $post_link ?>
+		<ul><li><a href="index.php"><?php echo $lang_common['Index'] ?></a>&#160;</li><li>&raquo;&#160;<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></li></ul>
+
+
+#
+#---------[ 53. REMPLACER PAR ]------------------------------------------------
+#
+
+<?php 
+echo $post_link;
+if($cur_forum['parent_forum'])
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].'</a>&#160;</li><li>&raquo;&#160;<a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a>&#160;</li><li>&raquo;&#160;'.pun_htmlspecialchars($cur_forum['forum_name']).'</li></ul>';
+else
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].' </a>&#160;</li><li>&raquo;&#160;'.pun_htmlspecialchars($cur_forum['forum_name']).'</li></ul>';
+?>
+
+
+#
+#---------[ 54. TROUVER ]------------------------------------------------------
+#
+
+		<div class="clearer"></div>
+	</div>
+</div>
+
+
+#
+#---------[ 55. APRES, AJOUTER ]-----------------------------------------------
+#
+
+<?php
+if($db->num_rows($subforum_result) == 0)
+{
+?>
+
+
+#
+#---------[ 56. TROUVER ]------------------------------------------------------
+#
+
+<?php echo $post_link ?>
+		<ul><li><a href="index.php"><?php echo $lang_common['Index'] ?></a>&#160;</li><li>&raquo;&#160;<?php echo pun_htmlspecialchars($cur_forum['forum_name']) ?></li></ul>
+
+
+#
+#---------[ 57. REMPLACER PAR ]------------------------------------------------
+#
+
+<?php 
+echo $post_link;
+if($cur_forum['parent_forum'])
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].'</a>&#160;</li><li>&raquo;&#160;<a href="viewforum.php?id='.$cur_forum['parent_forum_id'].'">'.pun_htmlspecialchars($cur_forum['parent_forum']).'</a>&nbsp;</li><li>&raquo;&nbsp;'.pun_htmlspecialchars($cur_forum['forum_name']).'</li></ul>';
+else
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].' </a>&#160;</li><li>&raquo;&#160;'.pun_htmlspecialchars($cur_forum['forum_name']).'</li></ul>';
+?>
+
+#
+#---------[ 58. TROUVER ]------------------------------------------------------
+#
+
+$forum_id = $id;
+$footer_style = 'viewforum';
+require PUN_ROOT.'footer.php';
+
+
+#
+#---------[ 59. AVANT, AJOUTER ]-----------------------------------------------
+#
+
+}
+
+
+#
+#---------[ 60. OUVRIR ]-------------------------------------------------------
+#
+
+viewtopic.php
+
+
+#
+#---------[ 61. TROUVER ]------------------------------------------------------
+#
+
+	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, s.user_id AS is_subscribed FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'subscriptions AS s ON (t.id=s.topic_id AND s.user_id='.$pun_user['id'].') LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Impossible de retrouver les informations de la discussion', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 62. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+s.user_id AS is_subscribed
+
+
+#
+#---------[ 63. APRES, AJOUTER ]-----------------------------------------------
+#
+
+, pf.forum_name AS parent_forum, f.parent_forum_id
+
+
+#
+#---------[ 64. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+AND fp.group_id='.$pun_user['g_id'].')
+
+
+#
+#---------[ 65. APRES, AJOUTER ]-----------------------------------------------
+#
+
+ LEFT JOIN '.$db->prefix.'forums AS pf ON f.parent_forum_id=pf.id
+
+
+#
+#---------[ 66. TROUVER ]------------------------------------------------------
+#
+
+	$result = $db->query('SELECT t.subject, t.closed, t.num_replies, t.sticky, f.id AS forum_id, f.forum_name, f.moderators, fp.post_replies, 0 FROM '.$db->prefix.'topics AS t INNER JOIN '.$db->prefix.'forums AS f ON f.id=t.forum_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$pun_user['g_id'].') WHERE (fp.read_forum IS NULL OR fp.read_forum=1) AND t.id='.$id.' AND t.moved_to IS NULL') or error('Impossible de retrouver les informations de la discussion', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 67. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+fp.post_replies, 0
+
+
+#
+#---------[ 68. APRES, AJOUTER ]-----------------------------------------------
+#
+
+, pf.forum_name AS parent_forum, f.parent_forum_id
+
+
+#
+#---------[ 69. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+AND fp.group_id='.$pun_user['g_id'].')
+
+
+#
+#---------[ 70. APRES, AJOUTER ]-----------------------------------------------
+#
+
+ LEFT JOIN '.$db->prefix.'forums AS pf ON f.parent_forum_id=pf.id
+
+
+#
+#---------[ 71. TROUVER ]------------------------------------------------------
+#
+
+		<ul><li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li><li>&#160;&raquo;&#160;<a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li><li>&#160;&raquo;&#160;<?php echo pun_htmlspecialchars($cur_topic['subject']) ?></li></ul>
+
+
+#
+#---------[ 72. REMPLACER PAR ]------------------------------------------------
+#
+
+<?php
+if($cur_topic['parent_forum'])
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].'</a>&#160;</li><li>&raquo;&#160;<a href="viewforum.php?id='.$cur_topic['parent_forum_id'].'">'.pun_htmlspecialchars($cur_topic['parent_forum']).'</a>&#160;</li><li>&raquo;&#160;<a href="viewforum.php?id='.$cur_topic['forum_id'].'">'.pun_htmlspecialchars($cur_topic['forum_name']).'</a>&#160;</li><li>&raquo;&#160;'.pun_htmlspecialchars($cur_topic['subject']).'</li></ul>';
+else
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].'</a></li><li>&#160;&raquo;&#160;<a href="viewforum.php?id='.$cur_topic['forum_id'].'">'.pun_htmlspecialchars($cur_topic['forum_name']).'</a></li><li>&#160;&raquo;&#160;'.pun_htmlspecialchars($cur_topic['subject']).'</li></ul>';
+?>
+
+
+#
+#---------[ 73. TROUVER ]------------------------------------------------------
+#
+
+		<ul><li><a href="index.php"><?php echo $lang_common['Index'] ?></a></li><li>&#160;&raquo;&#160;<a href="viewforum.php?id=<?php echo $cur_topic['forum_id'] ?>"><?php echo pun_htmlspecialchars($cur_topic['forum_name']) ?></a></li><li>&#160;&raquo;&#160;<?php echo pun_htmlspecialchars($cur_topic['subject']) ?></li></ul>
+
+
+#
+#---------[ 74. REMPLACER PAR ]------------------------------------------------
+#
+
+<?php
+if($cur_topic['parent_forum'])
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].'</a>&#160;</li><li>&raquo;&#160;<a href="viewforum.php?id='.$cur_topic['parent_forum_id'].'">'.pun_htmlspecialchars($cur_topic['parent_forum']).'</a>&#160;</li><li>&raquo;&#160;<a href="viewforum.php?id='.$cur_topic['forum_id'].'">'.pun_htmlspecialchars($cur_topic['forum_name']).'</a>&#160;</li><li>&raquo;&#160;'.pun_htmlspecialchars($cur_topic['subject']).'</li></ul>';
+else
+	echo "\t\t".'<ul><li><a href="index.php">'.$lang_common['Index'].'</a></li><li>&#160;&raquo;&#160;<a href="viewforum.php?id='.$cur_topic['forum_id'].'">'.pun_htmlspecialchars($cur_topic['forum_name']).'</a></li><li>&#160;&raquo;&#160;'.pun_htmlspecialchars($cur_topic['subject']).'</li></ul>';
+?>
+
+
+#
+#---------[ 75. OUVRIR ]-------------------------------------------------------
+#
+
+include/cache.php
+
+
+#
+#---------[ 76. TROUVER ]------------------------------------------------------
+#
+
+		$result = $db->query('SELECT c.id AS cid, c.cat_name, f.id AS fid, f.forum_name, f.redirect_url FROM '.$db->prefix.'categories AS c INNER JOIN '.$db->prefix.'forums AS f ON c.id=f.cat_id LEFT JOIN '.$db->prefix.'forum_perms AS fp ON (fp.forum_id=f.id AND fp.group_id='.$group_id.') WHERE fp.read_forum IS NULL OR fp.read_forum=1 ORDER BY c.disp_position, c.id, f.disp_position', true) or error('Impossible de retrouver la liste des catégories et des forums', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 77. DANS LA LIGNE, TROUVER ]---------------------------------------
+#
+
+f.redirect_url
+
+
+#
+#---------[ 78. APRES, AJOUTER ]-----------------------------------------------
+#
+
+, f.parent_forum_id
+
+
+#
+#---------[ 79. OUVRIR ]-------------------------------------------------------
+#
+
+include/functions.php
+
+
+#
+#---------[ 80. TROUVER ]------------------------------------------------------
+#
+
+function update_forum($forum_id)
+
+
+#
+#---------[ 81. DANS LA FONCTION, TROUVER ]------------------------------------
+#
+
+	global $db;
+
+
+#
+#---------[ 82. APRES, AJOUTER ]-----------------------------------------------
+#
+
+	$num_posts_fils = 0;
+	$num_topics_fils = 0;
+	$last_post_fils = $last_post_id_fils = $last_poster_fils = 0;
+	$post_fils = $post_id_fils = $poster_fils = 0;
+	$total_posts_fils = $total_topics_fils = 0;
+
+
+#
+#---------[ 83. DANS LA FONCTION, TROUVER ]------------------------------------
+#
+
+	$result = $db->query('SELECT last_post, last_post_id, last_poster FROM '.$db->prefix.'topics WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Impossible de retrouver last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+	if ($db->num_rows($result))		// There are topics in the forum
+	{
+		list($last_post, $last_post_id, $last_poster) = $db->fetch_row($result);
+
+		$db->query('UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster=\''.$db->escape($last_poster).'\' WHERE id='.$forum_id) or error('Impossible de mettre à jour last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+	}
+	else	// There are no topics
+		$db->query('UPDATE '.$db->prefix.'forums SET num_topics=0, num_posts=0, last_post=NULL, last_post_id=NULL, last_poster=NULL WHERE id='.$forum_id) or error('Impossible de mettre à jour last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+
+
+#
+#---------[ 84. REMPLACER PAR ]------------------------------------------------
+#
+
+	$sql = 'SELECT SUM(num_topics), SUM(num_posts), id FROM '.$db->prefix.'forums WHERE parent_forum_id = '.$forum_id.' GROUP BY id';
+	$result = $db->query($sql) or error($sql.'<br />Impossible de mettre à jour last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+	# on compte le nombre de posts des fils
+	if ($db->num_rows($result))
+	{
+		while($line = $db->fetch_row($result))
+		{
+			$num_posts = $num_posts + $line[1];
+			$num_topics = $num_topics + $line[0];
+			$sql = 'SELECT last_post, last_post_id, last_poster FROM '.$db->prefix.'topics WHERE forum_id='.$line[2].' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1';
+			$result2 = $db->query($sql) or error('Impossible de retrouver last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+			list($post_fils, $post_id_fils, $poster_fils) = $db->fetch_row($result2);
+			if($post_fils > $last_post_fils)
+			{
+				$last_post_fils = $post_fils;
+				$last_post_id_fils = $post_id_fils;
+				$last_poster_fils = $poster_fils;
+			}
+		}
+	}
+
+	$result = $db->query('SELECT last_post, last_post_id, last_poster FROM '.$db->prefix.'topics WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Impossible de retrouver last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+	if ($db->num_rows($result) > 0)
+	{
+		# le forum courant n'est pas vide
+		list($last_post, $last_post_id, $last_poster) = $db->fetch_row($result);
+		if($last_post_fils != 0)
+		{
+			if($last_post_fils > $last_post)
+			{
+				$last_post = $last_post_fils;
+				$last_post_id = $last_post_id_fils;
+				$last_poster =  $last_poster_fils;
+			}
+		}
+		$sql = 'UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster=\''.$db->escape($last_poster).'\' WHERE id='.$forum_id;
+		$db->query($sql) or error($sql.'<br />Impossible de mettre à jour last_post/last_post_id/last_poster 1', __FILE__, __LINE__, $db->error());
+	}
+	else
+	{
+		# le forum courant est vide
+		if($num_topics == 0 && $num_posts == 0)
+		{
+			# les fils du forum courant sont vides
+			$sql = 'UPDATE '.$db->prefix.'forums SET num_topics=0, num_posts=0, last_post=NULL, last_post_id=NULL, last_poster=NULL WHERE id='.$forum_id;
+			$db->query($sql) or error($sql.'<br />Impossible de mettre à jour last_post/last_post_id/last_poster 2', __FILE__, __LINE__, $db->error());
+		}
+		else
+		{
+			# les fils du forum courant ne sont pas vides
+			$sql = 'UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics.', num_posts='.$num_posts.', last_post='.$last_post_fils.', last_post_id='.$last_post_id_fils.', last_poster=\''.$db->escape($last_poster_fils).'\' WHERE id='.$forum_id;
+			$db->query($sql) or error($sql.'<br />Impossible de mettre à jour last_post/last_post_id/last_poster 2', __FILE__, __LINE__, $db->error());
+		}
+	}
+
+	$last_post_fils = $last_post_id_fils = $last_poster_fils = 0;
+	$post_fils = $post_id_fils = $poster_fils = 0;
+
+	# MAJ du forum père (s'il y en a)
+
+	$result = $db->query('SELECT parent_forum_id FROM '.$db->prefix.'forums WHERE id='.$forum_id) or error('Impossible de retrouver les informations du forum', __FILE__, __LINE__, $db->error());
+	$line = $db->fetch_assoc($result);
+	$id_papa = $line['parent_forum_id'];
+	if($id_papa != 0)
+	{
+		$result = $db->query('SELECT COUNT(id), SUM(num_replies) FROM '.$db->prefix.'topics WHERE moved_to IS NULL AND forum_id='.$id_papa ) or error('Impossible de retrouver le total de discussions du forum', __FILE__, __LINE__, $db->error());
+		list($num_topics_papa, $num_posts_papa) = $db->fetch_row($result);
+	
+		# MAJ du nb de posts/topics
+		$result = $db->query('SELECT last_post, last_post_id, last_poster FROM '.$db->prefix.'topics WHERE forum_id='.$id_papa.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Impossible de retrouver last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+		list($last_post_papa, $last_post_id_papa, $last_poster_papa) = $db->fetch_row($result);
+		$num_posts_papa = $num_posts_papa + $num_posts + $num_topics_papa;
+		$num_topics_papa = $num_topics_papa + $num_topics;
+		$sql = 'SELECT SUM(num_topics), SUM(num_posts), id FROM '.$db->prefix.'forums WHERE parent_forum_id = '.$id_papa.' AND id <> '.$forum_id.' GROUP BY id';
+		$result = $db->query($sql) or error($sql.'<br />Impossible de mettre à jour last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+		# on compte le nombre de posts des fils de ce père
+		if ($db->num_rows($result))
+		{
+			while(list($num_topics_fils, $num_posts_fils, $id_fils) = $db->fetch_row($result))
+			{
+				$num_posts_papa = $num_posts_papa + $num_posts_fils;
+				$num_topics_papa = $num_topics_papa + $num_topics_fils;
+				$result = $db->query('SELECT last_post, last_post_id, last_poster FROM '.$db->prefix.'topics WHERE forum_id='.$id_fils.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Impossible de retrouver last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+				list($post_fils, $post_id_fils, $poster_fils) = $db->fetch_row($result);
+				if($post_fils > $last_post)
+				{
+					$last_post = $post_fils;
+					$last_post_id = $post_id_fils;
+					$last_poster = $poster_fils;
+				}
+			}
+		}
+		# Requête MAJ du nb de posts/topics
+		$sql = 'UPDATE '.$db->prefix.'forums SET num_topics='.$num_topics_papa.', num_posts='.$num_posts_papa.' WHERE id='.$id_papa;
+		$db->query($sql) or error($sql.'<br />Impossible de mettre à jour last_post/last_post_id/last_poster 3', __FILE__, __LINE__, $db->error());
+
+		$result = $db->query('SELECT last_post, last_post_id, last_poster FROM '.$db->prefix.'topics WHERE forum_id='.$forum_id.' AND moved_to IS NULL ORDER BY last_post DESC LIMIT 1') or error('Impossible de retrouver last_post/last_post_id/last_poster', __FILE__, __LINE__, $db->error());
+		if ($db->num_rows($result))
+		{
+			list($last_post, $last_post_id, $last_poster) = $db->fetch_row($result);
+		}
+		if($last_post_papa > $last_post)
+		{
+			$last_post = $last_post_papa;
+			$last_post_id = $last_post_id_papa;
+			$last_poster =  $last_poster_papa;
+		}
+		
+		#MAJ de la date
+		if($last_post != '')
+			$sql = 'UPDATE '.$db->prefix.'forums SET last_post='.$last_post.', last_post_id='.$last_post_id.', last_poster=\''.$db->escape($last_poster).'\' WHERE id='.$id_papa;
+		else
+			$sql = 'UPDATE '.$db->prefix.'forums SET num_topics=0, num_posts=0, last_post=NULL, last_post_id=NULL, last_poster=NULL WHERE id='.$id_papa;
+		$db->query($sql) or error($sql.'<br />Impossible de mettre à jour last_post/last_post_id/last_poster 4', __FILE__, __LINE__, $db->error());
+	}
+
+
+#
+#---------[ 85. ENREGISTRER/TELECHARGER ]--------------------------------------
+#

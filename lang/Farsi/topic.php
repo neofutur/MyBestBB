@@ -1,0 +1,28 @@
+<?php
+
+// Language definitions used in viewtopic.php
+$lang_topic = array(
+
+'Post reply'		=>	'«—”«· Å«”Œ',
+'Topic closed'		=>	' «ÅÌﬂ »” Â «” ',
+'From'				=>	'«“',				// User location
+'Note'				=>	'‰ﬂ Â',				// Admin note
+'Website'			=>	'Ê» ”«Ì ',
+'Guest'				=>	'„Â„«‰',
+'Online'			=>	'›⁄«·',
+'Offline'			=>	'€Ì—›⁄«·',
+'Last edit'			=>	'ÊÌ—«Ì‘  Ê”ÿ',
+'Report'			=>	'ê“«—‘',
+'Delete'			=>	'Õ–›',
+'Edit'				=>	'ÊÌ—«Ì‘',
+'Quote'				=>	'‰ﬁ· ﬁÊ·',
+'Is subscribed'		=>	'‘„« „Ê›ﬁ »Â «—”«· Å”  ‘œÌœ',
+'Unsubscribe'		=>	'À»  ‰‘œÂ',
+'Subscribe'			=>	'«—”«· œ—  «ÅÌﬂ',
+'Quick post'		=>	'Å”  ”—Ì⁄',
+
+'Link separator'	=>	' | ',	// The text that separates links in posts (website, e-mail, report, edit etc.)
+'Mod controls'		=>	'„œÌ—Ì '
+
+);
+«‰Ã„‰  Œ’’Ì „«ÂÊ«—ÂWWW.PERSIANSAT.NET

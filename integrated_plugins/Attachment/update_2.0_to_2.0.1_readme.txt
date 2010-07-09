@@ -1,0 +1,75 @@
+##
+##
+##        Mod title:  Attachment Mod
+##
+##      Mod version:  2.0.1 (this readme updates from 2.0)
+##   Works on PunBB:  1.2.5
+##     Release date:  2005-04-28
+##           Author:  Frank Hagstrom (frank.hagstrom+punbb@gmail.com)
+##
+##      Description:  This mod will add the ability for attachments beeing
+##                    posted in PunBB 1.2.5
+##
+##   Affected files:  attach_func.php
+##                    attachment.php
+##                    AP_Attachment_Mod.php
+##
+##       Affects DB:  Yes
+##
+##            Notes:  Ok, this update fixes a few small things that surfaced.
+##                    First, there was a check that never took place, so that
+##                    "ordinary members" only used the ruleset for max size.
+##                    This is now corrected and the updater will update all
+##                    rulesets where the allowed size for a specific group is
+##                    larger than the max allowed upload size set in alter
+##                    settings.
+##
+##                    And then there was a performance bug that Dexus noticed
+##                    and a header in attachment.php fixes that one. (a delay
+##                    of 5-7s was added to all attachment downloads)
+##
+##
+##                    To save extra work I'd suggest you look at your "alter
+##                    settings", that the "Max filesize" is really correct. If
+##                    it's smaller than most of the rules, that means most of
+##                    the rules will use this value when you have updated. Read
+##                    chapter 1.6 in the documentation to know how large you
+##                    can make it.
+##
+##                    Written by Frank H  
+##                    on: 2005-04-28 21:46
+##
+##       DISCLAIMER:  Please note that "mods" are not officially supported by
+##                    PunBB. Installation of this modification is done at your
+##                    own risk. Backup your forum database and any and all
+##                    applicable files before proceeding.
+##
+##
+
+
+
+
+#
+#---------[ 1. UPLOAD ]-------------------------------------------------------
+#
+
+attach_func.php to include/attach/
+
+AP_Attachment_Mod.php to plugins/
+
+attachment.php to /
+update_2.0_to_2.0.1.php to /
+
+
+#
+#---------[ 2. RUN ]-----( only needed if you used the old mod )-------------
+#
+
+update_2.0_to_2.0.1.php
+
+
+#
+#---------[ 3. DELETE ]------------------------------------------------------
+#
+
+update_2.0_to_2.0.1.php

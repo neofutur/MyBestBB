@@ -1,0 +1,465 @@
+/****************************************************************/
+/* 1. BACKGROUND AND TEXT COLOURS */
+/****************************************************************/
+
+/* 1.1 Default background colour and text colour */
+
+BODY {BACKGROUND: url(../../img/Sadness/back.png) #000000}
+
+.pun {COLOR: #DADADA}
+
+DIV.box,  #adminconsole FIELDSET TH, .rowodd, .roweven {BACKGROUND-COLOR: #323232}
+#adminconsole TD, #adminconsole TH {BORDER-COLOR: #323232}
+
+/* 1. 2 Darker background colours */
+
+TD.tc3, TD.tc4, TD.tcmod, #brdfooter DIV.box {BACKGROUND-COLOR: #333333}
+#adminconsole FIELDSET TD, #viewprofile DD, DIV.forminfo, DIV.blockmenu DIV.box, #adstats DD {BACKGROUND-COLOR: #363636}
+
+.pun BLOCKQUOTE, DIV.codebox {BACKGROUND-COLOR: #323232}
+
+/* 1.3 Main headers and navigation bar background and text colour */
+
+.pun H2, #brdmenu {
+
+    	background:url(../../img/Sadness/cellpic2.gif); color:#CCCCCC;
+    	border: 1px solid #111111;
+    	border-bottom: 0px solid #111111;
+    	align: middle;
+    	
+    	font-weight: bold;
+		font-size:11px;
+		color: #DADADA;
+
+    	}
+
+/* 1.4 Table header rows */
+
+.pun TH {BACKGROUND: url(../../img/Sadness/cellpic1.gif) #2a2a2a;}
+
+/* 1.5 Fieldset legend text colour */
+
+.pun LEGEND {COLOR: #FFFFFF}
+
+/* 1.6 Highlighted text for various items */
+
+.pun DIV.blockmenu LI.isactive A, #posterror LI STRONG {COLOR: #D4D4D4}
+
+/* 1.7 Dark background for form elements */
+
+.pun TEXTAREA, .pun INPUT, .pun SELECT {BACKGROUND-COLOR: #2A2A2A; COLOR: #D4D4D4}
+
+/****************************************************************/
+/* 2. POST BACKGROUNDS AND TEXT */
+/****************************************************************/
+
+/* 2.1 This is the setup for posts. */
+
+DIV.blockpost DIV.box, DIV.postright, DIV.postfootright, #postpreview {BACKGROUND-COLOR: #202020}
+DIV.postright, DIV.postfootright {BORDER-LEFT-COLOR: #303030}
+DIV.postleft, DIV.postfootleft, DIV.blockpost LABEL {BACKGROUND-COLOR: #303030}
+
+/* 2.2 Background for post headers and text colour for post numbers in viewtopic */
+
+DIV.blockpost H2 {BACKGROUND-COLOR: #000000; text-align: left}
+DIV.blockpost H2 SPAN.conr {COLOR: #A19E96}
+
+/* 2.3 This is the line above the signature in posts. Colour and background should be the same */
+
+.pun HR {BACKGROUND-COLOR: #606060;	COLOR: #606060}
+
+/****************************************************************/
+/* 3. BORDER COLOURS */
+/****************************************************************/
+
+/* 3.1 All external borders (H1 is the board title) */
+
+DIV.box {BORDER-COLOR: #111111}
+
+/* 3.2 Makes the top border of posts match the colour used for post headers */
+
+DIV.blockpost DIV.box {BORDER-COLOR: #111111 #111111 #111111}
+
+/* 3.3 Table internal borders. By default TH is same as background so border is invisible */
+
+.pun TD {BORDER-COLOR: #111111}
+.pun TH {BORDER-COLOR: #111111}
+
+/* 3.4 Creates the inset border for quote boxes, code boxes and form info boxes */
+
+.pun BLOCKQUOTE, DIV.codebox, DIV.forminfo, DIV.blockpost LABEL {BORDER-COLOR: #000000; background-color: #888888;color: #282828}
+
+/* 3.5 Gecko's default fieldset borders are really nasty so this gives them a colour
+without interferring with IE's rather nice default */
+
+.pun DIV>FIELDSET {BORDER-COLOR: #111111}
+
+/****************************************************************/
+/* 4. LINK COLOURS */
+/****************************************************************/
+
+/* 4.1 This is the default for all links */
+
+.pun A:link, .pun A:visited {COLOR: #FFCC00; text-decoration: none}
+.pun A:hover {COLOR: #FF0000; text-decoration: none}
+
+/* 4.2 This is the colour for links in header rows and the navigation bar */
+
+.pun H2 A:link, .pun H2 A:visited {COLOR: #D4D4D4; text-decoration: none}
+.pun H2 A:hover {COLOR: #D4D4D4; text-decoration: none}
+
+/* 4.3 This is for closed topics and "hot" links */
+
+LI.postreport A:link, LI.postreport A:visited, TR.iclosed TD.tcl A:link, TR.iclosed TD.tcl A:visited {COLOR: #888}
+LI.postreport A:hover, TR.iclosed TD.tcl A:hover {COLOR: #AAA; text-decoration: line-through}
+LI.maintenancelink A:link, LI.maintenancelink A:visited {COLOR: #FF4000; text-decoration: blink}
+LI.maintenancelink A:hover {COLOR: #FF5010; text-decoration: blink}
+
+/****************************************************************/
+/* 5. POST STATUS INDICATORS */
+/****************************************************************/
+
+/* These are the post status indicators which appear at the left of some tables. 
+.inew = new posts, .iredirect = redirect forums, .iclosed = closed topics and
+.isticky = sticky topics. The default is "icon". By default only .inew is different.*/
+
+Div.icon {background-image : url(../../img/Sadness/notnew.gif); } 
+Div.inew {background-image : url(../../img/Sadness/new.gif); } 
+TR.isticky DIV.icon {background:url(../../img/Sadness/stick.gif);} 
+TR.isticky DIV.inew {background:url(../../img/Sadness/stick_new.gif);}
+TR.iclosed DIV.icon {background:url(../../img/Sadness/closed.png);}
+TR.iredirect DIV.icon {background:url(../../img/Sadness/closed.png);}
+
+
+/* POST BY USER WITH ICON */
+.pun span.byuser
+{
+/* your icon and position */
+background-repeat: no-repeat;
+background-image: url(../../img/Sadness/icon_post.gif);
+background-position: left;
+ 
+/* your text position */
+padding: 0px 18px 0px;
+}
+
+/* FACTICE BUTTON POST AND REPLY */
+.pun p.postlink, #conr
+{
+/* align the text in button */
+TEXT-ALIGN: CENTER;
+ 
+/* aling the button on the border */
+POSITION: RELATIVE; 
+TOP : 0px;
+LEFT: 6px;
+ 
+/* added border to the button */
+BORDER: #000001 1PX SOLID;
+  
+/* color the button */
+BACKGROUND-COLOR: #323232;
+ 
+/* added an image background */
+BACKGROUND-IMAGE: url(../../img/Sadness/bg_button.gif); 
+ 
+/* create a shadow under the button */
+filter: progid:DXImageTransform.Microsoft.shadow(direction=135,color=#000000,strength=2);
+}
+/****************************************************************/
+/* MOD MODERN BB-CODE STYLE INDICATORS */
+/****************************************************************/
+
+/****************************************************************/
+/* MOD MODERN BBCODE: OVERRIDES FOR STANDART PUNBB STYLE INDICATORS */
+/****************************************************************/
+
+#post textarea, #post input.longinput, #edit textarea, #edit input.longinput {
+	border: 1px #565656 solid; 
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: TOOLBAR AND TOOLBUTTON STYLE INDICATORS */
+/****************************************************************/
+
+DIV.toolbar {
+	background: #424242;
+	border-left: 1px #565656 solid;
+	border-top: 1px #565656 solid;
+	border-right: 1px #565656 solid;
+}
+
+DIV.toolbar .draghandle {
+	border-left: 2px #767676 dotted;
+}
+
+DIV.toolbar .separator {
+	border-left: 1px #767676 solid;
+}
+
+DIV.toolbar a.tool_btn, DIV.toolbar a.dropdown, DIV.toolbar a.dropdown_opened {
+	border: 1px #4A4A4A solid;
+	background: #424242;
+	color: #A4A4A4;
+}
+
+DIV.toolbar a.tool_btn:visited, DIV.toolbar a.dropdown:visited, DIV.toolbar a.dropdown_opened:visited {
+	color: #A4A4A4;
+}
+
+DIV.toolbar a.tool_btn:hover, DIV.toolbar a.dropdown:hover {
+	border: 1px #60A0DC solid;
+	color: #60A0DC;	
+	background: #383838;
+}
+
+DIV.toolbar a.dropdown {
+	color: #A4A4A4;
+	background: url(../../img/modern_bbcode/arrow.png) no-repeat top right;
+}
+
+DIV.toolbar a.dropdown_opened, DIV.toolbar a.dropdown_opened:hover, DIV.toolbar a.dropdown_opened:visited {
+	color: #A4A4A4;
+	border: 1px #565656 solid;
+	background: #383838 url(../../img/modern_bbcode/arrow_opened.png) no-repeat top right;
+}
+
+DIV.toolbar a.dropdown:hover {
+	background: #383838 url(../../img/modern_bbcode/arrow_hover.png) no-repeat top right;
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: POPUP PALETTE INDICATORS */
+/****************************************************************/
+
+/* 0. Common popup panel indicators */
+
+#colorpalette #colorbtn, #smilespanel #smilesbtn, #sizepanel #sizebtn, #imgpanel #imgbtn, #listpanel #listbtn {
+	border-left: 1px #565656 solid;
+	border-right: 1px #565656 solid;
+	color: #383838;
+	background: #383838;
+}
+
+#colorpalette #colorcontent, #smilespanel #smilescontent, #sizepanel #sizecontent, #imgpanel #imgcontent, #listpanel #listcontent {
+	border: 1px #565656 solid; 
+	background: #383838;
+}
+
+/* 1. Smileys popup panel indicators */
+
+
+
+/* 2. Colors popup panel indicators */
+
+#colorpalette #colorcontent a {
+	border: 1px #565656 solid;
+}
+
+#colorpalette #colorcontent a:hover {
+	border: 1px #60A0DC solid;
+}
+
+/* 3. Font-sizes, Images and Lists popup panel indicators */
+
+#sizepanel #sizecontent a, #imgpanel #imgcontent a, #listpanel #listcontent a {
+	border: 1px solid #3F3F3F;
+	color: #A4A4A4;
+	background: #3F3F3F;
+}
+
+#sizepanel #sizecontent a:hover, #imgpanel #imgcontent a:hover, #listpanel #listcontent a:hover  {
+	border: 1px #60A0DC solid;
+	color: #60A0DC;	
+	background: #383838;	
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: ADDITIONAL BBCODE INDICATORS */
+/****************************************************************/
+
+code {
+	color: #80D6FF;
+}
+
+/* forum cat */
+.pun H2 span {
+background-position : 0% 50%; 
+background-repeat : no-repeat; 
+background-image : url(../../img/Sadness/forum_arrow.gif); 
+padding : 12px; 
+} 
+
+.pun H2 span.conr {
+background-image : none; 
+color : #fff; 
+padding : 0; 
+}
+
+div.postmsg li {
+	color: #999;
+}
+
+DIV.spoilerbox p {
+	color: #353533;
+}
+
+DIV.spoilerbox p:hover {
+	color: #A4A4A4;
+}
+
+IMG.postimg {
+	padding: 1px;
+	margin: 2px 5px;
+	border: 1px solid #565656;
+	background: #353533;
+}
+
+DIV.postmsg a:hover IMG.postimg {
+	border: 1px solid #60A0DC;
+}
+
+/* board stats icon 
+#punindex #brdstats div.box div.inbox dl.conl{
+background: transparent url(../../img/Sadness/forum_stats.gif) no-repeat 0% 50%;
+padding-left: 25px;
+}*/
+/****************************************************************/
+/* MOD MODERN BB-CODE STYLE INDICATORS */
+/****************************************************************/
+
+/****************************************************************/
+/* MOD MODERN BBCODE: OVERRIDES FOR STANDART PUNBB STYLE INDICATORS */
+/****************************************************************/
+
+#post textarea, #post input.longinput, #edit textarea, #edit input.longinput {
+        border: 1px #565656 solid;
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: TOOLBAR AND TOOLBUTTON STYLE INDICATORS */
+/****************************************************************/
+
+DIV.toolbar {
+        background: #424242;
+        border-left: 1px #565656 solid;
+        border-top: 1px #565656 solid;
+        border-right: 1px #565656 solid;
+}
+
+DIV.toolbar .draghandle {
+        border-left: 2px #767676 dotted;
+}
+
+DIV.toolbar .separator {
+        border-left: 1px #767676 solid;
+}
+
+DIV.toolbar a.tool_btn, DIV.toolbar a.dropdown, DIV.toolbar a.dropdown_opened {
+        border: 1px #4A4A4A solid;
+        background: #424242;
+        color: #A4A4A4;
+}
+
+DIV.toolbar a.tool_btn:visited, DIV.toolbar a.dropdown:visited, DIV.toolbar a.dropdown_opened:visited {
+        color: #A4A4A4;
+}
+
+DIV.toolbar a.tool_btn:hover, DIV.toolbar a.dropdown:hover {
+        border: 1px #F6B620 solid;
+        color: #F6B620;
+        background: #383838;
+}
+
+DIV.toolbar a.dropdown {
+        color: #A4A4A4;
+        background: url(../../img/modern_bbcode/cobalt_arrow.png) no-repeat top right;
+}
+
+DIV.toolbar a.dropdown_opened, DIV.toolbar a.dropdown_opened:hover, DIV.toolbar a.dropdown_opened:visited {
+        color: #A4A4A4;
+        border: 1px #565656 solid;
+        background: #383838 url(../../img/modern_bbcode/cobalt_arrow_opened.png) no-repeat top right;
+}
+
+DIV.toolbar a.dropdown:hover {
+        background: #383838 url(../../img/modern_bbcode/mercury_arrow_hover.png) no-repeat top right;
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: POPUP PALETTE INDICATORS */
+/****************************************************************/
+
+/* 0. Common popup panel indicators */
+
+#colorpalette #colorbtn, #smilespanel #smilesbtn, #sizepanel #sizebtn, #imgpanel #imgbtn, #listpanel #listbtn {
+        border-left: 1px #565656 solid;
+        border-right: 1px #565656 solid;
+        color: #383838;
+        background: #383838;
+}
+
+#colorpalette #colorcontent, #smilespanel #smilescontent, #sizepanel #sizecontent, #imgpanel #imgcontent, #listpanel #listcontent {
+        border: 1px #565656 solid;
+        background: #383838;
+}
+
+/* 1. Smileys popup panel indicators */
+
+
+
+/* 2. Colors popup panel indicators */
+
+#colorpalette #colorcontent a {
+        border: 1px #565656 solid;
+}
+
+#colorpalette #colorcontent a:hover {
+        border: 1px #F6B620 solid;
+}
+
+/* 3. Font-sizes, Images and Lists popup panel indicators */
+
+#sizepanel #sizecontent a, #imgpanel #imgcontent a, #listpanel #listcontent a {
+        border: 1px solid #3F3F3F;
+        color: #A4A4A4;
+        background: #3F3F3F;
+}
+
+#sizepanel #sizecontent a:hover, #imgpanel #imgcontent a:hover, #listpanel #listcontent a:hover  {
+        border: 1px #F6B620 solid;
+        color: #F6B620;
+        background: #383838;
+}
+
+/****************************************************************/
+/* MOD MODERN BBCODE: ADDITIONAL BBCODE INDICATORS */
+/****************************************************************/
+
+code {
+        color: #F6B620;
+}
+
+div.postmsg li {
+        color: #999;
+}
+
+DIV.spoilerbox p {
+        color: #353533;
+}
+
+DIV.spoilerbox p:hover {
+        color: #A4A4A4;
+}
+
+IMG.postimg {
+        padding: 1px;
+        margin: 2px 5px;
+        border: 1px solid #565656;
+        background: #353533;
+}
+
+DIV.postmsg a:hover IMG.postimg {
+        border: 1px solid #F6B620;
+}
+

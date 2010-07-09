@@ -1,0 +1,94 @@
+ INSTALL
+*********
+ If you are upgrading to 1.25 or later from a previous MyBestBB version ( <1.25 ) , please READ UPGRADE_MyBestBB.txt before proceeding to the install ! 
+
+0 Prerequisites
+ Verify that your hosting allows rewrite rules, ask your host if you can use mod_rewrite MyBestBB needs mod_rewrite.
+ Mybestbb works well at the root of a domain or subdomain, if you need to have it work on a subdirectory, use the alternate htaccess :
+
+ htaccess_for_subdirectory.txt , but its possible that all the mods dont work perfectly
+ 
+1 Upload everything on your webserver and create a mysql database
+
+2 If you are installing, run install.php, as for a normal punbb
+  If punbb is already installed, you dont have to run install.php
+  Verify the permissions, the web server needs to be able to write in  the attach directory ( /attach ), in /cache and /img/avatars
+
+3 Run the following mod_install scripts :
+* install_mod_Attachment.php
+* install_mod_Another_Private_Messaging_System.php
+* install_mod_message_prive_de-bienvenue.php
+* install_mod_Image_Awards.php
+* install_mod_BL.php
+* install_mod_mybestbb.php
+* install_mod_Easy_Poll.php
+* install_mod_EasySmilies.php
+* install_mod_EPF.php
+* install_mod_PBB_ChatBox_1.1ajax.php
+* install_mod_RateTopic.php
+* install_mod_Reputation_mod_2_2_0.php
+* install_mod_sousforum.php 
+
+  If you are upgrading from a previous MyBestBB version ( < 1.25 beta1 ) you will have to launch the install of the newest modes, added in 1.25 : install_mod_Attachment.php install_mod_Another_Private_Messaging_System.php install_mod_message_prive_de-bienvenue.php install_mod_Image_Awards.php )
+
+  To be sure not to forget one, use /install_mods_MyBestBB.php which links every mod you NEED to install.
+  Beware, even if you dont need all the functionalities, you NEED to install all the mods or MyBestBB won't work correctly.
+
+4 Verify the forum is runing well, going to the root of your website and
+logging in . . . 
+  Remove install*/* files as soon as everything seems ok.
+
+5 If your ftp client didnt upload the .htaccess file, rename htaccess.txt to .htaccess 
+( or use htaccess_for_subdirectory.txt if your board is in a subdirectory
+named /forum )
+
+  Verify your hosting allow you to use htaccess for rewriting rules ( apahce mod_rewrite ) , if you have access to the apache or vhost config you have to set the AllowOverride option to All :
+                                                                                                                             <Directory "/home2/virtuals/machin.ww7.be/html">
+        Options Indexes FollowSymLinks                                                                                               AllowOverride All
+        Order allow,deny                                                                                                             Allow from all
+</Directory>
+
+
+ If you need to upload smilies from external urls, you can add :
+<Directory "/path/to/mybestbb/root/plugins/">
+  php_admin_flag allow_url_fopen On
+</Directory>
+ or, most secure :
+<Location /path/to/mybestbb/root/plugins/AP_Smileys.php>
+ php_admin_flag allow_url_fopen On
+</Location>
+
+ Upgrading from a standard punbb
+**********************************
+
+ If you are upgrading from a standard 1.2.* ( >1.2.12 )  punbb version , you just have to replace punbb files with mybestbb ones; something like :
+
+cp -af mybestbb/* punbb/
+ should be enough ( verify permissions too )
+
+ If upgrading from a punbb 1.2.* < 1.2.12 , you have to run the database upgrade : 12_to_1212_update.php before installing MyBestBB ( which includes punbb 1.2.21, who needs this db upgrade ).
+
+ And then run the install mods in number 3 above
+
+ If you run into problems :
+
+1 Verify permissions ( apache web server need to access files ) :
+chown -R user:group punbb/
+chmod -R 77x  punbb/
+
+2 Verify you hosting allows you to use rewrite rules ( .htaccess ) with apache mod_rewrite
+
+3 Your .htaccess must be at the root of your website, even if your board is in a subdirectory
+
+4 If your board is in a subdirectory you need to edit the .htaccess ( use htaccess_for_subdirectory.txt as exemple )
+ edit it to fit the name of your directory, the default is /forums/
+
+5 If your database already contain accentuated characters and is ISO charset, you will need to convert your SQL data to UTF8, the best way to do this is to use the iconv tool on a SQL dump of your database, and then re import the converted data in Mysql.
+
+FAQ :
+Q : after install I have the message 'Error: Unable to fetch user information.'
+A : you probably forgot to install some mods, be sure you installed all the
+mods redo the mod install using the list from :
+http://yoursite.yourdomain.tld/install_mods_MyBestBB.php
+
+

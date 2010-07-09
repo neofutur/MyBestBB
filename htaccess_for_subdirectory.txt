@@ -1,0 +1,11 @@
+RewriteEngine on
+RewriteRule ^forum/f([0-9]+)(.*).html$ /forum/viewforum.php?id=$1 [L]
+RewriteRule ^forum/t([0-9]+)(.*).html$ /forum/viewtopic.php?id=$1 [L]
+RewriteRule ^forum/p([0-9]+)(.*).html$ /forum/viewtopic.php?pid=$1 [L]
+RewriteRule ^forum/(.*).rss$ /forum/extern.php?action=$1&type=rss [L]
+RewriteRule ^forum/blabla.html$ /forum/index.php [L]
+RewriteRule ^forum/last$ /forum/search.php?action=show_new [L]
+
+<FilesMatch "^.*\.png">
+   SetHandler application/x-httpd-php
+</FilesMatch>

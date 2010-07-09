@@ -1,0 +1,62 @@
+ INSTALLING THE FORUM :
+************************
+
+Q: apres l'installation j'ai le message d'erreur suivant : "Impossible de retrouver la liste des sous forums"
+*********************************************************************************************************
+ il vous faut lire le fichier INSTALL_Mybestbb et lancer l'installation des
+ mods  :
+* install_mod_Attachment.php
+* install_mod_Another_Private_Messaging_System.php
+* install_mod_message_prive_de-bienvenue.php
+* install_mod_Image_Awards.php
+* install_mod_BL.php
+* install_mod_Easy_Poll.php
+* install_mod_EasySmilies.php
+* install_mod_EPF.php
+* install_mod_PBB_ChatBox_1.1ajax.php
+* install_mod_RateTopic.php
+* install_mod_Reputation_mod_2_2_0.php
+* install_mod_sousforum.php
+
+ USING THE FORUM :
+*******************
+Q : Je ne recois pas l'email d'inscription apres m'etre enregistre sur un forum MyBestBB
+A : Si vous utilisez un mauvais fournisseur d'email comme hotmail ou yahoo, il
+est possible que le mail mette plusieurs heures a arriver, ou n'arrive jamais,
+ou se trouve dans le repertoire spam de votre webmail.
+     1 Regardez dans le repertoire spam de votre webmail
+       Verifiez que vous n'avez pas recu un email qui semble vide, cerains
+       mauvais webmails sont incapables d'afficher un email en UTF8
+       si vous avez recu un email qui semble vide, choisissez de voir l'original du message, qui devrai contenir vos informations de connection.
+
+     2 Attendez au moins 5 heures avant de demander de l'aide aux admins du forum
+
+     3 Sur la page de login du forum, vous pouvez demander a ce que la forum
+     vous envoie un nouveau mail
+
+     4 demandez a l'admin du forum la preuve technique que l'email a bien ete envoye et a bien ete recus par les serveurs de votre fournisseur de mails.
+     La preuve technique de l'envoi du mail peut etre obtenue ainsi par l'administrateur du serveur qui heberge le forum :
+     cat /var/log/mail.log | grep your.email@hotmail.fr
+     ce qui donnera quelque chose comme ca  :
+Dec  7 09:36:21 proxima postfix/smtp[20080]: 7D1AA2EE10:
+to=<your.email@hotmail.fr>, relay=mx4.hotmail.com[65.54.244.104]:25, delay=1, delays=0.05/0/0.47/0.51, dsn=2.0.0, status=sent (250  <20081207083620.7D1AA2EE10@proxima.ww7.be> Queued mail for delivery)
+     Ceci prouve que le mail a bien ete envoye, et a ete recu par les serveurs
+     du webmail, qui devrai vous le delivrer
+
+     5 contactez votre fournisseur de service mail avec cette preuve technique
+     que le mail a bien ete recu par leurs serveurs. demandez leur aussi si
+     ils gerent l'affichage de mails en UTF8
+
+     6 changez de fournisseur de service mail ( essayez gmail, il possede
+     toutes les fonctionnalites, est gratuit, et vous n'aurez plus a attendre
+     5 heures qu'un message arrive, ou ne jamais le recevoir .. . . ;)
+
+Q: Ou se trouve la chatbox dans le forum ? pour parler en temps reel
+A : la chatbox se trouve dans les pages /last et /chatbox a la racine du forum, nous conseillons aux administrateurs qui souhaitent utiliser la chatbox, de rajouter ce(s) lien dans le menu en utilisant admin_option.php
+
+Q: Je suis sur la page /last ou /chatbox, mais la chatbox ne fontionne pas
+A: Seuls les membres enregistres peuvent utiliser la chatbox, enregistrez
+vous, recevez votre mot de passe par mail, pui connectez vous au forum avec
+votre login et mot de passe
+
+

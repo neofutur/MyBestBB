@@ -1,0 +1,50 @@
+ INSTALLING THE FORUM :
+************************
+
+Q: after install I have the following error message : "Impossible de retrouver la liste des sous forums"
+*********************************************************************************************************
+ you need to read the INSTALL_Mybestbb file and launch the mods install :
+* install_mod_Attachment.php
+* install_mod_Another_Private_Messaging_System.php
+* install_mod_message_prive_de-bienvenue.php
+* install_mod_Image_Awards.php
+* install_mod_BL.php
+* install_mod_mybestbb.php
+* install_mod_Easy_Poll.php
+* install_mod_EasySmilies.php
+* install_mod_EPF.php
+* install_mod_PBB_ChatBox_1.1ajax.php
+* install_mod_RateTopic.php
+* install_mod_Reputation_mod_2_2_0.php
+* install_mod_sousforum.php
+
+ USING THE FORUM :
+*******************
+Q : I have not received the email with my password after registering
+A : if you use bad mail proividers like hotmail, its possible you never receive the email, its also possible tha the email is in the spam folder, it is also possible that hotmail will need more than 5 hours to deliver you the email.
+     1 look in the spam folder of your webmail
+       verify that you havent received an 'empty mail' , some bad webmails are noit able to print UTF8 encoded emails.
+       if you received an empty mail, choose to see the 'original message' it probably contains your registration, info and password.
+
+     2 wait at least 5 hours before asking admins for help
+
+     3 in the login page, you can request that a new email is sent to you
+
+     4 ask your forum admin for the technical proof that the email has benn sent and received for delivery by the server of your email provider ( the technical proof can be seen by server admin using :
+     cat /var/log/mail.log | grep your.email@hotmail.fr
+     which will give him something like :
+Dec  7 09:36:21 proxima postfix/smtp[20080]: 7D1AA2EE10: to=<smell_this_18@hotmail.com>, relay=mx4.hotmail.com[65.54.244.104]:25, delay=1, delays=0.05/0/0.47/0.51, dsn=2.0.0, status=sent (250  <20081207083620.7D1AA2EE10@proxima.ww7.be> Queued mail for delivery)
+     this proves that the email have been sent, has been received by hotmail and queud for delivery
+
+
+     5 contact your email provider with this technical proof tha t the message have been received by their servers, also ask them if they are able to manage UTF8 encoded emails.
+
+     6 change your email provider ( try gmail, its great, able to manage UTF8 emails, and you won't have to wait your email 5 hours . . . or never receive it ;)
+
+Q: Where is the forum Chatbox , for real time talks.
+A : click the 'last' link in the menu, after the userlist.
+
+Q: I clicked the 'last' item in the menu, but the chatbox dont work
+A: Only registered members can access the chatbox, you have to be registered, and connected with your password to use it.
+
+

@@ -1,4 +1,12 @@
-2.0.2
+2.0.4
+ add Image verification mod ( see http://www.punres.org/viewtopic.php?pid=27608#p27608 )
+
+2.0.3
+ security update from punbb 1.2.23
+ security fix for the reputation mod
+ other small fixes
+
+ 2.0.2 ( never released )
  add SMTPS ( gmail and other secure SMTP ) support
  fixing sme themes
 

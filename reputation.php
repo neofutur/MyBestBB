@@ -84,7 +84,7 @@ if (isset($_POST['form_sent']))
 	if ($method!=2 && $method!=1)
 		message($lang_common['Bad request']);
 	
-	$result = $db->query('SELECT p.poster, p.poster_id, p.posted, p.id, p.topic_id, t.subject, u.reputation_enable, r.time FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON p.topic_id=t.id INNER JOIN '.$db->prefix.'users AS u ON p.poster_id = u.id LEFT JOIN '.$db->prefix.'reputation AS r ON (r.from_user_id ='.$pun_user["id"] .' AND  r.user_id = u.id) WHERE p.id='.$pid.' AND p.poster="'. $poster .'" ORDER BY r.time DESC LIMIT 0 , 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
+	$result = $db->query('SELECT p.poster, p.poster_id, p.posted, p.id, p.topic_id, t.subject, u.reputation_enable, r.time FROM '.$db->prefix.'posts AS p INNER JOIN '.$db->prefix.'topics AS t ON p.topic_id=t.id INNER JOIN '.$db->prefix.'users AS u ON p.poster_id = u.id LEFT JOIN '.$db->prefix.'reputation AS r ON (r.from_user_id ='.$pun_user["id"] .' AND  r.user_id = u.id) WHERE p.id='.$pid.' AND p.poster="'. $db->escape($poster) .'" ORDER BY r.time DESC LIMIT 0 , 1') or error('Unable to fetch post info', __FILE__, __LINE__, $db->error());
 	
 	if (!$db->num_rows($result))
 		message($lang_common['Bad request']);
@@ -132,7 +132,7 @@ if (isset($_POST['form_sent']))
 	else 
 	{$rep_column="rep_minus";}
 	//Add voice
-	$db->query("INSERT INTO ".$db->prefix."reputation (user_id, from_user_id, time, post_id, reason, topics_id, ". $rep_column .") Values ('". $target['poster_id'] . "', '" . $pun_user["id"] ."', '" . mktime() . "', '" . $target['id'] ."', '" . $message . "', '". $target['topic_id'] . "', '1' )") or error('Unable to add reputation info', __FILE__, __LINE__, $db->error());
+	$db->query("INSERT INTO ".$db->prefix."reputation (user_id, from_user_id, time, post_id, reason, topics_id, ". $rep_column .") Values ('". $target['poster_id'] . "', '" . $pun_user["id"] ."', '" . mktime() . "', '" . $target['id'] ."', '" . $db->escape($message) . "', '". $target['topic_id'] . "', '1' )") or error('Unable to add reputation info', __FILE__, __LINE__, $db->error());
 	redirect('viewtopic.php?&pid=' .$pid .'#p' .$pid , $lang_reputation['Redirect Message']);
 }
 
@@ -294,7 +294,7 @@ $form = '<form action="reputation.php?" method="post" name="Reput" onSubmit="ret
 			alert("<?php echo $lang_reputation['Max length of message'] ?> " + Max + " <?php echo $lang_reputation['You already of use'] ?> " + Length + " <?php echo $lang_reputation['Of symbol'] ?>");
 			return false;
 		} else {
-			document.Reput.go.disabled = true;
+			document.Reput.submit.disabled = true;
 			return true;
 		}
 	}

@@ -10,7 +10,7 @@ $author_email   = 'nloeuillet@yahoo.fr';
 
 // One or more versions of PunBB that this mod works on. The version names must match exactly!
 // 1.2.12 Fix
-$punbb_versions	= array('1.2', '1.2.1', '1.2.2', '1.2.3', '1.2.4', '1.2.5', '1.2.6', '1.2.7', '1.2.8', '1.2.9', '1.2.10', '1.2.11', '1.2.12', '1.2.13', '1.2.14', '1.2.15', '1.2.16', '1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22' );
+$punbb_versions	= array('1.2', '1.2.1', '1.2.2', '1.2.3', '1.2.4', '1.2.5', '1.2.6', '1.2.7', '1.2.8', '1.2.9', '1.2.10', '1.2.11', '1.2.12', '1.2.13', '1.2.14', '1.2.15', '1.2.16', '1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22','1.2.23' );
 
 // Set this to false if you haven't implemented the restore function (see below)
 $mod_restore	= false;

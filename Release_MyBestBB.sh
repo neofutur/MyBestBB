@@ -13,10 +13,17 @@ rm -rf  MyBestBB-$1/*/*/*/*/*/*/*/.svn
 rm -rf  MyBestBB-$1/*/*/*/*/*/*/*/*/.svn
 ls -alR MyBestBB-$1 | grep '.svn'
 
-tar cv MyBestBB-$1/ >MyBestBB-$1.tar
+tar cv MyBestBB-$1 >MyBestBB-$1.tar
 gzip -c -9 MyBestBB-$1.tar >MyBestBB-$1.tar.gz
 zip -9 -r  MyBestBB-$1.zip MyBestBB-$1
 rm -f *.tar
+
+cd /home2/virtuals/ww7.be/html/neofutur/tools/punbb/MyBestBB/
+#archivage des anciennes releases
+mv MyBestBB-* old/
+mv Changelog* old/
+
+cd -
 
 chown -R apache:neonet .;chmod -R 770 .
 cp -f MyBestBB-$1*gz /tmp
@@ -33,8 +40,15 @@ cp -f MyBestBB-$1/README* /home2/virtuals/ww7.be/html/neofutur/tools/punbb/MyBes
 rm -rf MyBestBB-$1
 
 cd /home2/virtuals/ww7.be/html/neofutur/tools/punbb/MyBestBB/
+
 ls2html_ww7 -h .>index.php
+
+
 chown -R apache:neonet .;chmod -R 770 .
+cd -
+
+cd /home2/virtuals/ww7.be/html/neofutur/tools/punbb/MyBestBB/old
+ls2html_ww7 -h .>index.php
 cd -
 #still in ..
 mv *.zip ~/Release

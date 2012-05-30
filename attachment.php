@@ -92,7 +92,7 @@ if(($attach_extension=='jpg' || $attach_extension=='jpeg' || $attach_extension==
 	$result = $db->query('UPDATE '.$db->prefix.'attach_2_files SET downloads=downloads+1 WHERE id=\''.$attach_item.'\'')or error();
 
 	// open a pointer to the file
-	$fp = fopen($pun_config['attach_basefolder'].'/'.$attach_location, "rb");
+	$fp = fopen($pun_config['attach_basefolder'].$attach_location, "rb");
 	if(!$fp){
 		message($lang_common['Bad request']);
 	}else{

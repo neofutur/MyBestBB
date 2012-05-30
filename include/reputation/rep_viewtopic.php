@@ -21,6 +21,10 @@
   Foundation, Inc., 59 Temple Place, Suite 330, Boston,
   MA  02111-1307  USA
 ******************************************************************************************************/
+// Make sure no one attempts to run this script "directly"
+if (!defined('PUN'))
+    exit();
+
 if ($cur_post['poster_id']!=1 && $pun_user['g_rep_enable'] == 1 && $pun_config['o_reputation_enabled'] == 1 
 	&& $cur_post['reputation_enable'] == 1 && $pun_user['reputation_enable_adm'] == 1 && $pun_user['reputation_enable'] == 1) 
 { ?>

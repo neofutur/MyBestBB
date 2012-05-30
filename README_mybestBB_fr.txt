@@ -1,4 +1,4 @@
-MyBestBB 2.0.2, se base sur punbb 1.2.22 ( voir http://punbb.org/ )
+MyBestBB 2.0.4, se base sur punbb 1.2.23 ( voir http://punbb.org/ )
 
  MyBestBB inclue de nombreuses modifications utiles, qui ajoutent des fonctionnalites a votre punbb 1.2.*
 

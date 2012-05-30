@@ -90,12 +90,13 @@ if (isset($_GET['id']))
 		if ($form_sent == 2)
 		{
 			$new_subject = pun_trim($_POST['create_topic']);
-			
 			if ($new_subject == '')
 				message($form_sent.$lang_movepost['Bad new topic']);
 			
 			if ($pun_config['p_subject_all_caps'] == '0' && strtoupper($new_subject) == $new_subject && $pun_user['g_id'] > PUN_MOD);
-				$new_subject = ucwords(strtolower($new_subject));
+				$new_subject = mb_convert_case($new_subject, MB_CASE_TITLE, "UTF-8"); 
+// fixing utf8 pb with ucwords in movepost
+//				$new_subject = ucwords(strtolower($new_subject));
 			
 			// Create the topic
 			$db->query('INSERT INTO '.$db->prefix.'topics (subject, forum_id) VALUES(\''.$db->escape($new_subject).'\', '.$fid.')') or error('Unable to create topic', __FILE__, __LINE__, $db->error());

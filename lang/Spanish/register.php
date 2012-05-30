@@ -21,6 +21,11 @@ $lang_register = array(
 // Registration e-mail stuff
 'Reg e-mail'				=>	'Gracias por registrarte. Tu contraseña ha sido enviada a la direccion de correo especificada. Si no la recibes puedes contactar con el administrador en',
 'Reg complete'				=>	'Registro completo. Conectando y redirigiendo &hellip;',
+//Image Verification stuff
+'Image verification'                    =>      'Image Verification',
+'Image text'                            =>      'Image Text',
+'Image info'                            =>      'Please copy the text in the image to the text box above',
+'Text mismatch'                         =>      'Please make sure the text and the image match',
 
 // Register info
 'Desc 1'					=>	'El registro te garantiza el acceso a un numero de opciones y capacidades que de otra manera no estan disponibles. Estas funciones icluyen poder editar y borrar imagenes, diseñar tu propia firma que acompaña los mensajes y mucho mas. Si tienes cualquier pregunta respecto a este foro puedes dirigirte a algun administrador.',

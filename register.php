@@ -164,6 +164,18 @@ else if (isset($_POST['form_sent']))
 		if (censor_words($username) != $username)
 			message($lang_register['Username censor']);
 	}
+        // Image verifcation
+        if ($pun_config['o_regs_verify_image'] == '1')
+        {
+                session_start();
+                // Make sure what they submitted is not empty
+                if (trim($_POST['req_image']) == '')
+                        message($lang_register['Text mismatch']);
+
+                if (strtolower(trim($_POST['req_image'])) != strtolower($_SESSION['text']))
+                        message($lang_register['Text mismatch']);
+
+        }
 
 	// Check that the username (or a too similar username) is not already registered
 	$result = $db->query('SELECT username FROM '.$db->prefix.'users WHERE UPPER(username)=UPPER(\''.$db->escape($username).'\') OR UPPER(username)=UPPER(\''.$db->escape(preg_replace('/[^\w]/', '', $username)).'\')') or error('Unable to fetch user info', __FILE__, __LINE__, $db->error());
@@ -348,6 +360,19 @@ require PUN_ROOT.'header.php';
 				</fieldset>
 			</div>
 <?php endif; ?>			<div class="inform">
+<?php if ($pun_config['o_regs_verify_image'] == '1'): ?>
+                        <div class="inform">
+                                <fieldset>
+                                        <legend><?php echo $lang_register['Image verification'] ?></legend>
+                                        <div class="infldset">
+                                                <img src=ran.php><br />
+                                                <label class="conl"><strong><?php echo $lang_register['Image text'] ?></strong><br /><input type="text" name="req_image" size="16" maxlength="16" /><br /></label>
+                                                <p class="clearb"><?php echo $lang_register['Image info'] ?></p>
+                                        </div>
+                                </fieldset>
+                        </div>
+<?php endif; ?>
+
 				<fieldset>
 					<legend><?php echo ($pun_config['o_regs_verify'] == '1') ? $lang_prof_reg['E-mail legend 2'] : $lang_prof_reg['E-mail legend'] ?></legend>
 					<div class="infldset">

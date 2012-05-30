@@ -639,12 +639,20 @@ generate_admin_menu('options');
 									</td>
 								</tr>
 								<tr>
-									<th scope="row">Verify registrations</th>
+									<th scope="row">Email Verify registrations</th>
 									<td>
 										<input type="radio" name="form[regs_verify]" value="1"<?php if ($pun_config['o_regs_verify'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[regs_verify]" value="0"<?php if ($pun_config['o_regs_verify'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong>No</strong>
 										<span>When enabled, users are e-mailed a random password when they register. They can then log in and change the password in their profile if they see fit. This feature also requires users to verify new e-mail addresses if they choose to change from the one they registered with. This is an effective way of avoiding registration abuse and making sure that all users have "correct" e-mail addresses in their profiles.</span>
 									</td>
 								</tr>
+<tr>
+        <th scope="row">Image Verify registrations</th>
+        <td>
+                <input type="radio" name="form[regs_verify_image]" value="1"<?php if ($pun_config['o_regs_verify_image'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong>Yes</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[regs_verify_image]" value="0"<?php if ($pun_config['o_regs_verify_image'] == '0') echo 'checked="checked"' ?> />&nbsp;<strong>No</strong>
+                <span>When enabled, users are forced to match text with an image in order to register. This is an effective way of avoiding registration abuse and not forcing all users to verify via email which can be time consuming.</span>
+        </td>
+</tr>
+
 								<tr>
 									<th scope="row">Use forum rules</th>
 									<td>

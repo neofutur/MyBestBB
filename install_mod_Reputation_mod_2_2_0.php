@@ -28,7 +28,7 @@ $author_email   = 'hcs@mail.ru';
 ///Message: Duplicate key name '%s'
 
 // One or more versions of PunBB that this mod works on. The version names must match exactly!
-$punbb_versions	= array('1.2.10', '1.2.11', '1.2.12', '1.2.13', '1.2.14', '1.2.15', '1.2.16', '1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22' );
+$punbb_versions	= array('1.2.10', '1.2.11', '1.2.12', '1.2.13', '1.2.14', '1.2.15', '1.2.16', '1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22','1.2.23' );
 
 // Set this to false if you haven't implemented the restore function (see below)
 $mod_restore	= false;
@@ -76,7 +76,7 @@ function install()
 		
 		
 		///Try to create reputation table
-		$result = $db->query('CREATE TABLE '.$db->prefix.'reputation (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, user_id INT(10) UNSIGNED NOT NULL DEFAULT 0,	from_user_id INT(10) UNSIGNED NOT NULL DEFAULT 0, time INT(10) UNSIGNED NOT NULL DEFAULT 0,	post_id INT(10) UNSIGNED NOT NULL DEFAULT 0, reason TEXT NOT NULL DEFAULT "", rep_plus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0, rep_minus TINYINT(1) UNSIGNED NOT NULL  DEFAULT 0, topics_id INT(10) UNSIGNED NOT NULL DEFAULT 0, PRIMARY KEY (id) )TYPE=MyISAM;');
+		$result = $db->query('CREATE TABLE '.$db->prefix.'reputation (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, user_id INT(10) UNSIGNED NOT NULL DEFAULT 0,	from_user_id INT(10) UNSIGNED NOT NULL DEFAULT 0, time INT(10) UNSIGNED NOT NULL DEFAULT 0,	post_id INT(10) UNSIGNED NOT NULL DEFAULT 0, reason TEXT NOT NULL, rep_plus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0, rep_minus TINYINT(1) UNSIGNED NOT NULL  DEFAULT 0, topics_id INT(10) UNSIGNED NOT NULL DEFAULT 0, PRIMARY KEY (id) )TYPE=MyISAM;');
 		$xxx = $db->error();
 		if ($xxx['error_no'] != '0' && $xxx['error_no'] != '1050') {
 			error('Unable to create table '.$db->prefix.'reputation.',  __FILE__, __LINE__, $db->error());

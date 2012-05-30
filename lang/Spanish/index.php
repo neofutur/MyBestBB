@@ -16,11 +16,12 @@ $lang_index = array(
 'Online'				=>	'Conectados',	// As in "Online: User A, User B etc."
 'Board info'			=>	'Informacion del foro',
 'Board stats'			=>	'Estadisticas del foro',
-'User info'				=>	'Informacion del usuario',
+'User info'                             =>      'Informacion del usuario',
 'number week'                   =>      'Nombre total de mensajes esta semana',
 'number day'                    =>      'Nombre total de mensajes hoy dia',
 'average h'                     =>      'Nombre moyen de mensajes por hora',
 'dormant'                       =>      'El Forum esta muy tranquilo.',
-'subforums'                     =>      'SubForums'
+'subforums'                     =>      'SubForums',
+'User info'				=>	'Informacion del usuario'
 
 );

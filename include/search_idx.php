@@ -89,6 +89,9 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 	global $db_type, $db;
 
 	// Split old and new post/subject to obtain array of 'words'
+	$message = htmlentities( $message, ENT_NOQUOTES, "UTF-8" );
+	$subject = htmlentities( $subject, ENT_NOQUOTES, "UTF-8" );
+
 	$words_message = split_words($message);
 	$words_subject = ($subject) ? split_words($subject) : array();
 
@@ -138,6 +141,7 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 		$db->free_result($result);
 
 		$new_words = array_diff($unique_words, array_keys($word_ids));
+
 		unset($unique_words);
 
 		if (!empty($new_words))
@@ -146,6 +150,8 @@ function update_search_index($mode, $post_id, $message, $subject = null)
 			{
 				case 'mysql':
 				case 'mysqli':
+//					$query= 'INSERT INTO '.$db->prefix.'search_words (word) VALUES'.implode(',', preg_replace('#^(.*)$#', '(\'\1\')', $new_words));
+//					echo $query; exit;
 					$db->query('INSERT INTO '.$db->prefix.'search_words (word) VALUES'.implode(',', preg_replace('#^(.*)$#', '(\'\1\')', $new_words))) or error('Unable to insert search index words', __FILE__, __LINE__, $db->error());
 					break;
 

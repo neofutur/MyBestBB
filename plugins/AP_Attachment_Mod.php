@@ -46,10 +46,6 @@ define('PUN_PLUGIN_LOADED', 1);
 
 require PUN_ROOT.'include/attach/attach_incl.php'; //Attachment Mod row, loads variables, functions and lang file
 
-        // Lazy referer check (in case base_url isn't correct)
-//        if (!preg_match('#/admin_loader\.php#i', $_SERVER['HTTP_REFERER']))
-  //              message($lang_common['Bad referrer']);
-
 
 //
 // If we have any input
@@ -326,7 +322,7 @@ if(isset($_POST['read_documentation'])){	// the user wants to read the documenta
 		<div class="box">
 			<div class="inbox">
 				<div class="inform">
-					<form name="list_attachments_form" id="example" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+					<form name="list_attachments_form" id="example" method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 					<fieldset>
 						<legend>Search options</legend>
 						<div class="infldset">

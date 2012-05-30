@@ -27,6 +27,10 @@
  add admin option to give moderators the change user group power ( not admin group ;)
  sort by language on Email global plus plugin
  mises a jour nouvelles versions de chatbox, email global plus, polls, sous-forums
+ integrer xajax dans viewpost comme dans viewtopic
+ no error mesage when attachment size is too big
+ UTF8 bug with quote on accents ( include/search_idx.php INSERT INTO mb_search_words (word) VALUES('franÃ£Â§ais'),('catÃ£Â©gorie'),('doÃ£Â¹'),('cela'),('hÃ£Â©bergÃ£Â©'),('rÃ£Â©pertoire') 
+
  Languages :
 *************
 

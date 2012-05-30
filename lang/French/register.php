@@ -21,7 +21,12 @@ $lang_register = array(
 // Registration e-mail stuff
 'Reg e-mail'				=>	'Merci de vous etre inscrits. Votre mot de passe a ete envoye a l adresse indiquee. S il n arrive pas, merci de contacter l administrateur a',
 'Reg complete'				=>	'Inscription acceptee. Identification et redirection ...',
- 
+//Image Verification stuff
+'Image verification'                    =>      'Image Verification',
+'Image text'                            =>      'Image Text',
+'Image info'                            =>      'Please copy the text in the image to the text box above',
+'Text mismatch'                         =>      'Please make sure the text and the image match',
+
 // Register info
 'Desc 1'					=>	'L inscription vous accordera l acces a un certain nombre de fonctionnalites et de possibilites autrement indisponibles. Cela inclut la possibilite de modifier et d\'effacer des messages, de creer vos propres signatures, et autres encore. Pour toute question, contactez l administrateur.',
 'Desc 2'					=>	'Ci-dessous le formulaire a remplir afin de vous inscrire. Apres vous etre inscrit, vous pourrez regarder votre profil et vos preferences. Les champs ci-dessous ne sont qu\'une toute petite partie de tout ce que vous pouvez changer dans votre profil.',

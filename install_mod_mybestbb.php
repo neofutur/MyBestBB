@@ -3,14 +3,14 @@
 
 // Some info about your mod.
 $mod_title      = 'MyBestBB addons';
-$mod_version    = '2.0.2';
-$release_date   = '2009-12-13';
+$mod_version    = '2.0.4';
+$release_date   = '2011-10-15';
 $author         = 'neofutur';
 $author_email   = 'mybestbb@ww7.be';
 
 // Versions of PunBB this mod was created for. Minor variations (i.e. 1.2.4 vs 1.2.5) will be allowed, but a warning will be displayed.
 // 1.2.12 Fix
-$punbb_versions	= array('1.2.11', '1.2.12', '1.2.13', '1.2.14', '1.2.15', '1.2.16', '1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22' );
+$punbb_versions	= array('1.2.11', '1.2.12', '1.2.13', '1.2.14', '1.2.15', '1.2.16', '1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22','1.2.23' );
 
 // Set this to false if you haven't implemented the restore function (see below)
 $mod_restore	= false;

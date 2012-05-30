@@ -14,7 +14,7 @@ $author_email   = 'thiery.thiery01@free.fr';
 // $author_email   = 'vin100@forx.fr';
 
 // Une ou plusieurs versions de PunBB pour lesquelles votre mod est conçue. Ces numero de version doivent parfaitement correspondre !
-$punbb_versions	= array('1.2', '1.2.1', '1.2.2', '1.2.3', '1.2.4', '1.2.5', '1.2.6', '1.2.7', '1.2.8', '1.2.9', '1.2.10', '1.2.11', '1.2.12', '1.2.13','1.2.14','1.2.15','1.2.16','1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22');
+$punbb_versions	= array('1.2', '1.2.1', '1.2.2', '1.2.3', '1.2.4', '1.2.5', '1.2.6', '1.2.7', '1.2.8', '1.2.9', '1.2.10', '1.2.11', '1.2.12', '1.2.13','1.2.14','1.2.15','1.2.16','1.2.17','1.2.18','1.2.19','1.2.20','1.2.21','1.2.22','1.2.23');
 
 // Reglez cela à FALSE si vous n'avez pas implémenté une fonction de restauration (voir plus bas)
 $mod_restore	= false;

@@ -28,6 +28,7 @@
 * install_mod_RateTopic.php
 * install_mod_Reputation_mod_2_2_0.php
 * install_mod_sousforum.php 
+* install_mod_IMV.php
 
   If you are upgrading from a previous MyBestBB version ( < 1.25 beta1 ) you will have to launch the install of the newest modes, added in 1.25 : install_mod_Attachment.php install_mod_Another_Private_Messaging_System.php install_mod_message_prive_de-bienvenue.php install_mod_Image_Awards.php )
 
@@ -58,15 +59,19 @@ named /forum )
  php_admin_flag allow_url_fopen On
 </Location>
 
+7 once EVERYTHING is ok, up and running, you can delete the istall files ( install*.php for more security )
+
  Upgrading from a standard punbb
 **********************************
+
+WARNING : MyBestBB is using UTF8, if you use accentated characters, you will have to convert your existing database to UFT8, using iconv for example
 
  If you are upgrading from a standard 1.2.* ( >1.2.12 )  punbb version , you just have to replace punbb files with mybestbb ones; something like :
 
 cp -af mybestbb/* punbb/
  should be enough ( verify permissions too )
 
- If upgrading from a punbb 1.2.* < 1.2.12 , you have to run the database upgrade : 12_to_1212_update.php before installing MyBestBB ( which includes punbb 1.2.21, who needs this db upgrade ).
+ If upgrading from a punbb 1.2.* < 1.2.12 , you have to run the database upgrade : 12_to_1212_update.php before installing MyBestBB ( which includes punbb 1.2.23, who needs this db upgrade ).
 
  And then run the install mods in number 3 above
 
@@ -84,6 +89,8 @@ chmod -R 77x  punbb/
  edit it to fit the name of your directory, the default is /forums/
 
 5 If your database already contain accentuated characters and is ISO charset, you will need to convert your SQL data to UTF8, the best way to do this is to use the iconv tool on a SQL dump of your database, and then re import the converted data in Mysql.
+
+6 once EVERYTHING is ok, up and running, you can delete the istall files ( install*.php for more security )
 
 FAQ :
 Q : after install I have the message 'Error: Unable to fetch user information.'

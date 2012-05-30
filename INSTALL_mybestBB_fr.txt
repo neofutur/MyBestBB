@@ -31,6 +31,7 @@
 * install_mod_RateTopic.php
 * install_mod_Reputation_mod_2_2_0.php
 * install_mod_sousforum.php
+* install_mod_IMV.php
 
  ( si vous upgradez une precedente version de MyBestBB ( < 1.25 beta1 ), il vous faudra lancer l'install des nouveaux mods : install_mod_Attachment.php , install_mod_Another_Private_Messaging_System.php , install_mod_message_prive_de-bienvenue.php, install_mod_Image_Awards.php , qui ont ete ajoutes dans la version 1.25 . )
 
@@ -67,9 +68,12 @@ correctement.
  php_admin_flag allow_url_fopen On
 </Location>
 
+7 une fois que tout fonctionne parfaitement vous pouvez supprimer les fichiers d install ( install*.php ) pour plus de securite
 ---
  upgrade mybestbb :
 ********************
+
+ATTENTION : MyBestBB utilise l UTF8 , si vous upgradez a partir d un punbb standard, et que vous utilisez les caracteres avec accents , il vous faudra convertir votre base de donnees en UTF8 , en utilisant par example iconv
 
  Si vous upgradez a partir d'une ancienne version de mybestbb, il est normalement suffisant d'ecraser tous les fichiers de l'ancienne version avec la nouvelle, de verifier que les permissions sont ok et c'est tout.
 cp -af mybestbb/* punbb/
@@ -95,6 +99,7 @@ cp -af mybestbb/* punbb/
 
   5 si votre base de donnees contient deja des caracteres accentues et que votre base de donnees est en charset ISO, il vous faudra convertir vos données au format UTF8, le meilleur moyen de le faire etant d'utiliserl'outil iconv sur un dump SQL de vos donneeses, puis de reimporter le résultat converti dans mysql
 
+  6 une fois que tout fonctionne parfaitement vous pouvez supprimer les fichiers d install ( install*.php ) pour plus de securite
 FAQ :
 Q : apres l'install j'obtiens le message suivant : 'Error: Unable to fetch user information. '
 A : vous avez surement oublie d'installer certains mods, recommencez l'etape 3

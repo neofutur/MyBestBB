@@ -6,10 +6,22 @@
 *********************************************************
 
  You need :
+* install_mod_Attachment.php
 * install_mod_Another_Private_Messaging_System.php
 * install_mod_message_prive_de-bienvenue.php
 * install_mod_Image_Awards.php
-* install_mod_Attachment.php
+* install_mod_BL.php
+* install_mod_mybestbb.php
+* install_mod_Easy_Poll.php
+* install_mod_EasySmilies.php
+* install_mod_EPF.php
+* install_mod_PBB_ChatBox_1.1ajax.php
+* install_mod_RateTopic.php
+* install_mod_Reputation_mod_2_2_0.php
+* install_mod_sousforum.php
+* install_mod_IMV.php
+
+
 * the complete directory attach/ ( containing 2 files, .htaccess and index.html )
   This directory needs write permissions for the webserver.
 

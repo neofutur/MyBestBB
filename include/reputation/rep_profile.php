@@ -22,6 +22,9 @@
   MA  02111-1307  USA
 ******************************************************************************************************/
 
+// Make sure no one attempts to run this script "directly"
+if (!defined('PUN'))
+    exit();
 require_once PUN_ROOT.'lang/'.$pun_user['language'].'/reputation.php';
 if ($pun_config['o_reputation_enabled'] == 1 && $pun_user['reputation_enable_adm'] == 1) 
 { ?>

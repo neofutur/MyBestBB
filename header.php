@@ -92,7 +92,7 @@ if (!defined('PUN_ALLOW_INDEX'))
 <!-- MOD InstantQuote -->
 <?php
 
-if(ereg("viewtopic\.php", $_SERVER['PHP_SELF']))  {
+if ( strpos($_SERVER['PHP_SELF'], "viewtopic.php")) {
 if ( $xajax) $xajax->printJavascript();
   }
 ?>

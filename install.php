@@ -32,8 +32,10 @@
 // punbb 1.2.17 update see http://punbb.org/download/hdiff/hdiff-1.2.16_to_1.2.17.html and http://punbb.org/forums/viewtopic.php?id=18460
 // punbb 1.2.19 update see http://punbb.informer.com/download/hdiff/hdiff-1.2.17_to_1.2.19.html and http://punbb.informer.com/forums/topic/19539/punbb-1219/
 // punbb 1.2.22 update see http://punbb.informer.com/download/hdiff/hdiff-1.2.21_to_1.2.22.html
-$punbb_version = '1.2.22';
-$mybestbb_version = '2.0.2';
+// punbb 1.2.23 update see http://punbb.informer.com/download/hdiff/hdiff-1.2.22_to_1.2.23.html
+
+$punbb_version = '1.2.23';
+$mybestbb_version = '2.0.4';
 
 define('PUN_ROOT', './');
 if (file_exists(PUN_ROOT.'config.php'))
@@ -1448,7 +1450,7 @@ else
 			</div>
 			<div class="inform">
 				<div class="forminfo">
-					<p>Once you have created config.php with the contents above, PunBB is installed!</p>
+					<p>Once you have created config.php with the contents above, PunBB is installed, but you still need to install the <a href="install_mods_MyBestBB.php" alt="install mybestbb mods">MyBestBB mods</a> !</p>
 					<p><a href="index.php">Go to forum index</a></p>
 				</div>
 			</div>

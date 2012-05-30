@@ -15,10 +15,8 @@
  <br /><a href='/install_mod_RateTopic.php'>Ratetopic mod</a>
  <br /><a href='/install_mod_Reputation_mod_2_2_0.php'>Reputation mod</a>
  <br /><a href='/install_mod_sousforum.php'>SubForums mod</a>
- <br /><a href='/install_mod_Another_Private_Messaging_System.php'>Private Messaging</a>
- <br /><a href='/install_mod_message_prive_de-bienvenue.php'>welcome message</a>
- <br /><a href='/install_mod_Image_Awards.php'>image awards</a>
- <br /><a href='/install_mod_Attachment.php'>attachments</a>
+ <br /><a href='/install_mod_IMV.php'> Image verification </a>
+ <br />
 
 <h2> Please note that you have to run all the mod installs, even if you dont need all the features, or mybestbb won't work correctly</h2>
 <h2> After running all the install mods, when everything is ok, you can delete all those files from the root of your website</h2>

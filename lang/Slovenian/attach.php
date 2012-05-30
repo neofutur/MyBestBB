@@ -4,26 +4,26 @@
 $lang_attach = array(
 
 // viewtopic.php
-'Attachments:'			=>	'Attachments:',	// Used in viewtopic before attachments in the post.
-'Size:'					=>	'Size:',		// Used in viewtopic to show filesize of attachment.
-'bytes'					=>	'bytes',		// Used in viewtopic after the filesize.
-'Downloads:'			=>	'Downloads:',	// Used in viewtopic to show number of downloads.
+'Attachments:'			=>	'Priponke:',	// Used in viewtopic before attachments in the post.
+'Size:'					=>	'Velikost:',		// Used in viewtopic to show filesize of attachment.
+'bytes'					=>	'bytov',		// Used in viewtopic after the filesize.
+'Downloads:'			=>	'Prenosov:',	// Used in viewtopic to show number of downloads.
 
 //post.php
-'Attachment'			=>	'Attachment',	// Used in post the legend name
-'Note'					=>	'Note: Attachment is cleared if preview is used, so after preview you must re-select file to upload.',	//Used in post to display a note under the attachment field
+'Attachment'			=>	'priponka',	// Used in post the legend name
+'Note'					=>	'Opozorilo: pri predogledu se datoteka za priponko pobri&#353;e, zato morate vnovi&#269; izbrati datoteko.',	//Used in post to display a note under the attachment field
 
 //edit.php
-'Delete?'				=>	'Delete?',		// Used in edit.php, after the delete checkbox for each attachment...
-'Existing'				=>	'Existing attachments: (check checkbox to delete)',	//Used in edit.php, before the existing attachments that you're allowed to delete
-'Existing2'				=>	'Existing attachments: (not allowed to delete)',	//Used in edit.php, before the existing attachments that you aren't allowed to delete
-'Upload'				=>	'Upload new attachment, max: %%ATTACHMENTS%% attachments',	//Used in edit.php, before the upload field, %%ATTACHMENTS%% must be there, it will show how many attachment the user has as a maximum...
-'Note2'					=>	'Note: All attachment options are cleared if preview is used, so after preview you must re-select file to upload, and re-select attachments to delete.',	//Used in edit to display a note under the attachment field
+'Delete?'				=>	'Zbri&#353;i',		// Used in edit.php, after the delete checkbox for each attachment...
+'Existing'				=>	'obstoje&#269;e priponke: (ozna&#269;i checkbox za izbris)',	//Used in edit.php, before the existing attachments that you're allowed to delete
+'Existing2'				=>	'obstoje&#269;e priponke: (brisanje ni dovoljeno)',	//Used in edit.php, before the existing attachments that you aren't allowed to delete
+'Upload'				=>	'prena&#353;am priponko, najve&#269;: %%ATTACHMENTS%% priponk',	//Used in edit.php, before the upload field, %%ATTACHMENTS%% must be there, it will show how many attachment the user has as a maximum...
+'Note2'					=>	'opozorilo: pri predogledu se vse nastavitve za priponke zbri&#353;ejo, zato morate vnovi&#269; izbrati datoteko za priponko in/ali vnovi&#269; ozna&#269;iti priponke za izbris.',	//Used in edit to display a note under the attachment field
 
 
 // attach.php
-'Image view - Attachment Mod'	=>	'Image view - Attachment Mod',	// Used in attach.php, header on the Image view frame.
-'Download:'						=>	'Download:'						// Used in attach.php, where one can click the filename to download.
+'Image view - Attachment Mod'	=>	'Ogled slike - Attachment Mod',	// Used in attach.php, header on the Image view frame.
+'Download:'						=>	'Prenosi:'						// Used in attach.php, where one can click the filename to download.
 );
 
 

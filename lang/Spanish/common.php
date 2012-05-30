@@ -142,6 +142,8 @@ $lang_common = array(
 'Stick topic'			=>  'Marca como permanente',
 'Moderate forum'		=>	'Moderar el foro',
 'Delete posts'			=>	'Borra mensajes multiples',
+'Delete post'			=>	'Borra mensaje',
+'Delete'				=>	'Borrar',
 'Debug table'			=>	'Informacion de depuracion',
 
 //For extern.php RSS feed

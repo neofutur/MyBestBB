@@ -1,4 +1,4 @@
-MyBestBB 2.0.2, based on punbb 1.2.22 ( see http://punbb.org/ )
+MyBestBB 2.0.4, based on punbb 1.2.23 ( see http://punbb.org/ )
 
  MyBestBB includes many useful mods/plugins/additional features :
 including :

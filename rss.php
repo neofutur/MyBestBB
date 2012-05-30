@@ -42,8 +42,8 @@ if (!defined('PUN'))
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 // Turn off magic_quotes_runtime
-set_magic_quotes_runtime(0);
-
+//set_magic_quotes_runtime(0);
+if (get_magic_quotes_runtime())  set_magic_quotes_runtime(0);
 
 // Load the functions script
 //require PUN_ROOT.'include/functions.php';

@@ -1,16 +1,16 @@
-Subject: Demande de nouveau mot de passe
+Subject: New password requested
 
-Bonjour <username>,
+Hello <username>,
 
-Vous avez fait la demande d'avoir un nouveau mot de passe assigne à votre compte sur le forum de <base_url>. Si vous n'en avez pas fait la demande ou ne voulez pas en changer, veuillez ignorer ce message. Votre mot de passe ne sera change qui si vous visitez la page d'activation ci-dessous. 
+ You have requested to have a new password assigned to your account in the discussion forum at <base_url>. If you didn't request this or if you don't want to change your password you should just ignore this message. Only if you visit the activation page below will your password be changed.
 
-Votre nouveau mot de passe est : <new_password>
+ Your new password is: <new_password>
 
-ATTENTION ! Pour activer ce nouveau mot de passe vous devez d abord visiter le lien suivant :
+ BEWARE ! To activate this new password You must first visit the following link :
 <activation_url>
 
- Vous pourrez ensuite vous connecter avec votre nouveau mot de passe.
+ After visiting this link, you new password will be validated and you will be able to login with this new password.
 
 -- 
 <board_mailer>
-(Ne pas repondre a ce message)
+(Do not reply to this message)

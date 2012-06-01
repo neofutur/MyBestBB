@@ -49,8 +49,9 @@ DIV>DIV>DIV.postfootleft, DIV>DIV>DIV.postfootright {PADDING-TOP: 1px; MARGIN-TO
 /* Begin IE6Win Fix \*/
 * HTML .inbox, * HTML .inform, * HTML .pun, * HTML .intd, * HTML .tclcon {HEIGHT: 1px}
 * HTML .inbox, * HTML .inform, * HTML .pun, * HTML .intd, * HTML .tclcon {HEIGHT: 1px}
-* HTML .inbox DIV.postmsg {WIDTH: 98%}	 50: * HTML .inbox DIV.postmsg {WIDTH: 98%}
-/* End of IEWin Fix */	 51: /* End of IE6Win Fix */
+* HTML .inbox DIV.postmsg {WIDTH: 98%}
+/* End of IEWin Fix */
+/* End of IE6Win Fix */
  
 /* 3.3 This is the equivelant of 3.2 but for IE7. It is visible to other browsers but does no harm */
  

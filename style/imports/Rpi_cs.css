@@ -100,7 +100,7 @@ without interferring with IE's rather nice default */
 
 /* 4.1 This is the default for all links */
 
-.pun A:link, .pun A:visited {color: #D80000;}
+.pun A:link, .pun A:visited {color: #FF1677;}
 .pun A:hover {color: #EDC1CC;}
 
 /* 4.2 This is the colour for links in header rows and the navigation bar */

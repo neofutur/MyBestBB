@@ -1,0 +1,52 @@
+<?php
+
+	$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+	echo "\n<br>Converting polls: $start...<br>"; flush();
+	
+	// Check if PunPoll is installed
+	if($start == 0){
+		if( !($db->query('SELECT count(*) FROM '.$_SESSION['pun'].'polls')) ){
+			echo '<script type="text/javascript">window.location="index.php?page='.++$_GET['page'].'"</script>';
+			exit;
+		}
+	}
+
+	$result = $fdb->query('SELECT vote_id,topic_id,vote_text FROM '.$_SESSION['php'].$_SESSION['phpnuke'].'vote_desc WHERE vote_id>'.$start.' ORDER BY vote_id LIMIT '.$_SESSION['limit']) or myerror('Unable to fetch poll info', __FILE__, __LINE__, $fdb->error());
+	$last_id = -1;
+	while($ob = $fdb->fetch_assoc($result)){
+
+		$last_id = $ob['vote_id'];
+		echo $ob['vote_text'].' ('.$ob['vote_id'].")<br>\n"; flush();
+
+		$answers = null;
+		$results = null;
+		$vote_results = $fdb->query('SELECT vote_option_text,vote_result FROM '.$_SESSION['php'].$_SESSION['phpnuke'].'vote_results WHERE vote_id='.$ob['vote_id'].' ORDER BY vote_option_id') or myerror("Unable to get poll answers.", __FILE__, __LINE__, $fdb->error());
+		while(list($vote_option_text, $vote_result) = $fdb->fetch_row($vote_results)){
+			$answers[] = htmlspecialchars($vote_option_text, ENT_QUOTES);
+			$results[] = $vote_result;
+		}
+
+		$voter_ids = null;
+		$vote_results = $fdb->query('SELECT vote_user_id FROM '.$_SESSION['php'].$_SESSION['phpnuke'].'vote_voters WHERE vote_id='.$ob['vote_id']) or myerror("PhpBB: Unable to get poll voters.", __FILE__, __LINE__, $fdb->error());
+		while(list($voters) = $fdb->fetch_row($vote_results)){
+			$voter_ids[] = $voters;
+		}
+
+		// Dataarray
+		$todb = array(
+			'id'				=>		$ob['vote_id'],
+			'topic_id'		=>		$ob['topic_id'],
+			'question'		=>		$ob['vote_text'],
+			'answers'		=>		serialize($answers),
+			'voters'			=>		implode(',', $voter_ids),
+			'votes'			=>		implode('|', $results),
+			'tot_votes'		=>		array_sum($results),
+		);
+
+		// Save data
+		insertdata('polls', $todb, __FILE__, __LINE__);
+	}
+
+	convredirect('vote_id', $_SESSION['phpnuke'].'vote_desc', $last_id);
+
+?>

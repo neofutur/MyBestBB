@@ -30,11 +30,12 @@ if (!defined('PUN'))
 // Tell admin_loader.php that this is indeed a plugin and that it is loaded
 define('PUN_PLUGIN_LOADED', 1);
 
+require PUN_ROOT.'lang/'.$pun_user['language'].'/versionswitch.php';
 
 if (isset($_POST['update_version']))
 {
 	if (trim($_POST['to_version']) == '')
-		message('Vous devez saisir un numero de version.');
+		message($lang_versionswitch["message"]);
 
 
 	$db->query('UPDATE '.$db->prefix.'config SET conf_value=\''.$db->escape(trim($_POST['to_version'])).'\' WHERE conf_name=\'o_cur_version\'') or error('Unable to update board version string', __FILE__, __LINE__, $db->error());
@@ -49,7 +50,7 @@ if (isset($_POST['update_version']))
 
 ?>
 	<div class="block">
-		<h2><span>Commutateur De Version</span></h2>
+		<h2><span><?php echo $lang_versionswitch["title"]?></span></h2>
 		<div class="box">
 			<div class="inbox">
 				<p>Version mise a jour.</p>
@@ -67,24 +68,24 @@ else
 
 ?>
 	<div id="exampleplugin" class="blockform">
-		<h2><span>Commutateur De Version</span></h2>
+		<h2><span><?php echo $lang_versionswitch["title"] ?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>&amp;foo=bar">
 				<div class="inform">
 					<fieldset>
-						<legend>Saisissez un numero de version et appuyez la "Mettre a jour"</legend>
+						<legend><?php echo $lang_versionswitch["type"] ?></legend>
 						<div class="infldset">
-							<p>Ce plugin vous permet de mettre a jour la chaine de caractere de version de PunBB.</p>
+							<p><?php echo $lang_versionswitch["help"] ?></p>
 							<table class="aligntop" cellspacing="0">
 								<tr>
-									<th scope="row">Nouvelle version</th>
+									<th scope="row"><?php echo $lang_versionswitch["new"] ?></th>
 									<td>
 										<input type="text" name="to_version" size="8" tabindex="1" />
-										<span>La nouvelle chaine de caractere de version.</span>
+										<span><?php echo $lang_versionswitch["newhelp"] ?></span>
 									</td>
 								</tr>
 							</table>
-							<div class="fsetsubmit"><input type="submit" name="update_version" value="Mettre a jour" tabindex="2" /></div>
+							<div class="fsetsubmit"><input type="submit" name="update_version" value="<?php echo $lang_versionswitch["validate"] ?>" tabindex="2" /></div>
 						</div>
 					</fieldset>
 				</div>

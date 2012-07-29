@@ -30,6 +30,8 @@ define('PUN_ROOT', './');
 require PUN_ROOT.'include/common.php';
 require PUN_ROOT.'include/common_admin.php';
 
+// lang for subforums mod
+require PUN_ROOT.'lang/'.$pun_user['language'].'/subforums.php';
 
 if ($pun_user['g_id'] > PUN_ADMIN)
 	message($lang_common['No permission']);
@@ -304,7 +306,7 @@ else if (isset($_GET['edit_forum']))
 									<td><?php echo ($cur_forum['num_topics']) ? 'Only available in empty forums' : '<input type="text" name="redirect_url" size="45" maxlength="100" value="'.pun_htmlspecialchars($cur_forum['redirect_url']).'" tabindex="5" />'; ?></td>
 								</tr>
                                                                 <tr>
-                                                                        <th scope="row">Forum parent</th>
+                                                                        <th scope="row"><?php echo $lang_subforums["parent"]?></th>
                                                                         <td>
                                                                                 <select name="parent_forum">
                                                                                         <option value="0">Pas de forum parent</option>
@@ -501,7 +503,7 @@ while ($cur_forum = $db->fetch_assoc($result))
                                                                 ?>
                                                                                         <table summary="edit forum" cellspacing="0">
                                                                                                 <tr>
-                                                                                                        <th><a href="admin_forums.php?edit_forum=<?php echo $cur_ss_forum['fid'] ?>">Modifier</a> - <a href="admin_forums.php?del_forum=<?php echo $cur_ss_forum['fid'] ?>">Supprimer</a></th>
+                                                                                                        <th><a href="admin_forums.php?edit_forum=<?php echo $cur_ss_forum['fid'] ?>"><?php echo $lang_subforums["modify"]?></a> - <a href="admin_forums.php?del_forum=<?php echo $cur_ss_forum['fid'] ?>"><?php echo $lang_subforums["delete"]?></a></th>
                                                                                                         <td>Position&#160;&#160;<input type="text" name="position[<?php echo $cur_ss_forum['fid'] ?>]" size="3" maxlength="3" value="<?php echo $cur_ss_forum['disp_position'] ?>" />
                                                                                                         &#160;&#160;<strong><?php echo pun_htmlspecialchars($cur_ss_forum['forum_name']) ?></strong></td>
                                                                                                 </tr>

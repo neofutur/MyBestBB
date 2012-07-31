@@ -204,7 +204,7 @@ list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
                 $posts_day = $db->result($result);
                 $posts_h = $posts_day/24;
                 ?>
-                <dd><?php
+                <dd><strong><?php
                 if ($posts_h<1)
                        if ($posts_day<1)
                         if ($posts_week<1)

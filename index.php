@@ -204,18 +204,18 @@ list($stats['total_topics'], $stats['total_posts']) = $db->fetch_row($result);
                 $posts_day = $db->result($result);
                 $posts_h = $posts_day/24;
                 ?>
-                <dd><strong><?php
+                <dd><?php
                 if ($posts_h<1)
                        if ($posts_day<1)
                         if ($posts_week<1)
                             echo $lang_index['dormant'];
                         else
-                                      echo $lang_index['number week'].': <strong>'.$posts_week;
+                                      echo $lang_index['number week'].': <strong>'.$posts_week.'</strong>';
                        else
-                              echo  $lang_index['number day'].': <strong>'.$posts_day;
+                              echo  $lang_index['number day'].': <strong>'.$posts_day.'</strong>';
                 else
-                       echo $lang_index['average h'].': <strong>'.number_format($posts_h,1);
-                ?></strong></dd>
+                       echo $lang_index['average h'].': <strong>'.number_format($posts_h,1).'</strong>';
+                ?></dd>
                 <?php // End: Activity Barometer mod ?> 
 
 

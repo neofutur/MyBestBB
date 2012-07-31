@@ -398,7 +398,7 @@ while ($cur_post = $db->fetch_assoc($result))
 			$signature = $signature_cache[$cur_post['poster_id']];
 		else
 		{
-			$signature = '<br><br>--------------------------------------------------------<br />'.parse_signature($cur_post['signature']);
+			$signature = '<br /><br />--------------------------------------------------------<br />'.parse_signature($cur_post['signature']);
 			$signatures[$cur_post['poster_id']] = true;
 			$signature_cache[$cur_post['poster_id']] = $signature;
 		}

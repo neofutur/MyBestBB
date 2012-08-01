@@ -193,7 +193,7 @@ else if (isset($_POST['send_message']))
 	
 ?>
 	<div class="block">
-		<h2><span><?php echo $lang_globalemail["globalmail"]." - ".$lang_globalemail["mailsent"] ?>Mail de Masse - Message Envoye</span></h2>
+		<h2><span><?php echo $lang_globalemail["globalmail"]." - ".$lang_globalemail["mailsent"] ?></span></h2>
 		<div class="box">
 			<div class="inbox">
 				<p><?php echo $lang_globalemail["msentto"]?> [ <strong><?php echo $usercount ?></strong> ]<?php echo $lang_globalemail["members"]?>.</p>

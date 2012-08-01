@@ -43,6 +43,7 @@ if (!defined('PUN'))
 // Tell admin_loader.php that this is indeed a plugin and that it is loaded
 define('PUN_PLUGIN_LOADED', 1);
 
+require PUN_ROOT.'lang/'.$pun_user['language'].'/globalemail.php';
 
 
 // --------------------------------------------------------------------
@@ -53,11 +54,11 @@ if (isset($_POST['confirm']))
 {
 	// Make sure message body was entered
 	if (trim($_POST['message_body']) == '')
-		message('Vous n\'avez pas ecrit de message!');
+		message($lang_globalemail["nomessage"]);
 
 	// Make sure message subject was entered
 	if (trim($_POST['message_subject']) == '')
-		message('Vous n\'avez pas precise le sujet!');
+		message($lang_globalemail["nosubject"]);
 
 	// Display the admin navigation menu
 	generate_admin_menu($plugin);
@@ -83,14 +84,15 @@ if (isset($_POST['confirm']))
 
 ?>
 	<div id="exampleplugin" class="blockform">
-		<h2><span>Mail de Masse - Confirmation</span></h2>
+		<h2><span><?php echo $lang_globalemail["globalmail"]. " - " . $lang_globalemail["confirmation"] ?></span></h2>
 		<div class="box">
 			<div class="inbox">
-				<p>Merci de confirmer votre message ci-dessous.<br /><br />Pour d'eventuelles corrections: <a href="javascript: history.go(-1)">Retour</a>.</p>
+				<p><?php echo $lang_globalemail["confirmpage"]?><br />
+				<br /><?php echo $lang_globalemail["goback1"]?><a href="javascript: history.go(-1)"><?php echo $lang_globalemail["goback2"]?></a>.</p>
 			</div>
 		</div>
 
-		<h2 class="block2"><span>Confirmation de l'envoi du Message</span></h2>
+		<h2 class="block2"><span><?php echo $lang_globalemail["confirmsend"] ?></span></h2>
 		<div class="box">
 			<form id="broadcastemail" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inform">
@@ -98,32 +100,32 @@ if (isset($_POST['confirm']))
 					<input type="hidden" name="message_body" value="<?php echo pun_htmlspecialchars($_POST['message_body']) ?>" />
                     <input type="hidden" name="group_id" value="<?php echo $_POST['group_id']; ?>"/>
 					<fieldset>
-						<legend>Destinataires</legend>
+						<legend><?php echo $lang_globalemail["recipients"]?></legend>
 						<div class="infldset">
-							[ <strong><?php echo $row['usercount'] ?></strong> ] membres vont recevoir ce message (Administrateur inclu).
+							[ <strong><?php echo $row['usercount'] ?></strong> ] <?php echo $lang_globalemail["willreceive"]?>
 						</div>
 					</fieldset>
 				</div>
 				<div class="inform">
 					<fieldset>
-						<legend>Contenu du message</legend>
+						<legend><?php echo $lang_globalemail["messagecontent"]?></legend>
 						<div class="infldset">
 							<table class="aligntop" cellspacing="0">
 								<tr>
-									<th scope="row">Sujet</th>
+									<th scope="row"><?php echo $lang_globalemail["subject"]?></th>
 									<td>
 										<?php echo pun_htmlspecialchars($_POST['message_subject']) ?>
 									</td>
 								</tr>
 								<tr>
-									<th scope="row">Corps du message</th>
+									<th scope="row"><?php echo $lang_globalemail["body"]?></th>
 									<td>
 										<?php echo $preview_message_body ?>
 									</td>
 								</tr>
 							</table>
-							<div class="fsetsubmit"><input type="submit" name="send_message" value="Confirmer - Envoyer." tabindex="3" /></div>
-							<p class="topspace">A n'effectuer qu'une seule fois. La patience est une vertu.</p>
+							<div class="fsetsubmit"><input type="submit" name="send_message" value="<?php echo $lang_globalemail["confirm"]." - ".$lang_globalemail["send"] ?>" tabindex="3" /></div>
+							<p class="topspace"><?php echo $lang_globalemail["onlyonce"] ?></p>
 						</div>
 					</fieldset>
 				</div>
@@ -146,7 +148,7 @@ else if (isset($_POST['send_message']))
 	// Display the admin navigation menu
 	generate_admin_menu($plugin);
                 
-    if (! is_numeric($_POST['group_id']) ) message ('tsss tsss tsss!!!');
+    if (! is_numeric($_POST['group_id']) ) message ( $lang_globalemail["nonumeric"]);
     
     // envoi a tous les groupes sauf invite
     if ($_POST['group_id'] == '0' ) 
@@ -169,7 +171,7 @@ else if (isset($_POST['send_message']))
 				WHERE group_id = '".$_POST['group_id']."' or group_id = '1'" .
 			" ORDER BY username";
             
-	$result = $db->query($sql) or error('Ne peut trouver les utilisateurs dans la base de donnees', __FILE__, __LINE__, $db->error());
+	$result = $db->query($sql) or error($lang_globalemail["nousers"], __FILE__, __LINE__, $db->error());
    	while($row = $db->fetch_assoc($result))
    	{
    		$addresses[$row['username']] = $row['email'];
@@ -191,12 +193,12 @@ else if (isset($_POST['send_message']))
 	
 ?>
 	<div class="block">
-		<h2><span>Mail de Masse - Message Envoye</span></h2>
+		<h2><span><?php echo $lang_globalemail["globalmail"]." - ".$lang_globalemail["mailsent"] ?>Mail de Masse - Message Envoye</span></h2>
 		<div class="box">
 			<div class="inbox">
-				<p>Ce message a ete envoye a [ <strong><?php echo $usercount ?></strong> ] membres.</p>
-				<p>En tant qu'administrateur, vous allez recevoir une copie de celui-ci.</p>
-				<p>Vous pouvez considerer cette copie comme une confirmation de l'envoi.</p>
+				<p><?php echo $lang_globalemail["msentto"]?> [ <strong><?php echo $usercount ?></strong> ]<?php echo $lang_globalemail["members"]?>.</p>
+				<p><?php echo $lang_globalemail["asadmin"]?></p>
+				<p><?php echo $lang_globalemail["iscopy"]?></p>
 			</div>
 		</div>
 	</div>
@@ -215,31 +217,31 @@ else
 
 ?>
 	<div id="exampleplugin" class="blockform">
-		<h2><span>Mail de Masse</span></h2>
+		<h2><span><?php echo $lang_globalemail["globalmail"]?></span></h2>
 		<div class="box">
 			<div class="inbox">
-				<p>Ce plugin permet a l'administrateur d'envoyer un mail general a tous les membres d'un groupe du forum.</p>
-				<p>Une page recapitulative de confirmation succedera a celle-ci.</p>
+				<p><?php echo $lang_globalemail["thisplugin"]?></p>
+				<p><?php echo $lang_globalemail["nextpage"]?></p>
 			</div>
 		</div>
 
-		<h2 class="block2"><span>Rediger un Message</span></h2>
+		<h2 class="block2"><span><?php echo $lang_globalemail["createmail"]?></span></h2>
 		<div class="box">
 			<form id="broadcastemail" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inform">
 					<fieldset>
-						<legend>Contenu du message</legend>
+						<legend><?php echo $lang_globalemail["messagecontent"]?></legend>
 						<div class="infldset">
 							<table class="aligntop" cellspacing="0">
                                 <tr>
-                                    <th scope="row">Groupe</th>
+                                    <th scope="row"><?php echo $lang_globalemail["group"]?></th>
                                     <td>
                                         <select name="group_id">
-                                            <option value="0" select="selected">Tous</option>
+                                            <option value="0" select="selected"><?php echo $lang_globalemail["allgroups"]?></option>
                                         <?php 
                                         // on ne prend pas le groupe 'invite'.
                                         $sql_group = "SELECT * FROM ".$db->prefix."groups WHERE g_id <> '3' ORDER BY g_id";
-                                        $result_group = $db->query($sql_group) or error('ne peut trouver la liste des groupes d\'utilisateurs',__FILE__, __LINE__, $db->error()); 
+                                        $result_group = $db->query($sql_group) or error($lang_globalemail["nogroup"],__FILE__, __LINE__, $db->error()); 
                                         while ($row_group = $db->fetch_assoc($result_group)) {
                                         ?>
                                             <option value="<?php echo $row_group['g_id']; ?>"><?php echo $row_group['g_title']; ?></option>
@@ -248,19 +250,19 @@ else
                                     </td>
                                 </tr>
 								<tr>
-									<th scope="row">Sujet</th>
+									<th scope="row"><?php echo $lang_globalemail["subject"]?></th>
 									<td>
 										<input type="text" name="message_subject" size="50" tabindex="1" />
 									</td>
 								</tr>
 								<tr>
-									<th scope="row">Corps du message</th>
+									<th scope="row"><?php echo $lang_globalemail["body"]?></th>
 									<td>
 										<textarea name="message_body" rows="14" cols="48" tabindex="2"></textarea>
 									</td>
 								</tr>
 							</table>
-							<div class="fsetsubmit"><input type="submit" name="confirm" value="Continuer vers Confirmation" tabindex="3" /></div>
+							<div class="fsetsubmit"><input type="submit" name="confirm" value="<?php echo $lang_globalemail["gotoconfirm"]?>" tabindex="3" /></div>
 						</div>
 					</fieldset>
 				</div>

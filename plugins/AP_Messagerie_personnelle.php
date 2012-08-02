@@ -24,6 +24,9 @@
 if (!defined('PUN'))
     exit;
 
+require PUN_ROOT.'lang/'.$pun_user['language'].'/pm.php';
+//$lang_pm[""]
+
 // Tell admin_loader.php that this is indeed a plugin and that it is loaded
 define('PUN_PLUGIN_LOADED', 1);
 define('PLUGIN_VERSION', '1.2');
@@ -47,26 +50,26 @@ if (isset($_POST['form_sent']))
 				else
 					$value = 'NULL';
 	
-				$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$key.'\'') or error('Impossible de mettre a jour la configuration', __FILE__, __LINE__, $db->error());
+				$db->query('UPDATE '.$db->prefix.'config SET conf_value='.$value.' WHERE conf_name=\'o_'.$key.'\'') or error($lang_pm["econf"], __FILE__, __LINE__, $db->error());
 			}
 		}
 	}
 
 	while (list($id, $set) = @each($allow))
 	{
-		$db->query('UPDATE '.$db->prefix.'groups SET g_pm='.$set.' WHERE g_id=\''.$id.'\'') or error('Impossible de changer les permissions.', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'groups SET g_pm='.$set.' WHERE g_id=\''.$id.'\'') or error($lang_pm["eperm"], __FILE__, __LINE__, $db->error());
 	}
 	
 	while (list($id, $set) = @each($limit))
 	{
-		$db->query('UPDATE '.$db->prefix.'groups SET g_pm_limit='.intval($set).' WHERE g_id=\''.$id.'\'') or error('Impossible de changer les permissions.', __FILE__, __LINE__, $db->error());
+		$db->query('UPDATE '.$db->prefix.'groups SET g_pm_limit='.intval($set).' WHERE g_id=\''.$id.'\'') or error($lang_pm["eperm"], __FILE__, __LINE__, $db->error());
 	}
 	
 	// Regenerate the config cache
 	require_once PUN_ROOT.'include/cache.php';
 	generate_config_cache();
 
-	redirect(PLUGIN_URL, 'Options modifiees. Redirection...');
+	redirect(PLUGIN_URL, $lang_pm["omodif"]);
 }
 else
 {
@@ -74,56 +77,56 @@ else
 	generate_admin_menu($plugin);
 ?>
 	<div class="block">
-		<h2><span>Messages prives v<?php echo PLUGIN_VERSION ?></span></h2>
+		<h2><span><?php echo $lang_pm["title"]?> V <?php echo PLUGIN_VERSION ?></span></h2>
 		<div class="box">
 			<div class="inbox">
-				<p>Plugin de gestion des quotas de messages prives en fonctions des groupes</p>
+				<p><?php echo $lang_pm["message"]?></p>
 			</div>
 		</div>
 	</div>
 	<div class="blockform">
-		<h2 class="block2"><span>Parametres</span></h2>
+		<h2 class="block2"><span><?php echo $lang_pm["params"]?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo PLUGIN_URL; ?>">
 				<div class="inform">
 					<input type="hidden" name="form_sent" value="1" />
 					<fieldset>
-						<legend>Options</legend>
+						<legend><?php echo $lang_pm["options"]?></legend>
 						<div class="infldset">
 						<table class="aligntop" cellspacing="0">
 							<tr>
-								<th scope="row">Activer la messagerie personnelle</th>
+								<th scope="row"><?php echo $lang_pm["amp"]?></th>
 								<td>
-									<input type="radio" name="form[pms_enabled]" value="1"<?php if ($pun_config['o_pms_enabled'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong>Oui</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[pms_enabled]" value="0"<?php if ($pun_config['o_pms_enabled'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong>Non</strong>
-									<span>Permet d'activer ou non le systeme de messages prives.</span>
+									<input type="radio" name="form[pms_enabled]" value="1"<?php if ($pun_config['o_pms_enabled'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["yes"]?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[pms_enabled]" value="0"<?php if ($pun_config['o_pms_enabled'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["no"]?></strong>
+									<span><?php echo $lang_pm["mactiv"]?></span>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">Permettre notification</th>
+								<th scope="row"><?php echo $lang_pm["anotif"]?></th>
 								<td>
-									<input type="radio" name="form[pms_notification]" value="1"<?php if ($pun_config['o_pms_notification'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong>Oui</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[pms_notification]" value="0"<?php if ($pun_config['o_pms_notification'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong>Non</strong>
-									<span>Permet d'autoriser ou non les utilisateurs a utiliser la notification par courriel de nouveaux messages prives.</span>
+									<input type="radio" name="form[pms_notification]" value="1"<?php if ($pun_config['o_pms_notification'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["yes"]?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[pms_notification]" value="0"<?php if ($pun_config['o_pms_notification'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["no"]?></strong>
+									<span><?php echo $lang_pm["mnotif"]?></span>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">Activer notification par pop-up</th>
+								<th scope="row"><?php echo $lang_pm["apopup"]?></th>
 								<td>
-									<input type="radio" name="form[pms_popup]" value="1"<?php if ($pun_config['o_pms_popup'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong>Oui</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[pms_popup]" value="0"<?php if ($pun_config['o_pms_popup'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong>Non</strong>
-									<span>Permet d'activer la notification par pop-up de nouveaux messages prives sur les forums.</span>
+									<input type="radio" name="form[pms_popup]" value="1"<?php if ($pun_config['o_pms_popup'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["yes"]?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="form[pms_popup]" value="0"<?php if ($pun_config['o_pms_popup'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["no"]?></strong>
+									<span><?php echo $lang_pm["mpopup"]?></span>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">Messages par page</th>
+								<th scope="row"><?php echo $lang_pm["apage"]?></th>
 								<td>
 									<input type="text" name="form[pms_mess_per_page]" size="5" maxlength="10" value="<?php echo $pun_config['o_pms_mess_per_page'] ?>" />
-									<span>Le nombre de messages qui seront visibles par page dans la messagerie.</span>
+									<span><?php echo $lang_pm["mpage"]?></span>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">Nombre destinataires</th>
+								<th scope="row"><?php echo $lang_pm["adest"]?></th>
 								<td>
 									<input type="text" name="form[pms_max_receiver]" size="5" maxlength="5" value="<?php echo $pun_config['o_pms_max_receiver'] ?>" />
-									<span>Le nombre maximum de destinataires par message prive.</span>
+									<span><?php echo $lang_pm["mdest"]?></span>
 								</td>
 							</tr>
 						</table>
@@ -132,8 +135,8 @@ else
 				</div>
 				<div class="inform">
 					<fieldset>
-						<legend>Permissions</legend>
-						<p>Les administrateurs et les moderateurs n'ont pas de limite d'utilisation des messages prives. A l'inverse, les invites n'ont aucun droit. Enfin, vous pouvez regler les permissions des autres groupes ci-dessous.</p>
+						<legend><?php echo $lang_pm["aperm"]?></legend>
+						<p><?php echo $lang_pm["mperm"]?></p>
 						<div class="infldset">
 						<table class="aligntop" cellspacing="0">
 							<?php
@@ -144,15 +147,14 @@ else
 							<tr> 
 								<th scope="row"><?php echo $cur_group['g_title'] ?></th>
 								<td>
-									<span>Permettre a ce groupe d'utiliser les messages prives :</span>
-									<input type="radio" name="allow[<?php echo $cur_group['g_id'] ?>]" value="1"<?php if ($cur_group['g_pm'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong>Oui</strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="allow[<?php echo $cur_group['g_id'] ?>]" value="0"<?php if ($cur_group['g_pm'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong>Non</strong>
+									<span><?php echo $lang_pm["agroup"]?></span>
+									<input type="radio" name="allow[<?php echo $cur_group['g_id'] ?>]" value="1"<?php if ($cur_group['g_pm'] == '1') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["yes"]?></strong>&nbsp;&nbsp;&nbsp;<input type="radio" name="allow[<?php echo $cur_group['g_id'] ?>]" value="0"<?php if ($cur_group['g_pm'] == '0') echo ' checked="checked"' ?> />&nbsp;<strong><?php echo $lang_pm["no"]?></strong>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">&nbsp;</th>
 								<td>
-									<span><input type="text" name="limit[<?php echo $cur_group['g_id'] ?>]" size="5" maxlength="10" value="<?php echo $cur_group['g_pm_limit'] ?>" /> est le nombre maximum de messages que les <em><?php echo $cur_group['g_title'] ?></em> pourront avoir dans leurs boites. Mettre 0 pour aucune limite.
-								</span>
+									<span><input type="text" name="limit[<?php echo $cur_group['g_id'] ?>]" size="5" maxlength="10" value="<?php echo $cur_group['g_pm_limit'] ?>" /><?php echo $lang_pm["max1"]?> <em><?php echo $cur_group['g_title'] ?></em> <?php echo $lang_pm["max2"]?>							</span>
 									</td>
 							</tr>
 							<?php
@@ -164,7 +166,7 @@ else
 						</div>
 					</fieldset>
 				</div>
-			<p class="submitend"><input type="submit" name="save" value="Enregistrer" /></p>
+			<p class="submitend"><input type="submit" name="save" value="<?php echo $lang_pm["save"]?>" /></p>
 			</form>
 		</div>
 	</div>

@@ -20,7 +20,7 @@
 
 ************************************************************************/
 // Make sure no one attempts to run this script "directly"
-require PUN_ROOT.'lang/'.$pun_user['language'].'/Fourm_Cleanup.php';
+require PUN_ROOT.'lang/'.$pun_user['language'].'/forum_Cleanup.php';
 
 if (!defined('PUN'))
     exit;

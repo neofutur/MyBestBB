@@ -36,6 +36,8 @@ CREATE TABLE `profile_field_entries` (
 )
 #########################################################################
 */
+require PUN_ROOT.'lang/'.$pun_user['language'].'/AP_Profile_Fields.php';
+
 // Make sure no one attempts to run this script "directly"
 if (!defined('PUN'))
 	exit;
@@ -79,20 +81,20 @@ generate_admin_menu($plugin);
 
 ?>
 <div id="main" class="blockform">
-	<h2><span>Easy Profile Fields</span></h2>
+	<h2><span><?php echo $lang_Profile_Fields["title"]; ?></span></h2>
 	<div class="box">
 		<div class="inbox" style="padding:5px;">
 		<fieldset style="float: left; margin-right: 5px;">
-		<legend>Help</legend>
-		<p>In this plugin you can easily create extra profile fields that will show up in viewtopic.php.</p>
+		<legend><?php echo $lang_Profile_Fields["MI_help"]; ?></legend>
+		<p><?php echo $lang_Profile_Fields["description"]; ?></p>
 		</fieldset>
 		<fieldset>
-		<legend>A menu</legend>
+		<legend><?php echo $lang_Profile_Fields["MI_menu"]; ?></legend>
 		<ul>
-		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=new"; ?>">Create a new user field</a></li>
-		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=edit"; ?>">Edit a user field</a></li>
-		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=delete"; ?>">Delete a user field</a></li>
-		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=list"; ?>">View user fields</a></li>
+		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=new"; ?>"><?php echo $lang_Profile_Fields["Option_New"]; ?></a></li>
+		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=edit"; ?>"><?php echo $lang_Profile_Fields["Option_Edit"]; ?></a></li>
+		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=delete"; ?>"><?php echo $lang_Profile_Fields["Option_Delete"]; ?></a></li>
+		<li style="list-style:inside disc"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=list"; ?>"><?php echo $lang_Profile_Fields["Option_View"]; ?></a></li>
 		</ul>
 		</fieldset>
 		</div>
@@ -111,16 +113,16 @@ switch($action)
 	?>
 	<form id="form1" name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=submitnew"; ?>">
 	<div id="new" class="blockform">
-		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small>Hide</small></a></span><span>Create New Profile Field</span></h2>
+		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small><?php echo $lang_Profile_Fields["MI_Hide"]; ?></small></a></span><span><?php echo $lang_Profile_Fields["H_CreateNewField"]; ?></span></h2>
 		<div class="box">
 			<div class="inbox" style="padding:5px;">
-				<label>Name:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Name"]; ?><br />
 				<input type="text" name="name" />
 				</label>
-				<label>Language file entry:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Lang"]; ?><br />
 				<input type="text" name="lang_entry" />
 				</label>
-				<label>Order:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Order"]; ?><br />
 				<input type="text" name="order" />
 				</label>
 				<input type="submit" name="submit" value="Submit" />
@@ -135,10 +137,10 @@ switch($action)
 	?>
 	<form id="form2" name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=submitdelete"; ?>">
 	<div id="new" class="blockform">
-		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small>Hide</small></a></span><span>Delete Profile Field</span></h2>
+		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small><?php echo $lang_Profile_Fields["MI_Hide"]; ?></small></a></span><span><?php echo $lang_Profile_Fields["H_DeleteField"]; ?></span></h2>
 		<div class="box">
 			<div class="inbox" style="padding:5px;">
-				<label>Name:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Name"]; ?><br />
 				<select name="id">
 				<?php
 				$result = $db->query("SELECT id, name FROM ".$db->prefix."profile_fields") or die(mysql_error());
@@ -161,10 +163,10 @@ switch($action)
 	?>
 	<form id="form2" name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=goedit"; ?>">
 	<div id="new" class="blockform">
-		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small>Hide</small></a></span><span>Edit Profile Field</span></h2>
+		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small><?php echo $lang_Profile_Fields["MI_Hide"]; ?></small></a></span><span><?php echo $lang_Profile_Fields["H_EditField"]; ?></span></h2>
 		<div class="box">
 			<div class="inbox" style="padding:5px;">
-				<label>Name:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Name"]; ?><br />
 				<select name="id">
 				<?php
 				$result = $db->query("SELECT id, name FROM ".$db->prefix."profile_fields") or die(mysql_error());
@@ -200,16 +202,16 @@ switch($action)
 	?>
 	<form id="form1" name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin."&amp;action=submitedit"; ?>">
 	<div id="new" class="blockform">
-		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small>Hide</small></a></span><span>Create New Profile Field</span></h2>
+		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small><?php echo $lang_Profile_Fields["MI_Hide"]; ?></small></a></span><span><?php echo $lang_Profile_Fields["H_CreateNewField"]; ?>Create New Profile Field</span></h2>
 		<div class="box">
 			<div class="inbox" style="padding:5px;">
-				<label>Name:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Name"]; ?><br />
 				<input type="text" name="name" value="<?php echo htmlentities(stripslashes($row['name'])); ?>" />
 				</label>
-				<label>Language file entry:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Lang"] ?><br />
 				<input type="text" name="lang_entry"  value="<?php echo htmlentities(stripslashes($row['lang_entry'])); ?>"  />
 				</label>
-				<label>Order:<br />
+				<label><?php echo $lang_Profile_Fields["FL_Order"] ?><br />
 				<input type="text" name="order"  value="<?php echo htmlentities(stripslashes($row['order'])); ?>"  />
 				</label>
 				<input type="submit" name="submit" value="Submit" />
@@ -225,14 +227,14 @@ switch($action)
 	case 'list':
 	?>
 	<div id="new" class="blockform">
-		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small>Hide</small></a></span><span>List Profile Fields</span></h2>
+		<h2><span style="float:right"><a href="<?php echo $_SERVER['PHP_SELF']."?plugin=".$plugin; ?>"><small><?php echo $lang_Profile_Fields["MI_Hide"] ?></small></a></span><span><?php echo $lang_Profile_Fields["H_ListFields"] ?></span></h2>
 		<div class="box">
 			<div class="inbox" style="padding:5px;">
 				<?php
 				$result = $db->query("SELECT id, name, lang_entry, `order` FROM ".$db->prefix."profile_fields") or die(mysql_error());
 				while($row = $db->fetch_assoc($result))
 				{
-					echo "<p><strong>ID: </strong>".$row['id']." <strong>Name: </strong>".$row['name']." <strong>Language file entry: </strong>".$row['lang_entry']." <strong>Order: </strong>".$row['order']." </p><hr />\n";
+					echo "<p><strong>".$lang_Profile_Fields["FL_Id"]."</strong>".$row['id']." <strong>".$lang_Profile_Fields["FL_Name"]."</strong>".$row['name']." <strong>".$lang_Profile_Fields["FL_Lang"]."</strong>".$row['lang_entry']." <strong>".$lang_Profile_Fields["FL_Order"]."</strong>".$row['order']." </p><hr />\n";
 				}
 				?>
 			</div>

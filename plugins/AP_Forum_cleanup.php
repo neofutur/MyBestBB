@@ -20,6 +20,8 @@
 
 ************************************************************************/
 // Make sure no one attempts to run this script "directly"
+require PUN_ROOT.'lang/'.$pun_user['language'].'/Fourm_Cleanup.php';
+
 if (!defined('PUN'))
     exit;
 
@@ -113,27 +115,27 @@ else
 	{
 ?>
 	<div class="block">
-		<h2><span>Forum cleanup - v<?php echo PLUGIN_VERSION ?></span></h2>
+		<h2><span><?php echo $lang_Fourm_Cleanup['title']; ?><?php echo PLUGIN_VERSION; ?></span></h2>
 		<div class="box">
 			<div class="inbox">
-				<p>This plugin is used to cleanup the mess made by spammers and edits to the database that have put things out of sync.</p>
+				<p><?php echo $lang_Fourm_Cleanup['description']?></p>
 			</div>
 		</div>
 	</div>
 	<div class="block">
-		<h2 class="block2"><span>Complete spam cleanup</span></h2>
+		<h2 class="block2"><span><?php echo $lang_Fourm_Cleanup['H_CompleteCleanup']?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inbox">
 					<p>
-						This feature is intended to clean up the mess after a spam attack, how it works is you put in one or more IP addresses (separated by spaces) and it deletes all users and posts with that IP, then performs the rest of the cleanup operations.
+						<?php echo $lang_Fourm_Cleanup['Desc_CompleteCleanup']?>						
 					</p>
 					<table class="aligntop" cellspacing="0">
 						<tr>
-							<th scope="row">IP Addresses</th>
+							<th scope="row"><?php echo $lang_Fourm_Cleanup['FL_IP']?></th>
 							<td>
 								<input type="text" name="ip_addys" size="50" maxlength="255" /><br />
-								<span>Enter a list of one or more IP addresses separated by spaces to be removed from the forum (note it is also recommended you ban these IP addresses from the bans section of admin).</span>
+								<span><?php echo $lang_Fourm_Cleanup['Desc_IP']?></span>
 							</td>
 						</tr>
 					</table>
@@ -143,12 +145,12 @@ else
 				</p>
 			</form>
 		</div>
-		<h2 class="block2"><span>Synchronise forum post/topic counts</span></h2>
+		<h2 class="block2"><span><?php echo $lang_Fourm_Cleanup['H_SyncTopicPost']?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inbox">
 					<p>
-						This feature works out the number of posts/topics each forum currently has and resets their post/topic counts, useful if you edited the db.
+						<?php echo $lang_Fourm_Cleanup['Desc_SyncTopicPost']?>
 					</p>
 				</div>
 				<p class="submitend">
@@ -156,12 +158,12 @@ else
 				</p>
 			</form>
 		</div>
-		<h2 class="block2"><span>Synchronise topic reply counts</span></h2>
+		<h2 class="block2"><span><?php echo $lang_Fourm_Cleanup['H_SyncTopicReply']?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inbox">
 					<p>
-						This feature works out the number of replies each topic currently has and resets their reply counts, useful if you edited the db.
+						<?php echo $lang_Fourm_Cleanup['Desc_SyncTopicReply']?>
 					</p>
 				</div>
 				<p class="submitend">
@@ -169,12 +171,12 @@ else
 				</p>
 			</form>
 		</div>
-		<h2 class="block2"><span>Synchronise user post counts</span></h2>
+		<h2 class="block2"><span><?php echo $lang_Fourm_Cleanup['H_SyncUserPost']?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inbox">
 					<p>
-						This feature works out the number of posts each user currently has and resets their post counts, useful if you deleted alot of posts and want to sync the user post count.
+						<?php echo $lang_Fourm_Cleanup['Desc_SyncUserPost']?>
 					</p>
 				</div>
 				<p class="submitend">
@@ -182,12 +184,12 @@ else
 				</p>
 			</form>
 		</div>
-		<h2 class="block2"><span>Synchronise forum last post</span></h2>
+		<h2 class="block2"><span><?php echo $lang_Fourm_Cleanup['H_SyncFourmPost']?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inbox">
 					<p>
-						This feature resets the last post section of all forums, useful to clean up the mess after a spammer or db edit.
+						<?php echo $lang_Fourm_Cleanup['Desc_SyncFourmPost']?>
 					</p>
 				</div>
 				<p class="submitend">
@@ -195,12 +197,12 @@ else
 				</p>
 			</form>
 		</div>
-		<h2 class="block2"><span>Synchronise topic last post</span></h2>
+		<h2 class="block2"><span><?php echo $lang_Fourm_Cleanup['H_SyncTopicLastPost']?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inbox">
 					<p>
-						This feature resets the last post section of all topics, useful to clean up the mess after a spammer or db edit.
+						<?php echo $lang_Fourm_Cleanup['Desc_SyncTopicLastPost']?>
 					</p>
 				</div>
 				<p class="submitend">
@@ -208,12 +210,12 @@ else
 				</p>
 			</form>
 		</div>
-		<h2 class="block2"><span>Delete orphans</span></h2>
+		<h2 class="block2"><span><?php echo $lang_Fourm_Cleanup['H_Delete']?></span></h2>
 		<div class="box">
 			<form method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
 				<div class="inbox">
 					<p>
-						This feature deletes all posts whos topic has been deleted, and inversely all topics whos have no posts and all topics whos forum has been deleted, useful after database edits.
+						<?php echo $lang_Fourm_Cleanup['Desc_Delete']?>						
 					</p>
 				</div>
 				<p class="submitend">
@@ -226,6 +228,6 @@ else
 <?php
 	}
 	else 
-		echo "Sorry this script requires Mysql 4.0.4 or above, i may support older versions in future scripts";
+		echo $lang_Fourm_Cleanup['E_Mysql'];
 }
 ?>

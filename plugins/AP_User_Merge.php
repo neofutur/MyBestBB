@@ -22,7 +22,7 @@
 
 ************************************************************************/
 
-
+require PUN_ROOT.'lang/'.$pun_user['language'].'/AP_User_Merge.php';
 
 // Make sure no one attempts to run this script "directly"
 if (!defined('PUN'))
@@ -43,15 +43,15 @@ if (isset($_POST['confirm_users']))
 {
   // Make sure message body was entered
   if (trim($_POST['userid_to_wipe']) == '')
-    message('You must select a user to wipe away!');
+    message($lang_User_Merge["M_UserToWipe"]);
 
   // Make sure message subject was entered
   if (trim($_POST['userid_to_remain']) == '')
-    message('You must select a user to be merged into!');
+    message($lang_User_Merge["M_UserToMerge"]);
 
   // Make sure the users are different
   if (trim($_POST['userid_to_wipe']) == trim($_POST['userid_to_remain']))
-    message('You must select two different users!');
+    message($lang_User_Merge["E_DifferentUsers"]);
 
   // setup userids
   $userid_to_wipe   = trim($_POST['userid_to_wipe']);
@@ -59,13 +59,13 @@ if (isset($_POST['confirm_users']))
 
   // get the usernames and realnames from the passed userids
   $sql = "SELECT username, realname, email FROM ".$db->prefix."users WHERE id='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not get username_to_wipe', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantAccessUserToWipe'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $username_to_wipe = $row['username'];
   $realname_to_wipe = $row['realname'];
   $email_to_wipe    = $row['email'];
   $sql = "SELECT username, realname, email FROM ".$db->prefix."users WHERE id='".$userid_to_remain."'";
-  $result = $db->query($sql) or error('Could not get username_to_remain', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantAccessUserToRemain'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $username_to_remain = $row['username'];
   $realname_to_remain = $row['realname'];
@@ -73,55 +73,55 @@ if (isset($_POST['confirm_users']))
 
   // forums - last_poster(u)
   $sql = "SELECT count(*) as forums_count FROM ".$db->prefix."forums WHERE last_poster='".$username_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the forums table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadFourmsTable'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['forums'] = $row['forums_count'];
   
   // online - user_id(id)
   $sql = "SELECT count(*) as online_count FROM ".$db->prefix."online WHERE user_id='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the online table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadOnlineTable'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['online'] = $row['online_count'];
   
   // posts - poster_id(id), edited_by(u)
   $sql = "SELECT count(*) as posts1_count FROM ".$db->prefix."posts WHERE poster_id='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the posts table (1)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadPostTable1'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['posts1'] = $row['posts1_count'];
   $sql = "SELECT count(*) as posts2_count FROM ".$db->prefix."posts WHERE edited_by='".$username_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the posts table (2)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadPostTable2'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['posts2'] = $row['posts2_count'];
   
   // reports - reported_by(id), zapped_by(id)
   $sql = "SELECT count(*) as reports1_count FROM ".$db->prefix."reports WHERE reported_by='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the reports table (1)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadReportsTable1'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['reports1'] = $row['reports1_count'];
   $sql = "SELECT count(*) as reports2_count FROM ".$db->prefix."reports WHERE zapped_by='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the reports table (2)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadReportsTable2'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['reports2'] = $row['reports2_count'];
   
   // subscriptions - user_id(id) 
   $sql = "SELECT count(*) as subscriptions_count FROM ".$db->prefix."subscriptions WHERE user_id='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the subscriptions table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadSubscriptionsTable'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['subscriptions'] = $row['subscriptions_count'];
   
   // topics - poster(u), last_poster(u)
   $sql = "SELECT count(*) as topics1_count FROM ".$db->prefix."topics WHERE poster='".$username_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the topics table (1)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadTopicsTable1'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['topics1'] = $row['topics1_count'];
   $sql = "SELECT count(*) as topics2_count FROM ".$db->prefix."topics WHERE last_poster='".$username_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the topics table (2)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadTopicsTable2'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['topics2'] = $row['topics2_count'];
   
   // users - id(id)
   $sql = "SELECT count(*) as users_count FROM ".$db->prefix."users WHERE id='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not read the users table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantReadUsersTable'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $counts['users'] = $row['users_count'];
   
@@ -140,21 +140,21 @@ if (isset($_POST['confirm_users']))
 
 ?>
   <div id="exampleplugin" class="blockform">
-    <h2><span>User Merge - Confirm</span></h2>
+    <h2><span><?php echo $lang_User_Merge['H_UserMergeConfirm1'] ?></span></h2>
     <div class="box">
       <div class="inbox">
-        <p>Please confirm your user selections here.<br /><br />If something is not correct, please <a href="javascript: history.go(-1)">Go Back</a>.</p>
+        <p><?php echo $lang_User_Merge['Desc_Confirm1'] ?><br /><br /><?php echo $lang_User_Merge['Desc_GoBack'] ?><a href="javascript: history.go(-1)"><?php echo $lang_User_Merge['GoBack'] ?></a>.</p>
       </div>
     </div>
 
-    <h2 class="block2"><span>Confirm Users (Step 2 of 3)</span></h2>
+    <h2 class="block2"><span><?php echo $lang_User_Merge['H_UserMergeConfirm2'] ?></span></h2>
     <div class="box">
       <form id="usermerge" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <div class="inform">
           <input type="hidden" name="userid_to_wipe" value="<?php echo pun_htmlspecialchars($userid_to_wipe) ?>" />
           <input type="hidden" name="userid_to_remain" value="<?php echo pun_htmlspecialchars($userid_to_remain) ?>" />
           <fieldset>
-            <legend>User to be Merged and then Deleted</legend>
+            <legend><?php echo $lang_User_Merge['H_UserMergeDeleted'] ?></legend>
             <div class="infldset">
               <p><?php echo $wipe_display ?></p>
             </div>
@@ -162,7 +162,7 @@ if (isset($_POST['confirm_users']))
         </div>
         <div class="inform">
           <fieldset>
-            <legend>User to be Merged Into</legend>
+            <legend><?php echo $lang_User_Merge['H_UserMergeInto'] ?></legend>
             <div class="infldset">
               <p><?php echo $remain_display ?></p>
             </div>
@@ -172,7 +172,7 @@ if (isset($_POST['confirm_users']))
           <input type="hidden" name="userid_to_wipe" value="<?php echo pun_htmlspecialchars($userid_to_wipe) ?>" />
           <input type="hidden" name="userid_to_remain" value="<?php echo pun_htmlspecialchars($userid_to_remain) ?>" />
           <fieldset>
-            <legend>Effects of this Merge</legend>
+            <legend><?php echo $lang_User_Merge['H_MergeEffects'] ?></legend>
             <div class="infldset">
               <p>[ <strong><?php echo $counts['forums'] ?></strong> ] 'forums' <?php echo pluralize($counts['forums'],"entry","entries") ?> to be updated</p>
               <p>[ <strong><?php echo $counts['online'] ?></strong> ] 'online' user <?php echo pluralize($counts['online'],"entry","entries") ?> to be updated</p>
@@ -185,7 +185,7 @@ if (isset($_POST['confirm_users']))
           </fieldset>
         </div>
         <div class="fsetsubmit"><input type="submit" name="merge_the_users" value="Confirmed - Merge Them." tabindex="3" /></div>
-        <p class="topspace">Please hit this button only once. Patience is key.</p>
+        <p class="topspace"><?php echo $lang_User_Merge['Input_confirm'] ?></p>
       </form>
     </div>
   </div>
@@ -206,24 +206,24 @@ else if (isset($_POST['merge_the_users']))
 
   // get the usernames and realnames from the passed userids
   $sql = "SELECT username, realname FROM ".$db->prefix."users WHERE id='".$userid_to_wipe."'";
-  $result = $db->query($sql) or error('Could not get username_to_wipe', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantAccessUserToWipe'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $username_to_wipe = $row['username'];
   $realname_to_wipe = $row['realname'];
   $sql = "SELECT username, realname FROM ".$db->prefix."users WHERE id='".$userid_to_remain."'";
-  $result = $db->query($sql) or error('Could not get username_to_remain', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantAccessUserToRemain'], __FILE__, __LINE__, $db->error());
   $row = $db->fetch_assoc($result);
   $username_to_remain = $row['username'];
   $realname_to_remain = $row['realname'];
 
   // forums - update last_poster(u)
   $sql = "UPDATE ".$db->prefix."forums SET last_poster='$username_to_remain' WHERE last_poster='$username_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the forums table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateForumsTable'], __FILE__, __LINE__, $db->error());
   
   
   // forums - update moderators
   $sql = "SELECT id, moderators FROM ".$db->prefix."forums";
-  $result = $db->query($sql) or error('Could not get moderators from forums table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantGetModsForumsTable'], __FILE__, __LINE__, $db->error());
   while ($cur_forum = $db->fetch_assoc($result))
   {
     $cur_moderators = ($cur_forum['moderators'] != '') ? unserialize($cur_forum['moderators']) : array();
@@ -235,56 +235,56 @@ else if (isset($_POST['merge_the_users']))
       ksort($cur_moderators);
       $cur_moderators = (!empty($cur_moderators)) ? '\''.$db->escape(serialize($cur_moderators)).'\'' : 'NULL';
       $sql = "UPDATE ".$db->prefix."forums SET moderators=".$cur_moderators." WHERE id=".$cur_forum['id'];
-      $result = $db->query($sql) or error('Could not update the moderators', __FILE__, __LINE__, $db->error());
+      $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateModsForumsTable'], __FILE__, __LINE__, $db->error());
     }
   }
 
   // online - delete where user_id(id)
   $sql = "UPDATE ".$db->prefix."online SET user_id='$userid_to_remain', ident='$username_to_remain' WHERE user_id='$userid_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the online table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateOnlineTable'], __FILE__, __LINE__, $db->error());
   
   // posts - update poster(u), poster_id(id), edited_by(u)
   $sql = "UPDATE ".$db->prefix."posts SET poster='$username_to_remain', poster_id='$userid_to_remain' WHERE poster_id='$userid_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the posts table (1)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdatePostTable1'], __FILE__, __LINE__, $db->error());
   $sql = "UPDATE ".$db->prefix."posts SET edited_by='$username_to_remain' WHERE edited_by='$username_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the posts table (2)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdatePostTable2'], __FILE__, __LINE__, $db->error());
   
   // reports - update reported_by(id), zapped_by(id)
   $sql = "UPDATE ".$db->prefix."reports SET reported_by='$userid_to_remain' WHERE reported_by='$userid_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the reports table (1)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateReportsTable1'], __FILE__, __LINE__, $db->error());
   $sql = "UPDATE ".$db->prefix."reports SET zapped_by='$userid_to_remain' WHERE zapped_by='$userid_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the reports table (2)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateReportsTable2'], __FILE__, __LINE__, $db->error());
   
   // subscriptions - update where user_id(id) 
   $sql = "UPDATE ".$db->prefix."subscriptions SET user_id='$userid_to_remain' WHERE user_id='$userid_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the subscriptions table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateSubscriptionsTable'], __FILE__, __LINE__, $db->error());
   
   // topics - update poster(u), last_poster(u)
   $sql = "UPDATE ".$db->prefix."topics SET poster='$username_to_remain' WHERE poster='$username_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the topics table (1)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateTopicsTable1'], __FILE__, __LINE__, $db->error());
   $sql = "UPDATE ".$db->prefix."topics SET last_poster='$username_to_remain' WHERE last_poster='$username_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the topics table (2)', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateTopicsTable2'], __FILE__, __LINE__, $db->error());
   
   // users - find by id(id), delete them (this should be the last step)
   $sql = "DELETE FROM ".$db->prefix."users WHERE id='$userid_to_wipe'";
-  $result = $db->query($sql) or error('Could not update the users table', __FILE__, __LINE__, $db->error());
+  $result = $db->query($sql) or error($lang_User_Merge['E_CantUpdateUsersTable'], __FILE__, __LINE__, $db->error());
   
   // Display the admin navigation menu
   generate_admin_menu($plugin);
 
 ?>
   <div class="block">
-    <h2><span>User Merge - Merge Complete</span></h2>
+    <h2><span><?php echo $lang_User_Merge['H_MergeComplete']; ?></span></h2>
     <div class="box">
       <div class="inbox">
-        <p>The merge is complete.</p>
+        <p><?php echo $lang_User_Merge['Desc_MergeComplete']; ?></p>
       </div>
     </div>
-    <h2 class="block2"><span>Results (Step 3 of 3)</span></h2>
+    <h2 class="block2"><span><?php echo $lang_User_Merge['H_Result']; ?></span></h2>
     <div class="box">
       <div class="inbox">
-        <p>[<strong><?php echo $username_to_remain ?></strong>] has been given credit for all of [<strong><?php echo $username_to_wipe ?></strong>]'s posts.</p>
-        <p>[<strong><?php echo $username_to_wipe ?></strong>] has been deleted.</p>
+        <p>[<strong><?php echo $username_to_remain ?></strong>]<?php echo $lang_User_Merge['M_HasCredit']; ?>[<strong><?php echo $username_to_wipe ?></strong>]<?php echo $lang_User_Merge['M_Post']; ?></p>
+        <p>[<strong><?php echo $username_to_wipe ?></strong>]<?php echo $lang_User_Merge['M_BeenDeleted']; ?></p>
       </div>
     </div>
   </div>
@@ -301,7 +301,7 @@ else
 
  // Get all user accounts except Guest
  $sql = "SELECT id, username, realname, email FROM ".$db->prefix."users WHERE id!='1' ORDER BY username, realname";
- $result = $db->query($sql) or error('Could not get all users', __FILE__, __LINE__, $db->error());
+ $result = $db->query($sql) or error($lang_User_Merge['E_NotAllUsers'], __FILE__, __LINE__, $db->error());
   while($row = $db->fetch_assoc($result))
   {
     $usernames[$row['id']] = $row['username'];
@@ -314,39 +314,39 @@ else
 
 ?>
   <div id="exampleplugin" class="blockform">
-    <h2><span>User Merge</span></h2>
+    <h2><span><?php echo $lang_User_Merge['H_MergeUsers']; ?></span></h2>
     <div class="box">
       <div class="inbox">
-        <p>This plugin allows the Administrator to merge two existing user accounts into one.</p>
-        <p>There will be a confirmation page after this one - to make sure you have not made any mistakes.</p>
+        <p><?php echo $lang_User_Merge['Desc_MergeUsers1']; ?></p>
+        <p><?php echo $lang_User_Merge['Desc_MergeUsers2']; ?></p>
       </div>
     </div>
 
-    <h2 class="block2"><span>User Selection (Step 1 of 3)</span></h2>
+    <h2 class="block2"><span><?php echo $lang_User_Merge['H_UserSelect']; ?></span></h2>
     <div class="box">
       <form id="usermerge" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
         <div class="inform">
           <fieldset>
-            <legend>User to be Merged and then Deleted</legend>
+            <legend><?php echo $lang_User_Merge['H_UserMergeDeleted']; ?></legend>
             <div class="infldset">
               <table class="aligntop" cellspacing="0">
                 <tr>
                   <td>
                     <select name="userid_to_wipe" tabindex="3">
-<?php
-    foreach($usernames as $userid=>$username)
-    {
-      if ($pun_user['id'] != $userid)
-      {
-        $display = "[".pun_htmlspecialchars($username)."]";
-        if (pun_htmlspecialchars($realnames[$userid])!=""){ $display .= " ".pun_htmlspecialchars($realnames[$userid]);}
-        if (pun_htmlspecialchars($emails[$userid])!=""){ $display .= " &lt;".pun_htmlspecialchars($emails[$userid])."&gt";}
-        echo "                      ".'<option value="'.$userid.'">'.$display.'</option>'."\n";
-      }
-    }
-?>
+                      <?php
+                          foreach($usernames as $userid=>$username)
+                          {
+                            if ($pun_user['id'] != $userid)
+                            {
+                              $display = "[".pun_htmlspecialchars($username)."]";
+                              if (pun_htmlspecialchars($realnames[$userid])!=""){ $display .= " ".pun_htmlspecialchars($realnames[$userid]);}
+                              if (pun_htmlspecialchars($emails[$userid])!=""){ $display .= " &lt;".pun_htmlspecialchars($emails[$userid])."&gt";}
+                              echo "                      ".'<option value="'.$userid.'">'.$display.'</option>'."\n";
+                            }
+                          }
+                      ?>
                     </select>
-                    <span>Select the user you wish to merge into the user below.</span>
+                    <span><?php echo $lang_User_Merge['Input_User']; ?></span>
                   </td>
                 </tr>
               </table>
@@ -355,7 +355,7 @@ else
         </div>
         <div class="inform">
           <fieldset>
-            <legend>User to be Merged Into</legend>
+            <legend><?php echo $lang_User_Merge['H_UserMergeInto']; ?></legend>
             <div class="infldset">
               <table class="aligntop" cellspacing="0">
                 <tr>
@@ -371,14 +371,14 @@ else
     }
 ?>
                     </select>
-                    <span>Select the user that will inherit the above user's posts.</span>
+                    <span><?php echo $lang_User_Merge['Input_UserToInherit']; ?></span>
                   </td>
                 </tr>
               </table>
             </div>
           </fieldset>
         </div>
-        <div class="fsetsubmit"><input type="submit" name="confirm_users" value="Continue to Confirmation Page" tabindex="3" /></div>
+        <div class="fsetsubmit"><input type="submit" name="confirm_users" value=<?php echo $lang_User_Merge['Input_Continue']; ?> tabindex="3" /></div>
       </form>
     </div>
   </div>

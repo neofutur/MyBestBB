@@ -24,6 +24,10 @@
 	color: red;
 }
 
+.blockmenu .box .inbox ul li A:link, .blockmenu .box .inbox ul li A:visited,  .blockmenu .box .inbox ul li A:active{
+	color: red;
+}
+
 .pun, .pun INPUT, .pun SELECT, .pun TEXTAREA, .pun OPTGROUP {
 	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
 }

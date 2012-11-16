@@ -218,8 +218,8 @@ function process_form(the_form)
 					<legend>Enter and confirm Administrator password</legend>
 					<div class="infldset">
 					<p>Passwords can be between 4 and 16 characters long. Passwords are case sensitive.</p>
-						<label class="conl"><strong>Password</strong><br /><input id="req_password1" type="text" name="req_password1" size="16" maxlength="16" /><br /></label>
-						<label class="conl"><strong>Confirm password</strong><br /><input type="text" name="req_password2" size="16" maxlength="16" /><br /></label>
+						<label class="conl"><strong>Password</strong><br /><input id="req_password1" type="text" name="req_password1" size="16" /><br /></label>
+						<label class="conl"><strong>Confirm password</strong><br /><input type="text" name="req_password2" size="16" /><br /></label>
 						<div class="clearer"></div>
 					</div>
 				</fieldset>

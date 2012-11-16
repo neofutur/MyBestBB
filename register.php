@@ -353,8 +353,8 @@ require PUN_ROOT.'header.php';
 				<fieldset>
 					<legend><?php echo $lang_register['Pass legend 1'] ?></legend>
 					<div class="infldset">
-						<label class="conl"><strong><?php echo $lang_common['Password'] ?></strong><br /><input type="password" name="req_password1" size="16" maxlength="16" /><br /></label>
-						<label class="conl"><strong><?php echo $lang_prof_reg['Confirm pass'] ?></strong><br /><input type="password" name="req_password2" size="16" maxlength="16" /><br /></label>
+						<label class="conl"><strong><?php echo $lang_common['Password'] ?></strong><br /><input type="password" name="req_password1" size="16" /><br /></label>
+						<label class="conl"><strong><?php echo $lang_prof_reg['Confirm pass'] ?></strong><br /><input type="password" name="req_password2" size="16" /><br /></label>
 						<p class="clearb"><?php echo $lang_register['Pass info'] ?></p>
 					</div>
 				</fieldset>

@@ -12,9 +12,10 @@
 
 2 If you are installing, run install.php, as for a normal punbb
   If punbb is already installed, you dont have to run install.php
-  Verify the permissions, the web server needs to be able to write in  the attach directory ( /attach ), in /cache and /img/avatars
+  Verify the permissions, the web server needs to be able to write in  the
+  attach directory ( /attach ), in /cache and /img/avatars and /attach
 
-3 Run the following mod_install scripts :
+3 Run the following mod_install scripts ( list on install_mods_MyBestBB.php ):
 * install_mod_Attachment.php
 * install_mod_Another_Private_Messaging_System.php
 * install_mod_message_prive_de-bienvenue.php

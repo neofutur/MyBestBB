@@ -12,6 +12,7 @@
 (*) i18n the plugins which are not i18n, using lang/ messages for plugins
 (*) review all the MyBestBB themes and CSS , at least for the spoiler bbcode
     (see http://mybestbb.ww7.be/viewtopic.php?pid=121 )
+(*) implement gpg authentification , see http://gpgauth.org/projects/gpgauth-php/server-setup/
  gathering mod install in only one page ( better than install_mods_MyBestBB.php which is just a helper page )
  admin settings for active public topics ( number of items at least )
  js rolling for active public topics

@@ -76,7 +76,7 @@ function install()
 		
 		
 		///Try to create reputation table
-		$result = $db->query('CREATE TABLE '.$db->prefix.'reputation (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, user_id INT(10) UNSIGNED NOT NULL DEFAULT 0,	from_user_id INT(10) UNSIGNED NOT NULL DEFAULT 0, time INT(10) UNSIGNED NOT NULL DEFAULT 0,	post_id INT(10) UNSIGNED NOT NULL DEFAULT 0, reason TEXT NOT NULL, rep_plus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0, rep_minus TINYINT(1) UNSIGNED NOT NULL  DEFAULT 0, topics_id INT(10) UNSIGNED NOT NULL DEFAULT 0, PRIMARY KEY (id) )TYPE=MyISAM;');
+		$result = $db->query('CREATE TABLE '.$db->prefix.'reputation (id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, user_id INT(10) UNSIGNED NOT NULL DEFAULT 0,	from_user_id INT(10) UNSIGNED NOT NULL DEFAULT 0, time INT(10) UNSIGNED NOT NULL DEFAULT 0,	post_id INT(10) UNSIGNED NOT NULL DEFAULT 0, reason TEXT NOT NULL, rep_plus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0, rep_minus TINYINT(1) UNSIGNED NOT NULL  DEFAULT 0, topics_id INT(10) UNSIGNED NOT NULL DEFAULT 0, PRIMARY KEY (id) )ENGINE=MyISAM;');
 		$xxx = $db->error();
 		if ($xxx['error_no'] != '0' && $xxx['error_no'] != '1050') {
 			error('Unable to create table '.$db->prefix.'reputation.',  __FILE__, __LINE__, $db->error());

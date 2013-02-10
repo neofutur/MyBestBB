@@ -29,7 +29,7 @@ function install()
     message TEXT,
     posted INT(10) NOT NULL default '0',
     PRIMARY KEY  (id)
-    ) TYPE=MyISAM;";
+    ) ENGINE=MyISAM;";
     $db->query($sql1) or error('Unable to create table '.$db->prefix.'chatbox_msg.',  __FILE__, __LINE__, $db->error());
 
 $sql2 = 'ALTER TABLE '.$db->prefix."groups

@@ -53,7 +53,7 @@ function install()
 				status TINYINT(1) DEFAULT 0,
 				showed TINYINT(1) DEFAULT 0,
 				PRIMARY KEY (id)
-				) TYPE=MyISAM;";
+				) ENGINE=MyISAM;";
 				break;
 			
 			case 'pgsql':
@@ -196,7 +196,7 @@ function install()
 				contact_name VARCHAR(200) NOT NULL DEFAULT '',
 				allow_msg TINYINT(1) NOT NULL DEFAULT 1,
 				PRIMARY KEY (id)
-				) TYPE=MyISAM;";
+				) ENGINE=MyISAM;";
 				break;
 			
 			case 'pgsql':

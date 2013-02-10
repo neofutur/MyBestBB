@@ -34,7 +34,7 @@ function install()
 					ptype tinyint(4) NOT NULL default '0',
 					votes LONGTEXT NOT NULL,
 					PRIMARY KEY (id)
-					) TYPE=MyISAM;";
+					) ENGINE=MyISAM;";
 			break;
 
 		case 'pgsql':

@@ -30,7 +30,7 @@ function install()
   `lang_entry` varchar(255) default NULL,
   `order` tinyint(4) NOT NULL,
   PRIMARY KEY  (`id`)
-)") or error('Unable to make profile fields table', __FILE__, __LINE__, $db->error());
+) ENGINE=MyISAM;") or error('Unable to make profile fields table', __FILE__, __LINE__, $db->error());
 
 			$db->query("CREATE TABLE `".$db->prefix."profile_field_entries` (
   `e_id` int(6) NOT NULL auto_increment,
@@ -38,7 +38,7 @@ function install()
   `value` varchar(255) default NULL,
   `u_id` int(6) NOT NULL,
   PRIMARY KEY  (`e_id`)
-)") or error('Unable to make profile fields table(2)', __FILE__, __LINE__, $db->error());
+) ENGINE=MyISAM;") or error('Unable to make profile fields table(2)', __FILE__, __LINE__, $db->error());
 		break;
 	}
 }

@@ -37,7 +37,7 @@ function install($basepath='')
   		`location` text NOT NULL,
   		`size` int(10) unsigned NOT NULL default '0',
   		`downloads` int(10) unsigned NOT NULL default '0',
-  		UNIQUE KEY `id` (`id`))") or error('Unable to add table "attach_2_files" to database', __FILE__, __LINE__, $db->error());
+  		UNIQUE KEY `id` (`id`)) ENGINE=MyISAM;") or error('Unable to add table "attach_2_files" to database', __FILE__, __LINE__, $db->error());
 
 		
 		
@@ -51,7 +51,7 @@ function install($basepath='')
   		`size` int(10) unsigned NOT NULL default '0',
   		`per_post` tinyint(4) NOT NULL default '1',
   		`file_ext` text NOT NULL,
-  		UNIQUE KEY `id` (`id`))") or error('Unable to add table "attach_2_rules" to database', __FILE__, __LINE__, $db->error());
+  		UNIQUE KEY `id` (`id`)) ENGINE=MyISAM;") or error('Unable to add table "attach_2_rules" to database', __FILE__, __LINE__, $db->error());
 
 	//ok path could be correct, try to make a subfolder :D
 	$newname = attach_generate_pathname($basepath);

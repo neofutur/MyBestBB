@@ -30,7 +30,7 @@ function install()
 										`Smiley_Text` CHAR( 15 ) NOT NULL ,
 										`Smiley_Image` VARCHAR( 255 ) NOT NULL ,
 										PRIMARY KEY ( `Id` )
-										)") 
+										) ENGINE=MyISAM;") 
 										or error('Unable to create the smilies table', $db->error());
 			break;
 
@@ -41,7 +41,7 @@ function install()
 										`Smiley_Text` CHAR( 15 ) NOT NULL ,
 										`Smiley_Image` VARCHAR( 255 ) NOT NULL ,
 										PRIMARY KEY ( `Id` )
-										)") 
+										) ENGINE=MyISAM;") 
 										or error('Unable to create the smilies table', $db->error());
 			break;
 	}

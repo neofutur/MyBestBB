@@ -731,7 +731,7 @@ else
 					ident VARCHAR(200) NOT NULL DEFAULT '',
 					logged INT(10) UNSIGNED NOT NULL DEFAULT 0,
 					idle TINYINT(1) NOT NULL DEFAULT 0
-					) TYPE=HEAP;";
+					) ENGINE=HEAP;";
 			break;
 
 		case 'pgsql':

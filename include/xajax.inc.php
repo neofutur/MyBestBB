@@ -43,7 +43,8 @@ class xajaxResponse
 	var $xml;
 
 	// Constructor
-	function xajaxResponse()
+	//function xajaxResponse()
+	function __construct()
 	{
 		$this->xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		$this->xml .= "<xajax>";
@@ -193,7 +194,8 @@ class xajax
 	// $bDebug Mode - defaults to false
 	// $sWrapperPrefix - defaults to "xajax_";
 	// usage: $xajax = new xajax();
-	function xajax($sRequestURI="",$sWrapperPrefix="xajax_",$bDebug=false)
+	//function xajax($sRequestURI="",$sWrapperPrefix="xajax_",$bDebug=false)
+	function __construct($sRequestURI="",$sWrapperPrefix="xajax_",$bDebug=false)
 	{
 		$this->aFunctions = array();
 		$this->sRequestURI = $sRequestURI;

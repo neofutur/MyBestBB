@@ -121,7 +121,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 // Turn off magic_quotes_runtime fixes in 2.0.3
 //set_magic_quotes_runtime(0);
-if (get_magic_quotes_runtime())  set_magic_quotes_runtime(0);
+//if (get_magic_quotes_runtime())  set_magic_quotes_runtime(0);
 
 // Load the functions script
 require PUN_ROOT.'include/functions.php';

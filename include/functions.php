@@ -45,7 +45,10 @@ function check_cookie(&$pun_user)
 	if ($cookie['user_id'] > 1)
 	{
 		// Check if there's a user with the user ID and password hash from the cookie
-$result = $db->query('SELECT u.*, g.*, o.logged, o.idle, COUNT(pm.id) AS total_pm FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id LEFT JOIN '.$db->prefix.'online AS o ON o.user_id=u.id LEFT JOIN '.$db->prefix.'messages AS pm ON pm.owner=u.id WHERE u.id='.intval($cookie['user_id']).' GROUP BY u.id') or error('Unable to fetch user information', __FILE__, __LINE__, $db->error());
+$sql='SELECT u.*, g.*, o.logged, o.idle, COUNT(pm.id) AS total_pm FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id LEFT JOIN '.$db->prefix.'online AS o ON o.user_id=u.id LEFT JOIN '.$db->prefix.'messages AS pm ON pm.owner=u.id WHERE u.id='.intval($cookie['user_id']).' GROUP BY u.id, o.logged, o.idle ';
+//echo $sql; exit();
+$result = $db->query($sql) or error('Unable to fetch user information', __FILE__, __LINE__, $db->error());  
+//$result = $db->query('SELECT u.*, g.*, o.logged, o.idle, COUNT(pm.id) AS total_pm FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id LEFT JOIN '.$db->prefix.'online AS o ON o.user_id=u.id LEFT JOIN '.$db->prefix.'messages AS pm ON pm.owner=u.id WHERE u.id='.intval($cookie['user_id']).' GROUP BY u.id') or error('Unable to fetch user information', __FILE__, __LINE__, $db->error());
 
 //$result = $db->query('SELECT u.*, g.*, o.logged, o.idle FROM '.$db->prefix.'users AS u INNER JOIN '.$db->prefix.'groups AS g ON u.group_id=g.g_id LEFT JOIN '.$db->prefix.'online AS o ON o.user_id=u.id WHERE u.id='.intval($cookie['user_id'])) or error('Unable to fetch user information', __FILE__, __LINE__, $db->error()); //before private messaging
 		$pun_user = $db->fetch_assoc($result);

@@ -497,8 +497,8 @@ function do_clickable($text)
 
 	$text = ' '.$text;
 
-	$text = preg_replace('#([\s\(\)])(https?|ftp|news){1}://([\w\-]+\.([\w\-]+\.)*[\w]+(:[0-9]+)?(/[^"\s\(\)<\[]*)?)#ie', '\'$1\'.handle_url_tag(\'$2://$3\')', $text);
-	$text = preg_replace('#([\s\(\)])(www|ftp)\.(([\w\-]+\.)*[\w]+(:[0-9]+)?(/[^"\s\(\)<\[]*)?)#ie', '\'$1\'.handle_url_tag(\'$2.$3\', \'$2.$3\')', $text);
+	$text = preg_replace('#([\s\(\)])(https?|ftp|news){1}://([\w\-]+\.([\w\-]+\.)*[\w]+(:[0-9]+)?(/[^"\s\(\)<\[]*)?)#i', '\'$1\'.handle_url_tag(\'$2://$3\')', $text);
+	$text = preg_replace('#([\s\(\)])(www|ftp)\.(([\w\-]+\.)*[\w]+(:[0-9]+)?(/[^"\s\(\)<\[]*)?)#i', '\'$1\'.handle_url_tag(\'$2.$3\', \'$2.$3\')', $text);
 
 	return substr($text, 1);
 }
@@ -545,8 +545,10 @@ function parse_message($text, $hide_smilies)
 	$text = pun_htmlspecialchars($text);
 
         // Mod: BBCode noparse (2 nouvelles lignes suivent)
-        $text = preg_replace('#\[noparse\](.*)\[/noparse\]#sUe', 'no_parse_message(\'$1\')', $text);
-        $text = preg_replace('#\[np\](.*)\[/np\]#sUe', 'no_parse_message(\'$1\')', $text);
+        //$text = preg_replace('#\[noparse\](.*)\[/noparse\]#sUe', 'no_parse_message(\'$1\')', $text);
+        //$text = preg_replace('#\[np\](.*)\[/np\]#sUe', 'no_parse_message(\'$1\')', $text);
+        $text = preg_replace('#\[noparse\](.*)\[/noparse\]#sU', 'no_parse_message(\'$1\')', $text);
+        $text = preg_replace('#\[np\](.*)\[/np\]#sU', 'no_parse_message(\'$1\')', $text);
 
 	// If the message contains a code tag we have to split it up (text within [code][/code] shouldn't be touched)
 	if (strpos($text, '[code]') !== false && strpos($text, '[/code]') !== false)
